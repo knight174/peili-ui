@@ -1,0 +1,28 @@
+{
+  "name": "@peili-ui/demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@peili-ui/button": "workspace:^"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-essentials": "^8.2.5",
+    "@storybook/addon-interactions": "^8.2.5",
+    "@storybook/addon-links": "^8.2.5",
+    "@storybook/addon-onboarding": "^8.2.5",
+    "@storybook/blocks": "^8.2.5",
+    "@storybook/test": "^8.2.5",
+    "@storybook/vue3": "^8.2.5",
+    "@storybook/vue3-vite": "^8.2.5",
+    "storybook": "^8.2.5"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@peili-ui/shared",
+  "main": "./dist/peili-ui-shared.umd.js",
+  "module": "./dist/peili-ui-shared.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/peili-ui-shared.mjs",
+      "require": "./dist/peili-ui-shared.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.7",
+    "lodash": "^4.17.21"
+  }
+}

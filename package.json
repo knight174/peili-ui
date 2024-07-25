@@ -1,0 +1,40 @@
+{
+  "name": "peili-ui-library",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev:storybook": "pnpm --filter @peili-ui/demo run dev",
+    "build:ui": "pnpm run type:src && pnpm --filter './packages/**' run build && pnpm run mv-type",
+    "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
+    "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
+    "mv-type": "tsx ./scripts/dts-mv.ts",
+    "clean:type": "rimraf ./dist",
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix ./"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.14.12",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "husky": "^9.1.1",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "sass": "^1.77.8",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.4",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.0.28"
+  },
+  "dependencies": {
+    "vue": "^3.4.33"
+  }
+}

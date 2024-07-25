@@ -1,0 +1,45 @@
+{
+  "name": "peili-ui",
+  "version": "0.0.0",
+  "description": "peili-ui",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "Eric",
+  "license": "MIT",
+  "homepage": "https://github.com/Knight174/peili-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight174/peili-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Knight174/peili-ui/issues"
+  },
+  "main": "dist/peili-ui.umd.js",
+  "module": "dist/peili-ui.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/peili-ui.mjs.js",
+      "require": "./dist/peili-ui.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@peili-ui/button": "workspace:^",
+    "@peili-ui/input": "workspace:^",
+    "@peili-ui/shared": "workspace:^"
+  }
+}
