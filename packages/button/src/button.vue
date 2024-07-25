@@ -6,7 +6,7 @@ const props = withDefaults(
     text?: string;
   }>(),
   {
-    text: 'world!',
+    text: 'world!!',
   },
 );
 
@@ -16,10 +16,7 @@ function handleClick() {
 </script>
 
 <template>
-  <button
-    class="pl-button"
-    @click="handleClick"
-  >
+  <button class="pl-button" @click="handleClick">
     <slot />
   </button>
 </template>
