@@ -1,5 +1,1 @@
-# .husky/commit-msg
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 npx --no -- commitlint -e $HUSKY_GIT_PARAMS
