@@ -17,22 +17,25 @@
   "bugs": {
     "url": "https://github.com/Knight174/peili-ui/issues"
   },
-  "main": "dist/peili-ui.umd.js",
-  "module": "dist/peili-ui.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/peili-ui.umd.js",
+  "module": "./dist/peili-ui.mjs",
+  "types": "./dist/src/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
   "exports": {
     ".": {
-      "import": "./dist/peili-ui.mjs.js",
       "require": "./dist/peili-ui.umd.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/peili-ui.mjs",
+      "types": "./dist/src/index.d.ts"
     }
   },
   "scripts": {
-    "build": "vite build"
+    "build:package": "vite build --mode package",
+    "build:full": "vite build --mode full",
+    "build:full-min": "vite build --mode full-min",
+    "build": "pnpm run build:package && pnpm run build:full && pnpm run build:full-min"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"

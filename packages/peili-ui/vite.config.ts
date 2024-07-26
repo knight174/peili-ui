@@ -1,18 +1,23 @@
+// import { defineConfig } from 'vite';
+// import pkg from './package.json';
+
+// export default defineConfig({
+//   build: {
+//     lib: {
+//       entry: './src/index.ts',
+//       name: 'Peiliui',
+//       // 产物文件名称
+//       fileName: 'peili-ui',
+//     },
+//     minify: false,
+
+//     rollupOptions: {
+//       external: [...Object.keys(pkg.dependencies || {})],
+//     },
+//   },
+// });
+
 import { defineConfig } from 'vite';
-import pkg from './package.json';
+import { generateVueConfig } from '../build/build.config';
 
-export default defineConfig({
-  build: {
-    lib: {
-      entry: './src/index.ts',
-      name: 'Peiliui',
-      // 产物文件名称
-      fileName: 'peili-ui',
-    },
-    minify: false,
-
-    rollupOptions: {
-      external: [...Object.keys(pkg.dependencies || {})],
-    },
-  },
-});
+export default defineConfig(({ mode }) => generateVueConfig({ mode }));

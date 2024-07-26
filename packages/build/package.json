@@ -1,0 +1,33 @@
+{
+  "name": "@peili-ui/build",
+  "main": "./dist/peili-ui-build.umd.js",
+  "module": "./dist/peili-ui-build.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/peili-ui-build.umd.js",
+      "import": "./dist/peili-ui-build.mjs",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "vite": ">=3.0.0",
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^5.0.7",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "type-fest": "^4.23.0",
+    "typescript": "^5.5.4",
+    "vite-plugin-inspect": "^0.8.5"
+  }
+}
