@@ -16,6 +16,12 @@
 //   },
 // });
 
+import UnoCSS from 'unocss/vite';
 import { generateVueConfig } from '../build/build.config';
 
-export default generateVueConfig();
+export default generateVueConfig(
+  {},
+  {
+    plugins: [UnoCSS()],
+  },
+);

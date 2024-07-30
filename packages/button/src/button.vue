@@ -16,7 +16,10 @@ function handleClick() {
 </script>
 
 <template>
-  <button class="pl-button" @click="handleClick">
+  <button
+    class="peili-button text-blue ml-2px cursor-pointer"
+    @click="handleClick"
+  >
     <slot />
   </button>
 </template>
