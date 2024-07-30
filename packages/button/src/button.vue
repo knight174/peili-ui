@@ -6,7 +6,7 @@ const props = withDefaults(
     text?: string;
   }>(),
   {
-    text: 'world!!',
+    text: 'world',
   },
 );
 
