@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev:storybook": "pnpm --filter @peili-ui/demo run dev",
+    "dev:play": "pnpm --filter @peili-ui/play run dev",
     "build:ui": "pnpm run type:src && pnpm --filter './packages/**' run build",
     "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
     "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
