@@ -17,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/Knight174/peili-ui/issues"
   },
+  "type": "module",
   "main": "./dist/peili-ui-button.umd.js",
   "module": "./dist/peili-ui-button.mjs",
   "types": "./dist/src/index.d.ts",
