@@ -1,0 +1,45 @@
+{
+  "name": "@peili-ui/icons",
+  "version": "0.0.0",
+  "description": "peili-ui icons",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "Eric",
+  "license": "MIT",
+  "homepage": "https://github.com/Knight174/peili-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight174/peili-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Knight174/peili-ui/issues"
+  },
+  "type": "module",
+  "main": "./dist/peili-ui-icons.umd.js",
+  "module": "./dist/peili-ui-icons.mjs",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/peili-ui-icons.umd.js",
+      "import": "./dist/peili-ui-icons.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./icons.css": "./dist/icons.css",
+    "./icons.json": "./dist/icons.json"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@iconify/tools": "^3.0.7",
+    "@iconify/utils": "^2.1.29"
+  }
+}

@@ -1,9 +1,19 @@
-import { defineConfig, presetUno, transformerDirectives } from 'unocss';
+import { defineConfig, presetUno, presetIcons, UserConfig, transformerDirectives } from 'unocss';
 // eslint-disable-next-line import/no-relative-packages
 import { peiliuiPreset } from './packages/styles/src/unoPreset';
 
-export default defineConfig({
-  presets: [presetUno(), peiliuiPreset()],
+export default <UserConfig>defineConfig({
+  presets: [
+    presetUno(),
+    presetIcons({
+      collections: {
+        // Iconify json 集成，后续支持通过 <i class="i-pl-xxx"> 来使用图标原子类，并支持按需打包
+        // eslint-disable-next-line import/no-relative-packages
+        pl: () => import('./packages/icons/dist/icons.json').then(i => i.default),
+      },
+    }),
+    peiliuiPreset(),
+  ],
   transformers: [transformerDirectives()],
 });
 

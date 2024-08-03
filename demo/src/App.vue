@@ -40,7 +40,24 @@ function switchSecondLineTheme() {
 
 <template>
   <div>
-    <!-- 第一组 button 省略 。。。 -->
+    <div class="btns">
+      <Button>Button</Button>
+      <Button type="primary">
+        Button
+      </Button>
+      <Button type="success">
+        Button
+      </Button>
+      <Button type="danger">
+        Button
+      </Button>
+      <Button type="warning">
+        Button
+      </Button>
+      <Button type="info">
+        Button
+      </Button>
+    </div>
     <ConfigProvider
       class="btns"
       :theme-vars="secondLineThemeVars"
@@ -79,7 +96,41 @@ function switchSecondLineTheme() {
         Button
       </Button>
     </ConfigProvider>
-    <!-- 第三组 button 省略 。。。 -->
+    <div class="btns">
+      <Button disabled>
+        Button
+      </Button>
+      <Button
+        type="primary"
+        disabled
+      >
+        Button
+      </Button>
+      <Button
+        type="success"
+        disabled
+      >
+        Button
+      </Button>
+      <Button
+        type="danger"
+        disabled
+      >
+        Button
+      </Button>
+      <Button
+        type="warning"
+        disabled
+      >
+        Button
+      </Button>
+      <Button
+        type="info"
+        disabled
+      >
+        Button
+      </Button>
+    </div>
     <div class="btns">
       <Button @click="switchGlobalTheme">
         切换全局主题，当前：{{ currentGlobalTheme }}
@@ -88,13 +139,16 @@ function switchSecondLineTheme() {
         切换第二行主题，当前：{{ currentSecondLineTheme }}
       </Button>
     </div>
-    <Input />
+    <div>
+      <i class="i-pl-alert text-64px text-yellow inline-block" />
+      <i class="i-pl-alert-marked text-48px text-red inline-block" />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .btns {
-  :deep(.op-button) {
+  :deep(.pl-button) {
     margin-bottom: 10px;
 
     &:not(:first-child) {
