@@ -1,0 +1,47 @@
+{
+  "name": "@peili-ui/config-provider",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "Eric",
+  "license": "MIT",
+  "homepage": "https://github.com/Knight174/peili-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight174/peili-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Knight174/peili-ui/issues"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "echo test"
+  },
+  "main": "./dist/peili-ui-config-provider.umd.js",
+  "module": "./dist/peili-ui-config-provider.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/peili-ui-config-provider.umd.js",
+      "import": "./dist/peili-ui-config-provider.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@peili-ui/styles": "workspace:^",
+    "@peili-ui/shared": "workspace:^"
+  }
+}

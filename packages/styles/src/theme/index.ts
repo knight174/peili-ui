@@ -3,7 +3,7 @@ import { isObjectLike } from '@peili-ui/shared';
 import { generateCssVars } from '../utils';
 import { themeColorLevelsEnabledKeys, PeiliuiCssVarsConfig } from '../vars';
 
-const THEME_PROVIDE_KEY = '__PeiliUITheme__';
+const THEME_PROVIDE_KEY = '__PeiliuiTheme__';
 
 function useGlobalTheme(app: App, options?: PeiliuiCssVarsConfig) {
   /** 设置全局主题变量的方法 */
