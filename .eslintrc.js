@@ -47,7 +47,7 @@ module.exports = defineConfig({
     // vue 允许单单词组件名
     'vue/multi-word-component-names': 'off',
 
-    'operator-linebreak': ['error', 'after'],
+    // 'operator-linebreak': ['error', 'after'],
     'class-methods-use-this': 'off',
 
     // 允许使用 ++
@@ -57,6 +57,11 @@ module.exports = defineConfig({
 
     // 换行符不作约束
     'linebreak-style': 'off',
+
+    '@typescript-eslint/indent': 'off',
+    'operator-linebreak': 'off',
+    'arrow-parens': 'off',
+    'object-curly-newline': 'off',
   },
 
   // 文件级别的重写

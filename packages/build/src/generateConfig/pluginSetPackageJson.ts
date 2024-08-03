@@ -1,9 +1,7 @@
 import { PluginOption } from 'vite';
 import { PackageJson } from 'type-fest';
 import { basename } from 'node:path';
-import {
-  isFunction, isObjectLike, absCwd, relCwd, kebabCase, writeJsonFile,
-} from '../utils';
+import { isFunction, isObjectLike, absCwd, relCwd, kebabCase, writeJsonFile } from '../utils';
 import { getOutFileName, resolveEntry } from './lib';
 import { getOptions, GenerateConfigOptions } from './options';
 
@@ -28,9 +26,8 @@ export function pluginSetPackageJson(
   packageJson: PackageJson = {},
   options: GenerateConfigOptions = {},
 ): PluginOption {
-  const {
-    onSetPkg, mode, fileName, outDir, dts,
-  } = getOptions(options);
+  const finalOptions = getOptions(options);
+  const { onSetPkg, mode, fileName, outDir, exports } = finalOptions;
 
   if (mode !== 'package') {
     return null;
@@ -50,29 +47,37 @@ export function pluginSetPackageJson(
 
       // 获取并设置 umd 产物的路径
       const umd = relCwd(absCwd(outDir, getOutFileName(finalName, 'umd', mode)), false);
-      packageJsonObj.main = umd;
       exportsData.require = umd;
+      if (exports === '.') {
+        packageJsonObj.main = umd;
+      }
 
       // 获取并设置 es 产物的路径
       const es = relCwd(absCwd(outDir, getOutFileName(finalName, 'es', mode)), false);
-      packageJsonObj.module = es;
       exportsData.import = es;
+      if (exports === '.') {
+        packageJsonObj.module = es;
+      }
 
       // 获取并设置 d.ts 产物的路径
-      if (dts) {
-        const dtsEntry = getDtsPath(options);
+      const dtsEntry = getDtsPath(options);
+      exportsData.types = dtsEntry;
+      if (exports === '.') {
         packageJsonObj.types = dtsEntry;
-        exportsData.types = dtsEntry;
       }
 
       if (!isObjectLike(packageJsonObj.exports)) {
         packageJsonObj.exports = {};
       }
-      Object.assign(packageJsonObj.exports, { '.': exportsData });
+      Object.assign(packageJsonObj.exports, {
+        [exports]: exportsData,
+        // 默认暴露的出口
+        './*': './*',
+      });
 
       // 支持在构建选项中的 onSetPkg 钩子中对 package.json 对象进行进一步修改
       if (isFunction(onSetPkg)) {
-        await onSetPkg(packageJsonObj);
+        await onSetPkg(packageJsonObj, finalOptions);
       }
 
       // 回写入 package.json 文件

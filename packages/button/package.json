@@ -30,7 +30,9 @@
       "require": "./dist/peili-ui-button.umd.js",
       "import": "./dist/peili-ui-button.mjs",
       "types": "./dist/src/index.d.ts"
-    }
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vite build"

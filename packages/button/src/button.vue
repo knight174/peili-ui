@@ -1,24 +1,35 @@
 <script setup lang="ts">
-import { hello } from '@peili-ui/shared';
+import { computed } from 'vue';
+import { defaultButtonProps, ButtonProps } from './button';
 
 const props = withDefaults(
-  defineProps<{
-    text?: string;
-  }>(),
-  {
-    text: 'world',
-  },
+  defineProps<ButtonProps>(),
+  defaultButtonProps(),
 );
 
-function handleClick() {
-  hello(props.text);
-}
+const classes = computed(() => {
+  const result: string[] = [];
+  if (props.type) {
+    result.push(`pl-button--${props.type}`);
+  }
+
+  if (props.plain) {
+    result.push('pl-button--plain');
+  }
+
+  if (props.disabled) {
+    result.push('pl-button--disabled');
+  }
+
+  return result;
+});
+
 </script>
 
 <template>
   <button
-    class="peili-button text-blue ml-2px cursor-pointer"
-    @click="handleClick"
+    class="pl-button"
+    :class="classes"
   >
     <slot />
   </button>

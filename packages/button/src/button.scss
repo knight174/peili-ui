@@ -1,0 +1,89 @@
+$button-types: primary, success, warning, danger, info;
+
+@mixin button-type-styles() {
+  @each $type in $button-types {
+    &.pl-button--#{$type} {
+      --pl-button-color: rgb(var(--pl-color-reverse));
+      --pl-button-bg-color: rgb(var(--pl-color-#{$type}));
+      --pl-button-border-color: rgb(var(--pl-color-#{$type}));
+      --pl-button-hover-color: rgb(var(--pl-color-reverse));
+      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}-light-3));
+      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}-light-3));
+      --pl-button-active-color: rgb(var(--pl-color-reverse));
+      --pl-button-active-bg-color: rgb(var(--pl-color-#{$type}-dark-2));
+      --pl-button-active-border-color: rgb(var(--pl-color-#{$type}-dark-2));
+      --pl-button-disabled-color: rgb(var(--pl-color-reverse));
+      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-light-5));
+      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-light-5));
+    }
+  }
+}
+
+@mixin button-plain-styles() {
+  @each $type in $button-types {
+    &.pl-button--#{$type} {
+      --pl-button-color: rgb(var(--pl-color-#{$type}));
+      --pl-button-bg-color: rgb(var(--pl-color-#{$type}-light-9));
+      --pl-button-border-color: rgb(var(--pl-color-#{$type}-light-5));
+      --pl-button-hover-color: rgb(var(--pl-color-reverse));
+      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}));
+      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}));
+      --pl-button-disabled-color: rgb(var(--pl-color-#{$type}-light-5));
+      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-light-9));
+      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-light-8));
+    }
+  }
+}
+
+.pl-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pl-button-padding-y) var(--pl-button-padding-x);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: var(--pl-button-color);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--pl-button-bg-color);
+  border-color: var(--pl-button-border-color);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  outline: none;
+
+  &:hover {
+    color: var(--pl-button-hover-color);
+    background-color: var(--pl-button-hover-bg-color);
+    border-color: var(--pl-button-hover-border-color);
+  }
+
+  &:active {
+    color: var(--pl-button-active-color);
+    background-color: var(--pl-button-active-bg-color);
+    border-color: var(--pl-button-active-border-color);
+  }
+
+  @include button-type-styles;
+
+  &.pl-button--plain {
+    --pl-button-hover-color: rgb(var(--pl-color-primary));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-card));
+    --pl-button-hover-border-color: rgb(var(--color-primary));
+
+    @include button-plain-styles;
+  }
+
+  &.pl-button--disabled,
+  &.pl-button--disabled:hover,
+  &.pl-button--disabled:active {
+    color: var(--pl-button-disabled-color);
+    cursor: not-allowed;
+    background-color: var(--pl-button-disabled-bg-color);
+    border-color: var(--pl-button-disabled-border-color);
+  }
+}

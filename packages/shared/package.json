@@ -8,7 +8,8 @@
       "require": "./dist/peili-ui-shared.umd.js",
       "import": "./dist/peili-ui-shared.mjs",
       "types": "./dist/src/index.d.ts"
-    }
+    },
+    "./*": "./*"
   },
   "scripts": {
     "build": "vite build"

@@ -34,6 +34,15 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
   mode?: 'package' | 'full' | 'full-min';
 
   /**
+   * 是否将构建产物的相对路径回写到 package.json 的 exports 字段对应的 key 中。
+   *
+   * 必须在 mode 为 packages 时生效。
+   *
+   * 当取值为 '.' 时，还会同步写入 main、module、types 字段
+   */
+  exports?: string;
+
+  /**
    * 是否将 d.ts 类型声明文件的产物从集中目录移动到产物目录，并将类型入口回写到 package.json 的 types 字段。
    *
    * 必须在 mode 为 packages 时生效。
@@ -48,7 +57,7 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
    *
    * 必须在 mode 为 packages 时生效。
    */
-  onSetPkg?: (pkg: PackageJson) => void | Promise<void>;
+  onSetPkg?: (pkg: PackageJson, options: Required<GenerateConfigOptions>) => void | Promise<void>;
 }
 
 /** 构建选项的默认值 */
@@ -58,6 +67,7 @@ export function defaultOptions(): Required<GenerateConfigOptions> {
     outDir: 'dist',
     fileName: '',
     mode: 'package',
+    exports: '.',
     dts: '',
     onSetPkg: () => {},
     pluginVue: false,

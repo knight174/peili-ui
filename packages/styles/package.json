@@ -1,0 +1,32 @@
+{
+  "name": "@peili-ui/styles",
+  "main": "./dist/peili-ui-styles.umd.js",
+  "module": "./dist/peili-ui-styles.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/peili-ui-styles.umd.js",
+      "import": "./dist/peili-ui-styles.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./preset": {
+      "require": "./dist/preset.umd.js",
+      "import": "./dist/preset.mjs",
+      "types": "./dist/src/unoPreset.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build:theme": "vite build --mode theme",
+    "build:unocss": "vite build --mode unocss",
+    "build": "pnpm run build:unocss && pnpm run build:theme"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0",
+    "unocss": ">=0.54.1"
+  },
+  "dependencies": {
+    "@peili-ui/shared": "workspace:^"
+  }
+}

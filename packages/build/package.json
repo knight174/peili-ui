@@ -1,5 +1,6 @@
 {
   "name": "@peili-ui/build",
+  "type": "module",
   "main": "./dist/peili-ui-build.umd.js",
   "module": "./dist/peili-ui-build.mjs",
   "types": "./dist/src/index.d.ts",
@@ -8,7 +9,8 @@
       "require": "./dist/peili-ui-build.umd.js",
       "import": "./dist/peili-ui-build.mjs",
       "types": "./dist/src/index.d.ts"
-    }
+    },
+    "./*": "./*"
   },
   "scripts": {
     "build": "vite build"

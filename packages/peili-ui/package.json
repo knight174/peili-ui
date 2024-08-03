@@ -29,7 +29,9 @@
       "require": "./dist/peili-ui.umd.js",
       "import": "./dist/peili-ui.mjs",
       "types": "./dist/src/index.d.ts"
-    }
+    },
+    "./*": "./*",
+    "./style/*": "./dist/style/*"
   },
   "scripts": {
     "build:package": "vite build --mode package",
@@ -43,6 +45,7 @@
   "dependencies": {
     "@peili-ui/button": "workspace:^",
     "@peili-ui/input": "workspace:^",
-    "@peili-ui/shared": "workspace:^"
+    "@peili-ui/shared": "workspace:^",
+    "@peili-ui/styles": "workspace:^"
   }
 }
