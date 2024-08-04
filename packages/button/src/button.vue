@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { defaultButtonProps, ButtonProps } from './button';
+import {
+  defaultButtonProps,
+  ButtonProps,
+  ButtonSlots,
+} from './props';
 
 const props = withDefaults(
   defineProps<ButtonProps>(),
   defaultButtonProps(),
 );
+
+defineSlots<ButtonSlots>();
 
 const classes = computed(() => {
   const result: string[] = [];
@@ -31,6 +37,6 @@ const classes = computed(() => {
     class="pl-button"
     :class="classes"
   >
-    <slot />
+    <slot :type="type" />
   </button>
 </template>

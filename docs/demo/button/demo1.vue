@@ -2,6 +2,7 @@
 import { ref, reactive } from 'vue';
 import {
   Button,
+  Input,
   ConfigProvider,
   useTheme,
   tinyThemeVars,
@@ -137,6 +138,7 @@ function switchSecondLineTheme() {
         切换第二行主题1，当前：{{ currentSecondLineTheme }}
       </Button>
     </div>
+    <Input />
     <div>
       <i class="i-pl-alert inline-block text-100px c-primary" />
       <i class="i-pl-alert-marked inline-block text-60px c-success" />

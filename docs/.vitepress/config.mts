@@ -1,17 +1,25 @@
 import { defineConfig } from 'vitepress';
 import { mdPlugin } from './plugins';
 
+import apiConfig from '../configs/api.json';
+import componentsConfig from '../configs/components.json';
+
 // 配置参考：https://vitepress.dev/reference/site-config
 export default defineConfig({
+  ignoreDeadLinks: true,
   title: 'PeiliUI',
   description: 'Vue3 组件库',
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide/' },
       { text: '组件', link: '/components/' },
-      { text: 'API', link: '/api/' },
+      { text: 'API', link: '/api/README' },
       { text: '演练场', link: '/playground' },
     ],
+    // 每篇文档右侧的大纲开启支持三级的深度
+    outline: {
+      level: [2, 3],
+    },
     sidebar: {
       // 指南部分的章节导航
       '/guide/': [
@@ -24,12 +32,9 @@ export default defineConfig({
         },
       ],
       // 组件部分的章节导航
-      '/components/': [
-        {
-          text: '组件',
-          items: [{ text: 'Button 按钮', link: '/components/button' }],
-        },
-      ],
+      '/components/': componentsConfig,
+      // API 文档部分的章节导航
+      '/api/': apiConfig,
     },
   },
   markdown: {

@@ -2,12 +2,15 @@
   "name": "@peili-ui/docs",
   "private": true,
   "scripts": {
+    "api": "tsx scripts/typedoc.ts",
     "dev": "vitepress dev . --host",
-    "build": "vitepress build .",
+    "build": "pnpm run api && vitepress build .",
     "preview": "vitepress preview . --host"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
+    "typedoc": "^0.26.5",
+    "typedoc-plugin-markdown": "^4.2.3",
     "vitepress": "^1.3.1"
   },
   "dependencies": {
