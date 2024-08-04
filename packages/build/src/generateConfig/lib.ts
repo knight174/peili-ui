@@ -2,12 +2,7 @@ import { PackageJson } from 'type-fest';
 import { LibraryOptions, LibraryFormats, BuildOptions } from 'vite';
 import { statSync } from 'node:fs';
 import { join } from 'node:path';
-import {
-  kebabCase,
-  camelCase,
-  absCwd,
-  relCwd,
-} from '../utils';
+import { kebabCase, camelCase, absCwd, relCwd } from '../utils';
 import { getOptions, GenerateConfigOptions } from './options';
 
 /**
@@ -16,8 +11,12 @@ import { getOptions, GenerateConfigOptions } from './options';
  * @param format 产物格式
  * @param buildMode 构建模式
  */
-export function getOutFileName(fileName: string, format: LibraryFormats, buildMode: GenerateConfigOptions['mode']) {
-  const formatName = format as ('es' | 'umd');
+export function getOutFileName(
+  fileName: string,
+  format: LibraryFormats,
+  buildMode: GenerateConfigOptions['mode'],
+) {
+  const formatName = format as 'es' | 'umd';
   const ext = formatName === 'es' ? '.mjs' : '.umd.js';
   let tail: string;
   // 全量构建时，文件名后缀的区别
@@ -40,14 +39,9 @@ export function getLib(
   packageJson: PackageJson = {},
   options: GenerateConfigOptions = {},
 ): Pick<BuildOptions, 'lib' | 'minify' | 'sourcemap' | 'outDir' | 'emptyOutDir'> {
-  const {
-    entry,
-    outDir,
-    mode,
-    fileName,
-  } = getOptions(options);
+  const { entry, outDir, mode, fileName } = getOptions(options);
 
-  // 文件名称，默认取 package.json 的 name 字段转换成 kebab-case：@openxui/build => openxui-build
+  // 文件名称，默认取 package.json 的 name 字段转换成 kebab-case：@peili-ui/build => peili-ui-build
   const finalName = fileName || kebabCase(packageJson.name || '');
 
   const libOptions: LibraryOptions = {
@@ -55,7 +49,7 @@ export function getLib(
     // 全量构建只生产 umd 产物
     formats: mode === 'package' ? ['es', 'umd'] : ['umd'],
     name: camelCase(finalName),
-    fileName: (format) => {
+    fileName: format => {
       const formatName = format as LibraryFormats;
       return getOutFileName(finalName, formatName, mode);
     },

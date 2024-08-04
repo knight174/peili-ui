@@ -26,7 +26,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         Object.assign(pkg.exports as Record<string, any>, exports);
       },
       presetPeiliuiOptions: {
-        // 基础主题样式的 CSS 由 UnoCSS 生成，需要正确指定 openxuiPreset 的模块。
+        // 基础主题样式的 CSS 由 UnoCSS 生成，需要正确指定 peiliuiPreset 的模块。
         include: ['theme'],
       },
     },
