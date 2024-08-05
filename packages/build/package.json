@@ -1,5 +1,17 @@
 {
   "name": "@peili-ui/build",
+  "version": "0.0.0",
+  "description": "peili-ui build",
+  "author": "Eric",
+  "license": "MIT",
+  "homepage": "https://github.com/Knight174/peili-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight174/peili-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Knight174/peili-ui/issues"
+  },
   "type": "module",
   "main": "./dist/peili-ui-build.umd.js",
   "module": "./dist/peili-ui-build.mjs",
@@ -12,6 +24,10 @@
     },
     "./*": "./*"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "vite build"
   },

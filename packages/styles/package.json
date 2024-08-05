@@ -1,6 +1,6 @@
 {
   "name": "@peili-ui/styles",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "peili-ui styles",
   "keywords": [
     "vue",
@@ -39,6 +39,10 @@
     "./*": "./*",
     "./style.css": "./dist/style.css"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build:theme": "vite build --mode theme",
     "build:unocss": "vite build --mode unocss",
