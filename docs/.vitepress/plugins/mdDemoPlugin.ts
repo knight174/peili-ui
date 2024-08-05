@@ -11,6 +11,12 @@ export interface ContainerOpts {
   render?(tokens: Token[], index: number, options: any, env: any, self: Renderer): string;
 }
 
+/** 当读取到 :::demo 开启的 Token 时，解析出内部的用例组件文件路径 */
+export function getInnerPathFromContainerToken(tokens: Token[], idx: number) {
+  const innerPathToken = tokens[idx + 2];
+  return innerPathToken.content.trim();
+}
+
 export function mdDemoPlugin(md: MarkdownIt) {
   md.use(mdContainer, 'demo', <ContainerOpts>{
     validate(params) {
@@ -53,7 +59,7 @@ export function mdDemoPlugin(md: MarkdownIt) {
         );
 
         // 拼接 <Demo> 组件的使用代码
-        const txt = `<Demo>
+        const txt = `<Demo source="${encodeURIComponent(sourceCode)}">
           <template #demo><${componentName} /></template>
           <template #code>${sourceCodeHtml}</template>
         `;
@@ -63,10 +69,4 @@ export function mdDemoPlugin(md: MarkdownIt) {
       return '</Demo>';
     },
   });
-}
-
-/** 当读取到 :::demo 开启的 Token 时，解析出内部的用例组件文件路径 */
-export function getInnerPathFromContainerToken(tokens: Token[], idx: number) {
-  const innerPathToken = tokens[idx + 2];
-  return innerPathToken.content.trim();
 }

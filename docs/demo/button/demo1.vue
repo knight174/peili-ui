@@ -57,41 +57,23 @@ function switchSecondLineTheme() {
         Button
       </Button>
     </div>
-    <ConfigProvider
-      class="btns"
-      :theme-vars="secondLineThemeVars"
-    >
+    <ConfigProvider class="btns" :theme-vars="secondLineThemeVars">
       <Button plain>
         Button
       </Button>
-      <Button
-        type="primary"
-        plain
-      >
+      <Button type="primary" plain>
         Button
       </Button>
-      <Button
-        type="success"
-        plain
-      >
+      <Button type="success" plain>
         Button
       </Button>
-      <Button
-        type="danger"
-        plain
-      >
+      <Button type="danger" plain>
         Button
       </Button>
-      <Button
-        type="warning"
-        plain
-      >
+      <Button type="warning" plain>
         Button
       </Button>
-      <Button
-        type="info"
-        plain
-      >
+      <Button type="info" plain>
         Button
       </Button>
     </ConfigProvider>
@@ -99,34 +81,19 @@ function switchSecondLineTheme() {
       <Button disabled>
         Button
       </Button>
-      <Button
-        type="primary"
-        disabled
-      >
+      <Button type="primary" disabled>
         Button
       </Button>
-      <Button
-        type="success"
-        disabled
-      >
+      <Button type="success" disabled>
         Button
       </Button>
-      <Button
-        type="danger"
-        disabled
-      >
+      <Button type="danger" disabled>
         Button
       </Button>
-      <Button
-        type="warning"
-        disabled
-      >
+      <Button type="warning" disabled>
         Button
       </Button>
-      <Button
-        type="info"
-        disabled
-      >
+      <Button type="info" disabled>
         Button
       </Button>
     </div>
@@ -139,21 +106,15 @@ function switchSecondLineTheme() {
       </Button>
     </div>
     <Input />
-    <div>
-      <i class="i-pl-alert inline-block text-100px c-primary" />
-      <i class="i-pl-alert-marked inline-block text-60px c-success" />
-    </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.btns {
-  :deep(.pl-button) {
-    margin-bottom: 10px;
+<style scoped>
+:deep(.pl-button:not(:first-child)) {
+  margin-left: 10px;
+}
 
-    &:not(:first-child) {
-      margin-left: 10px;
-    }
-  }
+:deep(.pl-button) {
+  margin-bottom: 10px;
 }
 </style>

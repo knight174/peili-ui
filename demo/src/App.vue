@@ -2,6 +2,7 @@
 import { ref, reactive } from 'vue';
 import {
   Button,
+  Input,
   ConfigProvider,
   useTheme,
   tinyThemeVars,
@@ -58,41 +59,23 @@ function switchSecondLineTheme() {
         Button
       </Button>
     </div>
-    <ConfigProvider
-      class="btns"
-      :theme-vars="secondLineThemeVars"
-    >
+    <ConfigProvider class="btns" :theme-vars="secondLineThemeVars">
       <Button plain>
         Button
       </Button>
-      <Button
-        type="primary"
-        plain
-      >
+      <Button type="primary" plain>
         Button
       </Button>
-      <Button
-        type="success"
-        plain
-      >
+      <Button type="success" plain>
         Button
       </Button>
-      <Button
-        type="danger"
-        plain
-      >
+      <Button type="danger" plain>
         Button
       </Button>
-      <Button
-        type="warning"
-        plain
-      >
+      <Button type="warning" plain>
         Button
       </Button>
-      <Button
-        type="info"
-        plain
-      >
+      <Button type="info" plain>
         Button
       </Button>
     </ConfigProvider>
@@ -100,34 +83,19 @@ function switchSecondLineTheme() {
       <Button disabled>
         Button
       </Button>
-      <Button
-        type="primary"
-        disabled
-      >
+      <Button type="primary" disabled>
         Button
       </Button>
-      <Button
-        type="success"
-        disabled
-      >
+      <Button type="success" disabled>
         Button
       </Button>
-      <Button
-        type="danger"
-        disabled
-      >
+      <Button type="danger" disabled>
         Button
       </Button>
-      <Button
-        type="warning"
-        disabled
-      >
+      <Button type="warning" disabled>
         Button
       </Button>
-      <Button
-        type="info"
-        disabled
-      >
+      <Button type="info" disabled>
         Button
       </Button>
     </div>
@@ -138,6 +106,9 @@ function switchSecondLineTheme() {
       <Button @click="switchSecondLineTheme">
         切换第二行主题，当前：{{ currentSecondLineTheme }}
       </Button>
+    </div>
+    <div>
+      <Input />
     </div>
     <div>
       <i class="i-pl-alert text-64px text-yellow inline-block" />

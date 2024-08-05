@@ -62,6 +62,7 @@ module.exports = defineConfig({
     'operator-linebreak': 'off',
     'arrow-parens': 'off',
     'object-curly-newline': 'off',
+    'vue/max-attributes-per-line': 'off',
   },
 
   // 文件级别的重写

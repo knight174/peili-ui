@@ -35,10 +35,5 @@ defineExpose<InputExpose>({
 </script>
 
 <template>
-  <input
-    class="peili-input"
-    type="text"
-    :value="modelValue"
-    @input="inputHandler"
-  >
+  <input class="pl-input" type="text" :value="modelValue" @input="inputHandler">
 </template>

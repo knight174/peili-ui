@@ -10,9 +10,9 @@ title: PeiliUI
 hero:
   name: PeiliUI
   text: Vue3 组件库
-  tagline: 从 0 到 1 搭建 Vue 组件库
+  tagline: 从 0 到 1 搭建 Vue3 组件库
   image:
-    src: /logo.png
+    src: /logo.jpg
     alt: Peili
   actions:
     - theme: brand
@@ -29,5 +29,5 @@ hero:
       link: /playground
     - theme: alt
       text: Github
-      link: https://open.codehub.huawei.com/innersource/PeiliUI/openx-ui/files?ref=master
+      link: https://github.com/Knight174/peili-ui-lib
 ---

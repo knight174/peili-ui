@@ -13,11 +13,11 @@ export default {
     DefaultTheme.enhanceApp(ctx);
 
     const { app } = ctx;
+
     // 应用组件库提供的主题插件
     app.use(Theme);
 
-    app.component('Demo', Demo);
-
     // 注册其他插件、全局组件、provide...
+    app.component('Demo', Demo);
   },
 };

@@ -1,6 +1,7 @@
 {
   "name": "@peili-ui/docs",
   "private": true,
+  "type": "module",
   "scripts": {
     "api": "tsx scripts/typedoc.ts",
     "dev": "vitepress dev . --host",

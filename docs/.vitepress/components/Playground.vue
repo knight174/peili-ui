@@ -24,14 +24,13 @@ onMounted(() => {
 const store = new ReplStore({
   serializedState: window.location.hash.slice(1),
 });
-
 // @vue/repl 的内容变化时，及时同步到 url 参数中
 watchEffect(() => window.history.replaceState({}, '', store.serialize()));
 
 store.state.mainFile = 'src/AppWrapper.vue';
 store.addFile(new File('src/AppWrapper.vue', APP_WRAPPER_CODE, true));
 
-const previewOptions = reactive({});
+const previewOptions: { headHTML?: string } = reactive({});
 
 const tsVersions = ref<string[]>([]);
 
