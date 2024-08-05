@@ -1,7 +1,6 @@
 {
   "name": "peili-ui-library",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "publish": "pnpm --filter './packages/**' run publish",
     "demo": "pnpm --filter @peili-ui/demo run dev",
