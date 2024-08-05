@@ -1,5 +1,5 @@
 import { InferVueDefaults } from '@peili-ui/shared';
-import type Button from './button.vue';
+import type PlButton from './button.vue';
 
 export interface ButtonProps {
   /** 按钮的类型 */
@@ -20,4 +20,4 @@ export function defaultButtonProps(): Required<InferVueDefaults<ButtonProps>> {
   };
 }
 
-export type ButtonInstance = InstanceType<typeof Button>;
+export type ButtonInstance = InstanceType<typeof PlButton>;
