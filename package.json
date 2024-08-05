@@ -12,7 +12,8 @@
     "clean:type": "rimraf ./dist",
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix ./",
     "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "publish": "pnpm --filter './packages/**' publish"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

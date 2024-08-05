@@ -87,6 +87,7 @@ watch(vueVersion, (v) => {
   setVueVersion(v);
 });
 
+// 组件库版本切换相关
 const uiVersion = ref('latest');
 const uiVersions = ref<string[]>([]);
 /** 获取所有的组件库版本 */
@@ -110,6 +111,7 @@ function setUiVersion(version: string) {
 }
 
 watch(uiVersion, (v) => {
+  console.log('v', v);
   setUiVersion(v);
 }, { immediate: true });
 

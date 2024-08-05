@@ -1,7 +1,7 @@
-import Button from './button.vue';
+import PlButton from './button.vue';
 import './button.scss';
 import 'virtual:uno.css';
 
-export { Button as PlButton };
-export type ButtonInstance = InstanceType<typeof Button>;
+export { PlButton };
+export type ButtonInstance = InstanceType<typeof PlButton>;
 export * from './props';
