@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "publish": "pnpm --filter './packages/**' run publish",
     "demo": "pnpm --filter @peili-ui/demo run dev",
+    "docs": "pnpm --filter @peili-ui/docs run dev",
     "dev:play": "pnpm --filter @peili-ui/play run dev",
     "build:ui": "pnpm run type:src && pnpm --filter './packages/**' run build",
     "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",

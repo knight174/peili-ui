@@ -9,6 +9,10 @@
   ],
   "author": "Eric",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "homepage": "https://github.com/Knight174/peili-ui",
   "repository": {
     "type": "git",

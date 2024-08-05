@@ -18,15 +18,14 @@ export function getOutFileName(
 ) {
   const formatName = format as 'es' | 'umd';
   const ext = formatName === 'es' ? '.mjs' : '.umd.js';
-  let tail: string;
+  let tail = '';
   // 全量构建时，文件名后缀的区别
   if (buildMode === 'full') {
-    tail = '.full.js';
+    tail += '.full';
   } else if (buildMode === 'full-min') {
-    tail = '.full.min.js';
-  } else {
-    tail = ext;
+    tail += '.full.min';
   }
+  tail += ext;
   return `${fileName}${tail}`;
 }
 
@@ -46,8 +45,7 @@ export function getLib(
 
   const libOptions: LibraryOptions = {
     entry,
-    // 全量构建只生产 umd 产物
-    formats: mode === 'package' ? ['es', 'umd'] : ['umd'],
+    formats: ['es', 'umd'],
     name: camelCase(finalName),
     fileName: format => {
       const formatName = format as LibraryFormats;

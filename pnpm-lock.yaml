@@ -93,6 +93,9 @@ importers:
 
   docs:
     dependencies:
+      '@vue/repl':
+        specifier: ^3.0.0
+        version: 3.4.0
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
@@ -175,6 +178,9 @@ importers:
 
   packages/input:
     dependencies:
+      '@peili-ui/button':
+        specifier: workspace:^
+        version: link:../button
       '@peili-ui/shared':
         specifier: workspace:^
         version: link:../shared
@@ -3812,6 +3818,10 @@ packages:
     resolution: {integrity: sha512-ua+Lo+wBRlBEX9TtgPOShE2JwIO7p6BTZ7t1KZVPoaBRfqbC7N3c8Mpzicx173fXxx5VXeU6ykiHo7WgLzJQDA==}
     dependencies:
       '@vue/shared': 3.4.34
+
+  /@vue/repl@3.4.0:
+    resolution: {integrity: sha512-iHhIsmQsp9PJuOwverCRQC2owFb0FSFzk6YWwyirAX6AqH//2FrUV4WB16f9lGX5pDXAHjxlzAE6Lqf9P17HHA==}
+    dev: false
 
   /@vue/runtime-core@3.4.34:
     resolution: {integrity: sha512-PXhkiRPwcPGJ1BnyBZFI96GfInCVskd0HPNIAZn7i3YOmLbtbTZpB7/kDTwC1W7IqdGPkTVC63IS7J2nZs4Ebg==}
