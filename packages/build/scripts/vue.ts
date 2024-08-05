@@ -2,7 +2,7 @@
 import { mergeConfig, UserConfig } from 'vite';
 import { presetUno, PresetUnoOptions } from 'unocss/preset-uno';
 import unocss from 'unocss/vite';
-// import transformerDirectives from '@unocss/transformer-directives';
+import { transformerDirectives } from 'unocss';
 // eslint-disable-next-line import/no-relative-packages
 import { peiliuiPreset, PeiliuiPresetOptions } from '../../styles/src/unoPreset';
 import { generateConfig } from './common';
@@ -43,7 +43,7 @@ export async function generateVueConfig(
             ],
             transformers: [
               // 支持在 css 中使用 @apply 语法聚合多个原子类
-              // transformerDirectives(), // 无法兼容 @apply
+              transformerDirectives(),
             ],
           })
         : null,
