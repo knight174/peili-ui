@@ -2,7 +2,6 @@
   "name": "peili-ui-library",
   "version": "0.0.0",
   "scripts": {
-    "publish": "pnpm --filter './packages/**' run publish",
     "demo": "pnpm --filter @peili-ui/demo run dev",
     "docs": "pnpm --filter @peili-ui/docs run dev",
     "dev:play": "pnpm --filter @peili-ui/play run dev",

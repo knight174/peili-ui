@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import {
-  Button,
+  PlButton,
   Input,
   ConfigProvider,
   useTheme,
@@ -42,70 +42,70 @@ function switchSecondLineTheme() {
 <template>
   <div>
     <div class="btns">
-      <Button>Button</Button>
-      <Button type="primary">
+      <pl-button>Button</pl-button>
+      <pl-button type="primary">
         Button
-      </Button>
-      <Button type="success">
+      </pl-button>
+      <pl-button type="success">
         Button
-      </Button>
-      <Button type="danger">
+      </pl-button>
+      <pl-button type="danger">
         Button
-      </Button>
-      <Button type="warning">
+      </pl-button>
+      <pl-button type="warning">
         Button
-      </Button>
-      <Button type="info">
+      </pl-button>
+      <pl-button type="info">
         Button
-      </Button>
+      </pl-button>
     </div>
     <ConfigProvider class="btns" :theme-vars="secondLineThemeVars">
-      <Button plain>
+      <pl-button plain>
         Button
-      </Button>
-      <Button type="primary" plain>
+      </pl-button>
+      <pl-button type="primary" plain>
         Button
-      </Button>
-      <Button type="success" plain>
+      </pl-button>
+      <pl-button type="success" plain>
         Button
-      </Button>
-      <Button type="danger" plain>
+      </pl-button>
+      <pl-button type="danger" plain>
         Button
-      </Button>
-      <Button type="warning" plain>
+      </pl-button>
+      <pl-button type="warning" plain>
         Button
-      </Button>
-      <Button type="info" plain>
+      </pl-button>
+      <pl-button type="info" plain>
         Button
-      </Button>
+      </pl-button>
     </ConfigProvider>
     <div class="btns">
-      <Button disabled>
+      <pl-button disabled>
         Button
-      </Button>
-      <Button type="primary" disabled>
+      </pl-button>
+      <pl-button type="primary" disabled>
         Button
-      </Button>
-      <Button type="success" disabled>
+      </pl-button>
+      <pl-button type="success" disabled>
         Button
-      </Button>
-      <Button type="danger" disabled>
+      </pl-button>
+      <pl-button type="danger" disabled>
         Button
-      </Button>
-      <Button type="warning" disabled>
+      </pl-button>
+      <pl-button type="warning" disabled>
         Button
-      </Button>
-      <Button type="info" disabled>
+      </pl-button>
+      <pl-button type="info" disabled>
         Button
-      </Button>
+      </pl-button>
     </div>
     <div class="btns">
-      <Button @click="switchGlobalTheme">
+      <pl-button @click="switchGlobalTheme">
         切换全局主题，当前：{{ currentGlobalTheme }}
-      </Button>
-      <Button @click="switchSecondLineTheme">
+      </pl-button>
+      <pl-button @click="switchSecondLineTheme">
         切换第二行主题，当前：{{ currentSecondLineTheme }}
-      </Button>
+      </pl-button>
     </div>
     <div>
       <Input />
