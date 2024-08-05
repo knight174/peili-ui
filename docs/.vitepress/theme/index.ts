@@ -5,6 +5,9 @@ import { Theme } from 'peili-ui';
 // 应用组件库的 unocss 预设，配置文件在根目录的 uno.config.ts
 import 'virtual:uno.css';
 
+// 引入组件库的样式
+import 'peili-ui/style/index.css';
+
 import { Demo } from '../components';
 
 export default {
