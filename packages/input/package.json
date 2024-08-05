@@ -21,19 +21,22 @@
   "bugs": {
     "url": "https://github.com/Knight174/peili-ui/issues"
   },
-  "main": "dist/peili-ui-input.umd.js",
-  "module": "dist/peili-ui-input.mjs",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/peili-ui-input.umd.js",
+  "module": "./dist/peili-ui-input.mjs",
+  "types": "./dist/src/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
   "exports": {
     ".": {
-      "import": "./dist/peili-ui-input.mjs",
       "require": "./dist/peili-ui-input.umd.js",
-      "types": "./dist/index.d.ts"
-    }
+      "import": "./dist/peili-ui-input.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vite build"

@@ -25,6 +25,7 @@
     "build": "vite build",
     "test": "echo test"
   },
+  "type": "module",
   "main": "./dist/peili-ui-config-provider.umd.js",
   "module": "./dist/peili-ui-config-provider.mjs",
   "types": "./dist/src/index.d.ts",
