@@ -9,6 +9,9 @@
   },
   {
     "text": "表单组件",
-    "items": [{ "text": "Input 输入", "link": "/components/input" }]
+    "items": [
+      { "text": "Input 输入", "link": "/components/input" },
+      { "text": "Select 选择器", "link": "/components/select" }
+    ]
   }
 ]

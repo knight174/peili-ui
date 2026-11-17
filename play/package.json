@@ -11,7 +11,9 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@peili-ui/button": "workspace:^"
+    "@peili-ui/button": "workspace:^",
+    "@peili-ui/input": "workspace:^",
+    "@peili-ui/select": "workspace:^"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",

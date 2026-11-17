@@ -1,0 +1,101 @@
+.pl-input {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--pl-input-padding-y) var(--pl-input-padding-x);
+  font-size: var(--pl-input-font-size);
+  line-height: 1.5;
+  color: var(--pl-input-color);
+  vertical-align: middle;
+  background-color: var(--pl-input-bg-color);
+  border: 1px solid var(--pl-input-border-color);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover:not(.pl-input--disabled) {
+    border-color: var(--pl-input-hover-border-color);
+  }
+
+  &:focus-within:not(.pl-input--disabled) {
+    border-color: var(--pl-input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--pl-input-focus-shadow-color);
+  }
+
+  &--small {
+    --pl-input-padding-x: 8px;
+    --pl-input-padding-y: 4px;
+    --pl-input-font-size: 12px;
+  }
+
+  &--large {
+    --pl-input-padding-x: 16px;
+    --pl-input-padding-y: 10px;
+    --pl-input-font-size: 16px;
+  }
+
+  &--disabled {
+    color: var(--pl-input-disabled-color);
+    cursor: not-allowed;
+    background-color: var(--pl-input-disabled-bg-color);
+    border-color: var(--pl-input-disabled-border-color);
+
+    .pl-input__inner {
+      cursor: not-allowed;
+    }
+  }
+
+  &__inner {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    outline: none;
+    background: transparent;
+    border: none;
+
+    &::placeholder {
+      color: var(--pl-input-placeholder-color);
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: var(--pl-input-placeholder-color);
+  }
+
+  &__prefix {
+    margin-right: 8px;
+  }
+
+  &__suffix {
+    margin-left: 8px;
+  }
+
+  &__clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--pl-input-placeholder-color);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+
+    &:hover {
+      color: var(--pl-input-color);
+    }
+  }
+}

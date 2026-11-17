@@ -1,39 +1,115 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { hello } from '@peili-ui/shared';
+import { computed, ref } from 'vue';
 import {
   defaultInputProps,
   InputProps,
   InputEmits,
   InputExpose,
+  InputSlots,
 } from './props';
 
-withDefaults(
+defineOptions({
+  name: 'PlInput',
+});
+
+const props = withDefaults(
   defineProps<InputProps>(),
   defaultInputProps(),
 );
 
 const emit = defineEmits<InputEmits>();
 
-function inputHandler(e: any) {
-  const { value } = e.target;
+defineSlots<InputSlots>();
+
+const inputRef = ref<HTMLInputElement>();
+
+const classes = computed(() => {
+  const result = [`pl-input--${props.size}`];
+  if (props.disabled) {
+    result.push('pl-input--disabled');
+  }
+  if (props.readonly) {
+    result.push('pl-input--readonly');
+  }
+  return result;
+});
+
+const showClear = computed(
+  () => props.clearable && !!props.modelValue && !props.disabled && !props.readonly,
+);
+
+function updateValue(value: string) {
   emit('update:modelValue', value);
-  hello(`${value}`);
+  emit('input', value);
+}
+
+function onInput(e: Event) {
+  updateValue((e.target as HTMLInputElement).value);
+}
+
+function onChange(e: Event) {
+  emit('change', (e.target as HTMLInputElement).value);
+}
+
+function onFocus(e: FocusEvent) {
+  emit('focus', e);
+}
+
+function onBlur(e: FocusEvent) {
+  emit('blur', e);
+}
+
+function focus() {
+  inputRef.value?.focus();
+}
+
+function blur() {
+  inputRef.value?.blur();
 }
 
 function clear() {
-  emit('update:modelValue', '');
+  updateValue('');
+  emit('clear');
+  focus();
 }
 
-const a = ref(0);
-
 defineExpose<InputExpose>({
+  focus,
+  blur,
   clear,
-  a,
 });
-
 </script>
 
 <template>
-  <input class="pl-input" type="text" :value="modelValue" @input="inputHandler">
+  <div class="pl-input" :class="classes">
+    <span v-if="$slots.prefix" class="pl-input__prefix">
+      <slot name="prefix" />
+    </span>
+    <input
+      ref="inputRef"
+      class="pl-input__inner"
+      :type="type"
+      :value="modelValue"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :maxlength="maxlength"
+      @input="onInput"
+      @change="onChange"
+      @focus="onFocus"
+      @blur="onBlur"
+    >
+    <span v-if="showClear || $slots.suffix" class="pl-input__suffix">
+      <button
+        v-if="showClear"
+        type="button"
+        class="pl-input__clear"
+        tabindex="-1"
+        @click="clear"
+      >
+        ×
+      </button>
+      <slot name="suffix" />
+    </span>
+  </div>
 </template>

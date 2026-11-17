@@ -2,7 +2,6 @@
 import { ref, reactive } from 'vue';
 import {
   PlButton,
-  Input,
   ConfigProvider,
   useTheme,
   tinyThemeVars,
@@ -105,7 +104,6 @@ function switchSecondLineTheme() {
         切换第二行主题1，当前：{{ currentSecondLineTheme }}
       </pl-button>
     </div>
-    <Input />
   </div>
 </template>
 

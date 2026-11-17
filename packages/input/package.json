@@ -45,8 +45,7 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@peili-ui/shared": "workspace:^",
-    "@peili-ui/button": "workspace:^"
+    "@peili-ui/shared": "workspace:^"
   },
   "devDependencies": {}
 }

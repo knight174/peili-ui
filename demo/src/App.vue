@@ -2,17 +2,26 @@
 import { ref, reactive } from 'vue';
 import {
   PlButton,
-  Input,
+  PlInput,
+  PlSelect,
   ConfigProvider,
   useTheme,
   tinyThemeVars,
   themeVars,
   PeiliuiCssVarsConfig,
+  SelectOption,
 } from 'peili-ui';
 
 const { setTheme } = useTheme();
 
 const currentGlobalTheme = ref<'default' | 'tiny'>('default');
+const inputValue = ref('');
+const selectValue = ref<string | number | null>(null);
+const selectOptions: SelectOption[] = [
+  { label: '选项一', value: '1' },
+  { label: '选项二', value: '2' },
+  { label: '选项三', value: '3' },
+];
 
 // 全局主题切换
 function switchGlobalTheme() {
@@ -107,8 +116,9 @@ function switchSecondLineTheme() {
         切换第二行主题，当前：{{ currentSecondLineTheme }}
       </pl-button>
     </div>
-    <div>
-      <Input />
+    <div class="form-demo">
+      <PlInput v-model="inputValue" clearable placeholder="请输入内容" />
+      <PlSelect v-model="selectValue" :options="selectOptions" clearable placeholder="请选择" />
     </div>
     <div>
       <i class="i-pl-alert text-64px text-yellow inline-block" />
@@ -126,5 +136,13 @@ function switchSecondLineTheme() {
       margin-left: 10px;
     }
   }
+}
+
+.form-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin: 16px 0;
 }
 </style>

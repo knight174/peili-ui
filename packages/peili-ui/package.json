@@ -51,6 +51,7 @@
     "@peili-ui/button": "workspace:^",
     "@peili-ui/config-provider": "workspace:^",
     "@peili-ui/input": "workspace:^",
+    "@peili-ui/select": "workspace:^",
     "@peili-ui/shared": "workspace:^",
     "@peili-ui/styles": "workspace:^"
   }
