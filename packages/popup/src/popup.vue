@@ -33,12 +33,10 @@ const referenceRef = ref<HTMLElement>();
 const contentRef = ref<HTMLElement>();
 const uncontrolledVisible = ref(false);
 const resolvedPlacement = ref(props.placement);
-const positioned = ref(false);
 const contentStyle = ref<{ [key: string]: string }>({
   position: 'fixed',
-  top: '0',
-  left: '0',
-  visibility: 'hidden',
+  top: '-9999px',
+  left: '-9999px',
 });
 
 let openTimer: number | undefined;
@@ -107,7 +105,7 @@ function updatePosition() {
   const referenceEl = referenceRef.value;
   const contentEl = contentRef.value;
   if (!referenceEl || !contentEl || !realVisible.value) {
-    return;
+    return false;
   }
 
   const triggerRect = referenceEl.getBoundingClientRect();
@@ -118,8 +116,8 @@ function updatePosition() {
   }
 
   const contentRect = {
-    width: props.matchTriggerWidth ? triggerRect.width : contentEl.offsetWidth,
-    height: contentEl.offsetHeight,
+    width: props.matchTriggerWidth ? triggerRect.width : Math.max(contentEl.offsetWidth, 1),
+    height: Math.max(contentEl.offsetHeight, 1),
   };
   const result = computePosition(
     triggerRect,
@@ -135,26 +133,30 @@ function updatePosition() {
     top: `${result.top}px`,
     left: `${result.left}px`,
     zIndex: String(props.zIndex),
-    visibility: 'visible',
     ...(props.matchTriggerWidth ? { width: `${triggerRect.width}px` } : {}),
   };
-  positioned.value = true;
+  return true;
 }
 
 async function syncPosition() {
-  positioned.value = false;
+  // 先放到视口外，避免定位完成前闪到 (0,0)
   contentStyle.value = {
-    ...contentStyle.value,
-    visibility: 'hidden',
+    position: 'fixed',
+    top: '-9999px',
+    left: '-9999px',
+    zIndex: String(props.zIndex),
   };
   await nextTick();
   updatePosition();
-  // 过渡开始后再校准一次，避免内容尺寸变化
-  requestAnimationFrame(() => updatePosition());
+  requestAnimationFrame(() => {
+    updatePosition();
+    requestAnimationFrame(() => updatePosition());
+  });
 }
 
 function onDocumentClick(e: MouseEvent) {
-  if (!realVisible.value || props.trigger === 'manual') {
+  // 仅 click 触发需要“点外部关闭”；hover/focus 走自身离开逻辑
+  if (!realVisible.value || props.trigger !== 'click') {
     return;
   }
   const target = e.target as Node;
@@ -218,7 +220,6 @@ function onReferenceBlur(e: FocusEvent) {
   if (next && (referenceRef.value?.contains(next) || contentRef.value?.contains(next))) {
     return;
   }
-  // 内容区点击时 relatedTarget 可能为空，延迟判断
   setTimeout(() => {
     const active = document.activeElement;
     if (
@@ -264,7 +265,6 @@ watch(realVisible, (val) => {
   if (val) {
     syncPosition();
   } else {
-    positioned.value = false;
     clearTimers();
   }
 });
@@ -313,10 +313,7 @@ defineExpose<PopupExpose>({
         v-show="realVisible"
         ref="contentRef"
         class="pl-popup"
-        :class="[
-          `pl-popup--${resolvedPlacement}`,
-          { 'pl-popup--ready': positioned },
-        ]"
+        :class="[`pl-popup--${resolvedPlacement}`]"
         :style="contentStyle"
         @mouseenter="onContentMouseEnter"
         @mouseleave="onContentMouseLeave"

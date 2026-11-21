@@ -1,19 +1,18 @@
-.pl-drawer-overlay {
-  &--rtl {
-    justify-content: flex-end;
-  }
+/* 提高优先级，避免被后加载的 .pl-overlay { justify-content: center } 覆盖 */
+.pl-overlay.pl-drawer-overlay--rtl {
+  justify-content: flex-end;
+}
 
-  &--ltr {
-    justify-content: flex-start;
-  }
+.pl-overlay.pl-drawer-overlay--ltr {
+  justify-content: flex-start;
+}
 
-  &--ttb {
-    align-items: flex-start;
-  }
+.pl-overlay.pl-drawer-overlay--ttb {
+  align-items: flex-start;
+}
 
-  &--btt {
-    align-items: flex-end;
-  }
+.pl-overlay.pl-drawer-overlay--btt {
+  align-items: flex-end;
 }
 
 .pl-drawer {

@@ -25,7 +25,7 @@ export interface TooltipProps {
 
   /**
    * 打开延迟（毫秒）
-   * @default 100
+   * @default 0
    */
   openDelay?: number;
 
@@ -42,7 +42,7 @@ export function defaultTooltipProps() {
     content: '',
     placement: 'top' as PopupPlacement,
     disabled: false,
-    openDelay: 100,
+    openDelay: 0,
     closeDelay: 100,
   } satisfies InferVueDefaults<TooltipProps>;
 }

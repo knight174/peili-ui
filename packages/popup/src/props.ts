@@ -108,6 +108,8 @@ export interface PopupProps {
 /** @hidden */
 export function defaultPopupProps() {
   return {
+    // 必须显式 undefined：Boolean 类型未传时 Vue 会落成 false，导致误判为受控关闭
+    visible: undefined as boolean | undefined,
     trigger: 'click' as PopupTrigger,
     placement: 'bottom-start' as PopupPlacement,
     disabled: false,
