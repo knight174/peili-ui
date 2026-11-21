@@ -20,6 +20,12 @@ export const selectVars = {
   'select-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   'select-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
   'select-font-size': '14px',
+  /** 触发器高度（含边框，box-sizing: border-box） */
+  'select-height': '34px',
+  /** 下拉选项固定行高（虚拟列表 itemHeight 对齐） */
+  'select-option-height': '34px',
+  /** 下拉面板最大高度 */
+  'select-dropdown-max-height': '240px',
 };
 
 /** 选择器组件主题变量类型 */

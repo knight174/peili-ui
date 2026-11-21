@@ -16,14 +16,16 @@
 
   &--small {
     --pl-select-padding-x: 8px;
-    --pl-select-padding-y: 4px;
     --pl-select-font-size: 12px;
+    --pl-select-height: 28px;
+    --pl-select-option-height: 28px;
   }
 
   &--large {
     --pl-select-padding-x: 16px;
-    --pl-select-padding-y: 10px;
     --pl-select-font-size: 16px;
+    --pl-select-height: 40px;
+    --pl-select-option-height: 40px;
   }
 
   &__trigger {
@@ -32,9 +34,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: var(--pl-select-padding-y) var(--pl-select-padding-x);
+    height: var(--pl-select-height);
+    padding: 0 var(--pl-select-padding-x);
     font-size: var(--pl-select-font-size);
-    line-height: 1.5;
+    line-height: 1;
     color: var(--pl-select-color);
     cursor: pointer;
     user-select: none;
@@ -128,18 +131,36 @@
     transform: rotate(180deg);
   }
 
+  /* 下拉内容 Teleport 到 body，需在自身携带 size 变量 */
   &__dropdown {
-    max-height: 240px;
+    max-height: var(--pl-select-dropdown-max-height);
     padding: 4px 0;
     overflow: auto;
     background-color: var(--pl-select-dropdown-bg-color);
+
+    &--small {
+      --pl-select-padding-x: 8px;
+      --pl-select-font-size: 12px;
+      --pl-select-option-height: 28px;
+    }
+
+    &--large {
+      --pl-select-padding-x: 16px;
+      --pl-select-font-size: 16px;
+      --pl-select-option-height: 40px;
+    }
   }
 
   &__option {
-    padding: 8px var(--pl-select-padding-x);
+    box-sizing: border-box;
+    height: var(--pl-select-option-height);
+    padding: 0 var(--pl-select-padding-x);
+    overflow: hidden;
     font-size: var(--pl-select-font-size);
-    line-height: 1.5;
+    line-height: var(--pl-select-option-height);
     color: var(--pl-select-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
 
     &:hover:not(.pl-select__option--disabled) {

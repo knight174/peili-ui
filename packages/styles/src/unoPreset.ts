@@ -6,6 +6,7 @@ import {
   buttonConfig,
   inputConfig,
   selectConfig,
+  dropdownConfig,
   popupConfig,
   overlayConfig,
 } from './unocss';
@@ -16,6 +17,7 @@ const configMaps = {
   button: buttonConfig,
   input: inputConfig,
   select: selectConfig,
+  dropdown: dropdownConfig,
   popup: popupConfig,
   overlay: overlayConfig,
 } satisfies Record<string, UserConfig<Theme>>;

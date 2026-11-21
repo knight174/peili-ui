@@ -137,7 +137,11 @@ defineExpose<SelectExpose>({
       </template>
 
       <template #content>
-        <div class="pl-select__dropdown" role="listbox">
+        <div
+          class="pl-select__dropdown"
+          :class="`pl-select__dropdown--${size}`"
+          role="listbox"
+        >
           <div
             v-for="option in options"
             :key="String(option.value)"

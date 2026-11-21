@@ -3,6 +3,7 @@ import { ThemeCssVarsConfig } from './theme';
 import { ButtonCssVarsConfig } from './button';
 import { InputCssVarsConfig } from './input';
 import { SelectCssVarsConfig } from './select';
+import { DropdownCssVarsConfig } from './dropdown';
 import { PopupCssVarsConfig } from './popup';
 import { OverlayCssVarsConfig } from './overlay';
 
@@ -13,6 +14,7 @@ export interface PeiliuiCssVarsConfig
   ButtonCssVarsConfig,
   InputCssVarsConfig,
   SelectCssVarsConfig,
+  DropdownCssVarsConfig,
   PopupCssVarsConfig,
   OverlayCssVarsConfig {
   [key: string]: string | undefined;
@@ -23,5 +25,6 @@ export * from './theme';
 export * from './button';
 export * from './input';
 export * from './select';
+export * from './dropdown';
 export * from './popup';
 export * from './overlay';
