@@ -15,16 +15,18 @@
 
   &__menu {
     min-width: var(--pl-dropdown-menu-min-width);
-    padding: 4px 0;
+    padding: var(--pl-dropdown-menu-padding-y) 0;
   }
 
   &__item {
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
     height: var(--pl-dropdown-item-height);
-    padding: 0 var(--pl-dropdown-padding-x);
+    padding: var(--pl-dropdown-item-padding-y) var(--pl-dropdown-item-padding-x);
     overflow: hidden;
     font-size: var(--pl-dropdown-font-size);
-    line-height: var(--pl-dropdown-item-height);
+    line-height: 1.5;
     color: var(--pl-dropdown-item-color);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -42,12 +44,12 @@
 
   &__divider {
     height: 1px;
-    margin: 4px 0;
+    margin: var(--pl-spacing-2xs) 0;
     background-color: var(--pl-dropdown-divider-color);
   }
 
   &__empty {
-    padding: 12px var(--pl-dropdown-padding-x);
+    padding: var(--pl-spacing-sm) var(--pl-dropdown-item-padding-x);
     font-size: var(--pl-dropdown-font-size);
     color: var(--pl-dropdown-empty-color);
     text-align: center;

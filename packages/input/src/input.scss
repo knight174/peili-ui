@@ -23,14 +23,14 @@
   }
 
   &--small {
-    --pl-input-padding-x: 8px;
-    --pl-input-padding-y: 4px;
+    --pl-input-padding-x: var(--pl-spacing-xs);
+    --pl-input-padding-y: var(--pl-spacing-2xs);
     --pl-input-font-size: 12px;
   }
 
   &--large {
-    --pl-input-padding-x: 16px;
-    --pl-input-padding-y: 10px;
+    --pl-input-padding-x: var(--pl-spacing-md);
+    --pl-input-padding-y: var(--pl-spacing-sm);
     --pl-input-font-size: 16px;
   }
 

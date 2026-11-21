@@ -15,14 +15,14 @@
   }
 
   &--small {
-    --pl-select-padding-x: 8px;
+    --pl-select-padding-x: var(--pl-spacing-xs);
     --pl-select-font-size: 12px;
     --pl-select-height: 28px;
     --pl-select-option-height: 28px;
   }
 
   &--large {
-    --pl-select-padding-x: 16px;
+    --pl-select-padding-x: var(--pl-spacing-md);
     --pl-select-font-size: 16px;
     --pl-select-height: 40px;
     --pl-select-option-height: 40px;
@@ -134,18 +134,20 @@
   /* 下拉内容 Teleport 到 body，需在自身携带 size 变量 */
   &__dropdown {
     max-height: var(--pl-select-dropdown-max-height);
-    padding: 4px 0;
+    padding: var(--pl-select-dropdown-padding-y) 0;
     overflow: auto;
     background-color: var(--pl-select-dropdown-bg-color);
 
     &--small {
-      --pl-select-padding-x: 8px;
+      --pl-select-padding-x: var(--pl-spacing-xs);
+      --pl-select-option-padding-x: var(--pl-spacing-xs);
       --pl-select-font-size: 12px;
       --pl-select-option-height: 28px;
     }
 
     &--large {
-      --pl-select-padding-x: 16px;
+      --pl-select-padding-x: var(--pl-spacing-md);
+      --pl-select-option-padding-x: var(--pl-spacing-md);
       --pl-select-font-size: 16px;
       --pl-select-option-height: 40px;
     }
@@ -153,11 +155,13 @@
 
   &__option {
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
     height: var(--pl-select-option-height);
-    padding: 0 var(--pl-select-padding-x);
+    padding: var(--pl-select-option-padding-y) var(--pl-select-option-padding-x);
     overflow: hidden;
     font-size: var(--pl-select-font-size);
-    line-height: var(--pl-select-option-height);
+    line-height: 1.5;
     color: var(--pl-select-color);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -180,7 +184,7 @@
   }
 
   &__empty {
-    padding: 12px var(--pl-select-padding-x);
+    padding: var(--pl-spacing-sm) var(--pl-select-option-padding-x);
     font-size: var(--pl-select-font-size);
     color: var(--pl-select-placeholder-color);
     text-align: center;

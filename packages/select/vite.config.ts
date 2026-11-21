@@ -2,6 +2,6 @@ import { generateVueConfig } from '../build/scripts';
 
 export default generateVueConfig({
   presetPeiliuiOptions: {
-    include: ['select', 'popup'],
+    include: ['theme', 'select', 'popup'],
   },
 });

@@ -4,11 +4,11 @@
 }
 
 .pl-popover__panel {
-  padding: 12px;
+  padding: var(--pl-spacing-sm);
 }
 
 .pl-popover__title {
-  margin-bottom: 8px;
+  margin-bottom: var(--pl-spacing-xs);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;

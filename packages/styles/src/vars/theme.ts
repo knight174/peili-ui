@@ -43,13 +43,28 @@ export const themeColorLevelsEnabledKeys: (keyof typeof themeColors)[] = [
   'color-info',
 ];
 
-/** 基础边距主题变量 */
+/** 基础边距主题变量（4px 网格；只增不改已有档） */
 export const themeSpacing = {
+  'spacing-2xs': '4px',
   'spacing-xs': '8px',
   'spacing-sm': '12px',
   'spacing-md': '16px',
+  'spacing-20': '20px',
   'spacing-lg': '24px',
   'spacing-xl': '32px',
+};
+
+/**
+ * padding 别名 → 指向 spacing（与 antd 对照用；组件仍可直接引用 spacing）
+ */
+export const themePadding = {
+  'padding-2xs': 'var(--pl-spacing-2xs)',
+  'padding-xs': 'var(--pl-spacing-xs)',
+  'padding-sm': 'var(--pl-spacing-sm)',
+  'padding-md': 'var(--pl-spacing-md)',
+  'padding-20': 'var(--pl-spacing-20)',
+  'padding-lg': 'var(--pl-spacing-lg)',
+  'padding-xl': 'var(--pl-spacing-xl)',
 };
 
 /** 基础 z-index 主题变量（语义层级） */
@@ -66,6 +81,7 @@ export const themeZIndex = {
 export const themeVars = {
   ...themeColors,
   ...themeSpacing,
+  ...themePadding,
   ...themeZIndex,
 };
 

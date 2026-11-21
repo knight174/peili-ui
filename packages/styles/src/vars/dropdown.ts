@@ -1,4 +1,4 @@
-import { cssVarToRgba } from '../utils';
+import { getCssVar, cssVarToRgba } from '../utils';
 import { ThemeCssVarsConfig } from './theme';
 
 /** 下拉菜单组件的主题变量定义 */
@@ -8,7 +8,12 @@ export const dropdownVars = {
   'dropdown-item-disabled-color': cssVarToRgba<ThemeCssVarsConfig>('color-disabled'),
   'dropdown-empty-color': cssVarToRgba<ThemeCssVarsConfig>('color-placeholder'),
   'dropdown-divider-color': cssVarToRgba<ThemeCssVarsConfig>('color-bd_base'),
-  'dropdown-padding-x': '12px',
+  'dropdown-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
+  'dropdown-menu-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
+  /** 菜单项水平内边距 */
+  'dropdown-item-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
+  /** 菜单项垂直内边距（固定行高内，box-sizing: border-box） */
+  'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
   'dropdown-font-size': '14px',
   /** 菜单项固定行高（与 Select option 阶梯对齐） */
   'dropdown-item-height': '34px',

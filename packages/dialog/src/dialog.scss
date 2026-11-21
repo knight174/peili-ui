@@ -1,7 +1,7 @@
 .pl-dialog {
   box-sizing: border-box;
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 32px);
+  max-width: calc(100vw - var(--pl-spacing-xl));
+  max-height: calc(100vh - var(--pl-spacing-xl));
   overflow: auto;
   background-color: rgb(var(--pl-color-card));
   border-radius: 8px;
@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px 8px;
+    padding: var(--pl-spacing-md) var(--pl-spacing-20) var(--pl-spacing-xs);
   }
 
   &__title {
@@ -44,7 +44,7 @@
   }
 
   &__body {
-    padding: 8px 20px 16px;
+    padding: var(--pl-spacing-xs) var(--pl-spacing-20) var(--pl-spacing-md);
     font-size: 14px;
     line-height: 1.6;
     color: rgb(var(--pl-color-regular));
@@ -52,8 +52,8 @@
 
   &__footer {
     display: flex;
-    gap: 8px;
+    gap: var(--pl-spacing-xs);
     justify-content: flex-end;
-    padding: 8px 20px 16px;
+    padding: var(--pl-spacing-xs) var(--pl-spacing-20) var(--pl-spacing-md);
   }
 }
