@@ -1,7 +1,11 @@
 [
   {
     "text": "基础组件",
-    "items": [{ "text": "Button 按钮", "link": "/components/button" }]
+    "items": [
+      { "text": "Button 按钮", "link": "/components/button" },
+      { "text": "Popup 弹出层", "link": "/components/popup" },
+      { "text": "Overlay 遮罩层", "link": "/components/overlay" }
+    ]
   },
   {
     "text": "配置组件",
@@ -12,6 +16,16 @@
     "items": [
       { "text": "Input 输入", "link": "/components/input" },
       { "text": "Select 选择器", "link": "/components/select" }
+    ]
+  },
+  {
+    "text": "反馈组件",
+    "items": [
+      { "text": "Dropdown 下拉菜单", "link": "/components/dropdown" },
+      { "text": "Tooltip 文字提示", "link": "/components/tooltip" },
+      { "text": "Popover 气泡卡片", "link": "/components/popover" },
+      { "text": "Dialog 对话框", "link": "/components/dialog" },
+      { "text": "Drawer 抽屉", "link": "/components/drawer" }
     ]
   }
 ]

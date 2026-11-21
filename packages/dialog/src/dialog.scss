@@ -1,0 +1,59 @@
+.pl-dialog {
+  box-sizing: border-box;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  background-color: rgb(var(--pl-color-card));
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 8px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(var(--pl-color-header));
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: rgb(var(--pl-color-secondary));
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+
+    &:hover {
+      color: rgb(var(--pl-color-header));
+      background-color: rgb(var(--pl-color-page));
+    }
+  }
+
+  &__body {
+    padding: 8px 20px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgb(var(--pl-color-regular));
+  }
+
+  &__footer {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 8px 20px 16px;
+  }
+}

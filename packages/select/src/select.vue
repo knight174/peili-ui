@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
+import { PlPopup } from '@peili-ui/popup';
 import {
   defaultSelectProps,
   SelectProps,
@@ -20,7 +21,6 @@ const props = withDefaults(
 
 const emit = defineEmits<SelectEmits>();
 
-const rootRef = ref<HTMLElement>();
 const visible = ref(false);
 
 const classes = computed(() => {
@@ -46,19 +46,9 @@ const showClear = computed(
     && !props.disabled,
 );
 
-function setVisible(next: boolean) {
-  if (props.disabled || visible.value === next) {
-    return;
-  }
+function onVisibleUpdate(next: boolean) {
   visible.value = next;
   emit('visible-change', next);
-}
-
-function toggle() {
-  if (props.disabled) {
-    return;
-  }
-  setVisible(!visible.value);
 }
 
 function updateValue(value: SelectValue) {
@@ -71,36 +61,30 @@ function selectOption(option: SelectOption) {
     return;
   }
   updateValue(option.value);
-  setVisible(false);
+  visible.value = false;
+  emit('visible-change', false);
 }
 
-function clear(e?: MouseEvent) {
-  e?.stopPropagation();
+function clear() {
   updateValue(null);
   emit('clear');
 }
 
 function open() {
-  setVisible(true);
+  if (props.disabled || visible.value) {
+    return;
+  }
+  visible.value = true;
+  emit('visible-change', true);
 }
 
 function close() {
-  setVisible(false);
-}
-
-function onDocumentClick(e: MouseEvent) {
-  if (!rootRef.value?.contains(e.target as Node)) {
-    setVisible(false);
+  if (!visible.value) {
+    return;
   }
+  visible.value = false;
+  emit('visible-change', false);
 }
-
-onMounted(() => {
-  document.addEventListener('click', onDocumentClick);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener('click', onDocumentClick);
-});
 
 defineExpose<SelectExpose>({
   open,
@@ -110,56 +94,69 @@ defineExpose<SelectExpose>({
 </script>
 
 <template>
-  <div ref="rootRef" class="pl-select" :class="classes">
-    <div
-      class="pl-select__trigger"
-      role="combobox"
-      :aria-expanded="visible"
-      :aria-disabled="disabled"
-      tabindex="0"
-      @click="toggle"
-      @keydown.enter.prevent="toggle"
-      @keydown.space.prevent="toggle"
-      @keydown.esc.prevent="close"
+  <div class="pl-select" :class="classes">
+    <PlPopup
+      :visible="visible"
+      trigger="click"
+      placement="bottom-start"
+      :disabled="disabled"
+      match-trigger-width
+      :offset="4"
+      @update:visible="onVisibleUpdate"
     >
-      <span
-        class="pl-select__value"
-        :class="{ 'pl-select__value--placeholder': !displayLabel }"
-      >
-        {{ displayLabel || placeholder }}
-      </span>
-      <span class="pl-select__suffix">
-        <button
-          v-if="showClear"
-          type="button"
-          class="pl-select__clear"
-          tabindex="-1"
-          @click="clear"
+      <template #reference>
+        <div
+          class="pl-select__trigger"
+          role="combobox"
+          :aria-expanded="visible"
+          :aria-disabled="disabled"
+          tabindex="0"
+          @keydown.enter.prevent="visible ? close() : open()"
+          @keydown.space.prevent="visible ? close() : open()"
+          @keydown.esc.prevent="close"
         >
-          ×
-        </button>
-        <span class="pl-select__arrow" />
-      </span>
-    </div>
+          <span
+            class="pl-select__value"
+            :class="{ 'pl-select__value--placeholder': !displayLabel }"
+          >
+            {{ displayLabel || placeholder }}
+          </span>
+          <span class="pl-select__suffix">
+            <button
+              v-if="showClear"
+              type="button"
+              class="pl-select__clear"
+              tabindex="-1"
+              @click.stop="clear"
+            >
+              ×
+            </button>
+            <span class="pl-select__arrow" />
+          </span>
+        </div>
+      </template>
 
-    <div v-show="visible" class="pl-select__dropdown" role="listbox">
-      <div
-        v-for="option in options"
-        :key="String(option.value)"
-        class="pl-select__option"
-        :class="{
-          'pl-select__option--selected': option.value === modelValue,
-          'pl-select__option--disabled': option.disabled,
-        }"
-        role="option"
-        :aria-selected="option.value === modelValue"
-        @click.stop="selectOption(option)"
-      >
-        {{ option.label }}
-      </div>
-      <div v-if="!options.length" class="pl-select__empty">
-        暂无数据
-      </div>
-    </div>
+      <template #content>
+        <div class="pl-select__dropdown" role="listbox">
+          <div
+            v-for="option in options"
+            :key="String(option.value)"
+            class="pl-select__option"
+            :class="{
+              'pl-select__option--selected': option.value === modelValue,
+              'pl-select__option--disabled': option.disabled,
+            }"
+            role="option"
+            :aria-selected="option.value === modelValue"
+            @click.stop="selectOption(option)"
+          >
+            {{ option.label }}
+          </div>
+          <div v-if="!options.length" class="pl-select__empty">
+            暂无数据
+          </div>
+        </div>
+      </template>
+    </PlPopup>
   </div>
 </template>

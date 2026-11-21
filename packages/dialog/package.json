@@ -1,0 +1,51 @@
+{
+  "name": "@peili-ui/dialog",
+  "version": "0.0.1",
+  "description": "peili-ui dialog",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "author": "Eric",
+  "license": "MIT",
+  "homepage": "https://github.com/Knight174/peili-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knight174/peili-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Knight174/peili-ui/issues"
+  },
+  "type": "module",
+  "main": "./dist/peili-ui-dialog.umd.js",
+  "module": "./dist/peili-ui-dialog.mjs",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/peili-ui-dialog.umd.js",
+      "import": "./dist/peili-ui-dialog.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@peili-ui/overlay": "workspace:^",
+    "@peili-ui/shared": "workspace:^"
+  }
+}

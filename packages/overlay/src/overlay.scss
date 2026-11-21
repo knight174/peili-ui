@@ -1,0 +1,18 @@
+.pl-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pl-overlay-bg-color);
+}
+
+.pl-overlay-fade-enter-active,
+.pl-overlay-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.pl-overlay-fade-enter-from,
+.pl-overlay-fade-leave-to {
+  opacity: 0;
+}

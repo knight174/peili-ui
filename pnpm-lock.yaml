@@ -167,6 +167,42 @@ importers:
         specifier: '>=3.0.0'
         version: 3.4.34(typescript@5.5.4)
 
+  packages/dialog:
+    dependencies:
+      '@peili-ui/overlay':
+        specifier: workspace:^
+        version: link:../overlay
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
+  packages/drawer:
+    dependencies:
+      '@peili-ui/overlay':
+        specifier: workspace:^
+        version: link:../overlay
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
+  packages/dropdown:
+    dependencies:
+      '@peili-ui/popup':
+        specifier: workspace:^
+        version: link:../popup
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
   packages/icons:
     dependencies:
       '@iconify/tools':
@@ -185,6 +221,15 @@ importers:
         specifier: '>=3.0.0'
         version: 3.4.34(typescript@5.5.4)
 
+  packages/overlay:
+    dependencies:
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
   packages/peili-ui:
     dependencies:
       '@peili-ui/button':
@@ -193,9 +238,27 @@ importers:
       '@peili-ui/config-provider':
         specifier: workspace:^
         version: link:../config-provider
+      '@peili-ui/dialog':
+        specifier: workspace:^
+        version: link:../dialog
+      '@peili-ui/drawer':
+        specifier: workspace:^
+        version: link:../drawer
+      '@peili-ui/dropdown':
+        specifier: workspace:^
+        version: link:../dropdown
       '@peili-ui/input':
         specifier: workspace:^
         version: link:../input
+      '@peili-ui/overlay':
+        specifier: workspace:^
+        version: link:../overlay
+      '@peili-ui/popover':
+        specifier: workspace:^
+        version: link:../popover
+      '@peili-ui/popup':
+        specifier: workspace:^
+        version: link:../popup
       '@peili-ui/select':
         specifier: workspace:^
         version: link:../select
@@ -205,12 +268,39 @@ importers:
       '@peili-ui/styles':
         specifier: workspace:^
         version: link:../styles
+      '@peili-ui/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
+  packages/popover:
+    dependencies:
+      '@peili-ui/popup':
+        specifier: workspace:^
+        version: link:../popup
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
+  packages/popup:
+    dependencies:
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
       vue:
         specifier: '>=3.0.0'
         version: 3.4.34(typescript@5.5.4)
 
   packages/select:
     dependencies:
+      '@peili-ui/popup':
+        specifier: workspace:^
+        version: link:../popup
       '@peili-ui/shared':
         specifier: workspace:^
         version: link:../shared
@@ -235,6 +325,18 @@ importers:
       unocss:
         specifier: '>=0.54.1'
         version: 0.61.7(postcss@8.4.40)(rollup@4.19.1)(vite@5.3.5(@types/node@20.14.13)(sass@1.77.8))
+      vue:
+        specifier: '>=3.0.0'
+        version: 3.4.34(typescript@5.5.4)
+
+  packages/tooltip:
+    dependencies:
+      '@peili-ui/popup':
+        specifier: workspace:^
+        version: link:../popup
+      '@peili-ui/shared':
+        specifier: workspace:^
+        version: link:../shared
       vue:
         specifier: '>=3.0.0'
         version: 3.4.34(typescript@5.5.4)

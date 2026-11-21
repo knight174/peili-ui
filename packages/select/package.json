@@ -45,6 +45,7 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
+    "@peili-ui/popup": "workspace:^",
     "@peili-ui/shared": "workspace:^"
   },
   "devDependencies": {}

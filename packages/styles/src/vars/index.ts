@@ -3,10 +3,18 @@ import { ThemeCssVarsConfig } from './theme';
 import { ButtonCssVarsConfig } from './button';
 import { InputCssVarsConfig } from './input';
 import { SelectCssVarsConfig } from './select';
+import { PopupCssVarsConfig } from './popup';
+import { OverlayCssVarsConfig } from './overlay';
 
 /** 导出组件库主题样式的整体类型 */
 export interface PeiliuiCssVarsConfig
-  extends ThemeCssVarsConfig, ButtonCssVarsConfig, InputCssVarsConfig, SelectCssVarsConfig {
+  extends
+  ThemeCssVarsConfig,
+  ButtonCssVarsConfig,
+  InputCssVarsConfig,
+  SelectCssVarsConfig,
+  PopupCssVarsConfig,
+  OverlayCssVarsConfig {
   [key: string]: string | undefined;
 }
 
@@ -15,3 +23,5 @@ export * from './theme';
 export * from './button';
 export * from './input';
 export * from './select';
+export * from './popup';
+export * from './overlay';

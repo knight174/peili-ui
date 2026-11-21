@@ -1,8 +1,18 @@
 .pl-select {
-  position: relative;
   display: inline-block;
   width: 100%;
   vertical-align: middle;
+
+  :deep(.pl-popup__reference) {
+    display: block;
+    width: 100%;
+  }
+
+  /* Popup 自带边框时，下拉内容区不再重复描边 */
+  :deep(.pl-popup) {
+    padding: 0;
+    overflow: hidden;
+  }
 
   &--small {
     --pl-select-padding-x: 8px;
@@ -119,18 +129,10 @@
   }
 
   &__dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    right: 0;
-    left: 0;
-    z-index: 1000;
     max-height: 240px;
     padding: 4px 0;
     overflow: auto;
     background-color: var(--pl-select-dropdown-bg-color);
-    border: 1px solid var(--pl-select-border-color);
-    border-radius: 4px;
-    box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
   }
 
   &__option {

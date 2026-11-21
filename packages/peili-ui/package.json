@@ -50,9 +50,16 @@
   "dependencies": {
     "@peili-ui/button": "workspace:^",
     "@peili-ui/config-provider": "workspace:^",
+    "@peili-ui/dialog": "workspace:^",
+    "@peili-ui/drawer": "workspace:^",
+    "@peili-ui/dropdown": "workspace:^",
     "@peili-ui/input": "workspace:^",
+    "@peili-ui/overlay": "workspace:^",
+    "@peili-ui/popover": "workspace:^",
+    "@peili-ui/popup": "workspace:^",
     "@peili-ui/select": "workspace:^",
     "@peili-ui/shared": "workspace:^",
-    "@peili-ui/styles": "workspace:^"
+    "@peili-ui/styles": "workspace:^",
+    "@peili-ui/tooltip": "workspace:^"
   }
 }

@@ -1,0 +1,110 @@
+.pl-popup__reference {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.pl-popup {
+  box-sizing: border-box;
+  min-width: 0;
+  color: var(--pl-popup-color);
+  pointer-events: auto;
+  visibility: hidden;
+  background-color: var(--pl-popup-bg-color);
+  border: 1px solid var(--pl-popup-border-color);
+  border-radius: 4px;
+  box-shadow: var(--pl-popup-shadow);
+  outline: none;
+
+  &--ready {
+    visibility: visible;
+  }
+
+  &__content {
+    max-height: inherit;
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: inherit;
+    border: 1px solid var(--pl-popup-border-color);
+    transform: rotate(45deg);
+  }
+
+  &--top .pl-popup__arrow,
+  &--top-start .pl-popup__arrow,
+  &--top-end .pl-popup__arrow {
+    bottom: -5px;
+    border-top: none;
+    border-left: none;
+  }
+
+  &--bottom .pl-popup__arrow,
+  &--bottom-start .pl-popup__arrow,
+  &--bottom-end .pl-popup__arrow {
+    top: -5px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &--left .pl-popup__arrow,
+  &--left-start .pl-popup__arrow,
+  &--left-end .pl-popup__arrow {
+    right: -5px;
+    border-bottom: none;
+    border-left: none;
+  }
+
+  &--right .pl-popup__arrow,
+  &--right-start .pl-popup__arrow,
+  &--right-end .pl-popup__arrow {
+    left: -5px;
+    border-top: none;
+    border-right: none;
+  }
+
+  &--top .pl-popup__arrow,
+  &--bottom .pl-popup__arrow {
+    left: 50%;
+    margin-left: -4px;
+  }
+
+  &--top-start .pl-popup__arrow,
+  &--bottom-start .pl-popup__arrow {
+    left: 16px;
+  }
+
+  &--top-end .pl-popup__arrow,
+  &--bottom-end .pl-popup__arrow {
+    right: 16px;
+  }
+
+  &--left .pl-popup__arrow,
+  &--right .pl-popup__arrow {
+    top: 50%;
+    margin-top: -4px;
+  }
+
+  &--left-start .pl-popup__arrow,
+  &--right-start .pl-popup__arrow {
+    top: 16px;
+  }
+
+  &--left-end .pl-popup__arrow,
+  &--right-end .pl-popup__arrow {
+    bottom: 16px;
+  }
+}
+
+.pl-popup-fade-enter-active,
+.pl-popup-fade-leave-active {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.pl-popup-fade-enter-from,
+.pl-popup-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}

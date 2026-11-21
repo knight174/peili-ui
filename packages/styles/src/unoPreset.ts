@@ -6,6 +6,8 @@ import {
   buttonConfig,
   inputConfig,
   selectConfig,
+  popupConfig,
+  overlayConfig,
 } from './unocss';
 
 /** 组件名称与预设对象的关系表 */
@@ -14,6 +16,8 @@ const configMaps = {
   button: buttonConfig,
   input: inputConfig,
   select: selectConfig,
+  popup: popupConfig,
+  overlay: overlayConfig,
 } satisfies Record<string, UserConfig<Theme>>;
 
 type ConfigKeys = keyof typeof configMaps;

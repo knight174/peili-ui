@@ -4,12 +4,16 @@ import {
   PlButton,
   PlInput,
   PlSelect,
+  PlDropdown,
+  PlTooltip,
+  PlDialog,
   ConfigProvider,
   useTheme,
   tinyThemeVars,
   themeVars,
   PeiliuiCssVarsConfig,
   SelectOption,
+  DropdownOption,
 } from 'peili-ui';
 
 const { setTheme } = useTheme();
@@ -17,10 +21,15 @@ const { setTheme } = useTheme();
 const currentGlobalTheme = ref<'default' | 'tiny'>('default');
 const inputValue = ref('');
 const selectValue = ref<string | number | null>(null);
+const dialogVisible = ref(false);
 const selectOptions: SelectOption[] = [
   { label: '选项一', value: '1' },
   { label: '选项二', value: '2' },
   { label: '选项三', value: '3' },
+];
+const dropdownOptions: DropdownOption[] = [
+  { label: '编辑', value: 'edit' },
+  { label: '删除', value: 'delete', divided: true },
 ];
 
 // 全局主题切换
@@ -120,6 +129,25 @@ function switchSecondLineTheme() {
       <PlInput v-model="inputValue" clearable placeholder="请输入内容" />
       <PlSelect v-model="selectValue" :options="selectOptions" clearable placeholder="请选择" />
     </div>
+    <div class="btns">
+      <PlDropdown :options="dropdownOptions">
+        <PlButton>下拉菜单</PlButton>
+      </PlDropdown>
+      <PlTooltip content="这是 Tooltip">
+        <PlButton>Tooltip</PlButton>
+      </PlTooltip>
+      <PlButton type="primary" @click="dialogVisible = true">
+        打开 Dialog
+      </PlButton>
+    </div>
+    <PlDialog v-model="dialogVisible" title="提示" width="420px">
+      <p>基于 Overlay 的 Dialog 示例</p>
+      <template #footer>
+        <PlButton @click="dialogVisible = false">
+          关闭
+        </PlButton>
+      </template>
+    </PlDialog>
     <div>
       <i class="i-pl-alert text-64px text-yellow inline-block" />
       <i class="i-pl-alert-marked text-48px text-red inline-block" />

@@ -1,0 +1,22 @@
+.pl-popover__trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pl-popover__panel {
+  padding: 12px;
+}
+
+.pl-popover__title {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--pl-popup-color);
+}
+
+.pl-popover__body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgb(var(--pl-color-regular));
+}

@@ -24,12 +24,19 @@ pnpm add peili-ui
 
 ## 📚 组件
 
-| 组件             | 说明         |
-| ---------------- | ------------ |
-| `PlButton`       | 按钮         |
-| `PlInput`        | 输入框       |
-| `PlSelect`       | 选择器       |
-| `ConfigProvider` | 局部主题配置 |
+| 组件             | 说明                 |
+| ---------------- | -------------------- |
+| `PlButton`       | 按钮                 |
+| `PlInput`        | 输入框               |
+| `PlSelect`       | 选择器（基于 Popup） |
+| `PlPopup`        | 弹出层底座           |
+| `PlOverlay`      | 遮罩层底座           |
+| `PlDropdown`     | 下拉菜单             |
+| `PlTooltip`      | 文字提示             |
+| `PlPopover`      | 气泡卡片             |
+| `PlDialog`       | 对话框               |
+| `PlDrawer`       | 抽屉                 |
+| `ConfigProvider` | 局部主题配置         |
 
 ## 🔨 使用
 
@@ -162,7 +169,10 @@ pnpm --filter peili-ui run build
 ```text
 packages/
   peili-ui/          # 对外聚合包
-  button/ input/ select/ config-provider/
+  popup/ overlay/    # 浮层底座
+  button/ input/ select/
+  dropdown/ tooltip/ popover/
+  dialog/ drawer/ config-provider/
   styles/            # 主题变量与 UnoCSS preset
   shared/ icons/ build/
 docs/                # VitePress 文档

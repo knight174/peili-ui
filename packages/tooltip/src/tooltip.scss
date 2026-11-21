@@ -1,0 +1,12 @@
+.pl-tooltip__trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pl-tooltip__content {
+  max-width: 280px;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+}
