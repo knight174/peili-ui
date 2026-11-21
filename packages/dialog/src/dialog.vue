@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import { PlOverlay } from '@peili-ui/overlay';
+import { createFocusTrap } from '@peili-ui/shared';
 import {
   defaultDialogProps,
   DialogEmits,
@@ -22,6 +23,9 @@ const emit = defineEmits<DialogEmits>();
 
 defineSlots<DialogSlots>();
 
+const panelRef = ref<HTMLElement>();
+const focusTrap = createFocusTrap(() => panelRef.value);
+
 const panelStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
 }));
@@ -38,7 +42,7 @@ function onOverlayUpdate(visible: boolean) {
   emit('update:modelValue', visible);
 }
 
-function onKeydown(e: KeyboardEvent) {
+function onEscKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && props.modelValue) {
     close();
   }
@@ -46,22 +50,26 @@ function onKeydown(e: KeyboardEvent) {
 
 watch(
   () => props.modelValue,
-  (val, oldVal) => {
+  async (val, oldVal) => {
     if (val === oldVal) {
       return;
     }
     if (val) {
       emit('open');
-      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('keydown', onEscKeydown);
+      await nextTick();
+      focusTrap.activate();
     } else {
+      focusTrap.deactivate();
       emit('close');
-      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('keydown', onEscKeydown);
     }
   },
 );
 
 onBeforeUnmount(() => {
-  document.removeEventListener('keydown', onKeydown);
+  focusTrap.deactivate();
+  document.removeEventListener('keydown', onEscKeydown);
 });
 
 defineExpose<DialogExpose>({
@@ -77,7 +85,14 @@ defineExpose<DialogExpose>({
     :z-index="zIndex"
     @update:model-value="onOverlayUpdate"
   >
-    <div class="pl-dialog" role="dialog" aria-modal="true" :style="panelStyle" @click.stop>
+    <div
+      ref="panelRef"
+      class="pl-dialog"
+      role="dialog"
+      aria-modal="true"
+      :style="panelStyle"
+      @click.stop
+    >
       <div class="pl-dialog__header">
         <slot name="header">
           <span class="pl-dialog__title">{{ title }}</span>

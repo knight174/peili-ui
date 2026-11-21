@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import { PlOverlay } from '@peili-ui/overlay';
+import { createFocusTrap } from '@peili-ui/shared';
 import {
   defaultDrawerProps,
   DrawerEmits,
@@ -21,6 +22,9 @@ const props = withDefaults(
 const emit = defineEmits<DrawerEmits>();
 
 defineSlots<DrawerSlots>();
+
+const panelRef = ref<HTMLElement>();
+const focusTrap = createFocusTrap(() => panelRef.value);
 
 const sizeValue = computed(() => (
   typeof props.size === 'number' ? `${props.size}px` : props.size
@@ -45,7 +49,7 @@ function onOverlayUpdate(visible: boolean) {
   emit('update:modelValue', visible);
 }
 
-function onKeydown(e: KeyboardEvent) {
+function onEscKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && props.modelValue) {
     close();
   }
@@ -53,22 +57,26 @@ function onKeydown(e: KeyboardEvent) {
 
 watch(
   () => props.modelValue,
-  (val, oldVal) => {
+  async (val, oldVal) => {
     if (val === oldVal) {
       return;
     }
     if (val) {
       emit('open');
-      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('keydown', onEscKeydown);
+      await nextTick();
+      focusTrap.activate();
     } else {
+      focusTrap.deactivate();
       emit('close');
-      document.removeEventListener('keydown', onKeydown);
+      document.removeEventListener('keydown', onEscKeydown);
     }
   },
 );
 
 onBeforeUnmount(() => {
-  document.removeEventListener('keydown', onKeydown);
+  focusTrap.deactivate();
+  document.removeEventListener('keydown', onEscKeydown);
 });
 
 defineExpose<DrawerExpose>({
@@ -86,6 +94,7 @@ defineExpose<DrawerExpose>({
     @update:model-value="onOverlayUpdate"
   >
     <div
+      ref="panelRef"
       class="pl-drawer"
       :class="`pl-drawer--${direction}`"
       role="dialog"
