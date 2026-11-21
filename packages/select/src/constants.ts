@@ -5,8 +5,8 @@ import type { SelectSize } from './props';
  * 与 CSS `--pl-select-option-height` 保持一致，供后续虚拟列表 itemHeight 使用。
  */
 export const SELECT_OPTION_HEIGHT = {
-  small: 28,
-  default: 34,
+  small: 24,
+  default: 32,
   large: 40,
 } as const satisfies Record<SelectSize, number>;
 
@@ -15,7 +15,7 @@ export const SELECT_OPTION_HEIGHT = {
  * 与 CSS `--pl-select-height` 保持一致。
  */
 export const SELECT_HEIGHT = {
-  small: 28,
-  default: 34,
+  small: 24,
+  default: 32,
   large: 40,
 } as const satisfies Record<SelectSize, number>;

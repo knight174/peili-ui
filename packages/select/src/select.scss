@@ -17,8 +17,8 @@
   &--small {
     --pl-select-padding-x: var(--pl-spacing-xs);
     --pl-select-font-size: 12px;
-    --pl-select-height: 28px;
-    --pl-select-option-height: 28px;
+    --pl-select-height: 24px;
+    --pl-select-option-height: 24px;
   }
 
   &--large {
@@ -142,7 +142,7 @@
       --pl-select-padding-x: var(--pl-spacing-xs);
       --pl-select-option-padding-x: var(--pl-spacing-xs);
       --pl-select-font-size: 12px;
-      --pl-select-option-height: 28px;
+      --pl-select-option-height: 24px;
     }
 
     &--large {
