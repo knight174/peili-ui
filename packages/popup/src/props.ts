@@ -1,5 +1,5 @@
 /** @module Popup */
-import { InferVueDefaults } from '@peili-ui/shared';
+import { InferVueDefaults, Z_INDEX } from '@peili-ui/shared';
 import type PlPopup from './popup.vue';
 
 export type PopupTrigger = 'click' | 'hover' | 'focus' | 'manual';
@@ -99,10 +99,15 @@ export interface PopupProps {
   transition?: string;
 
   /**
-   * 弹出层 z-index
-   * @default 1000
+   * 弹出层 z-index；未传时打开时按 zIndexFloor 自动累加取层
    */
   zIndex?: number;
+
+  /**
+   * 自动取层时的下限（语义底）
+   * @default Z_INDEX.popup (1000)
+   */
+  zIndexFloor?: number;
 }
 
 /** @hidden */
@@ -122,7 +127,8 @@ export function defaultPopupProps() {
     openDelay: 0,
     closeDelay: 150,
     transition: 'pl-popup-fade',
-    zIndex: 1000,
+    zIndex: undefined as number | undefined,
+    zIndexFloor: Z_INDEX.popup,
   } satisfies InferVueDefaults<PopupProps>;
 }
 

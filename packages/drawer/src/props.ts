@@ -43,8 +43,7 @@ export interface DrawerProps {
   showClose?: boolean;
 
   /**
-   * z-index
-   * @default 2000
+   * z-index；未传时打开时按 overlay 语义底自动累加取层
    */
   zIndex?: number;
 }
@@ -58,7 +57,7 @@ export function defaultDrawerProps() {
     size: '30%' as number | string,
     closeOnClickModal: true,
     showClose: true,
-    zIndex: 2000,
+    zIndex: undefined as number | undefined,
   } satisfies InferVueDefaults<DrawerProps>;
 }
 

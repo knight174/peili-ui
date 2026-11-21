@@ -52,10 +52,21 @@ export const themeSpacing = {
   'spacing-xl': '32px',
 };
 
+/** 基础 z-index 主题变量（语义层级） */
+export const themeZIndex = {
+  'z-base': '1',
+  'z-affix': '10',
+  'z-popup': '1000',
+  'z-overlay': '2000',
+  'z-tooltip': '2100',
+  'z-message': '5000',
+};
+
 /** 基础主题变量 */
 export const themeVars = {
   ...themeColors,
   ...themeSpacing,
+  ...themeZIndex,
 };
 
 /** 基础主题变量类型 */

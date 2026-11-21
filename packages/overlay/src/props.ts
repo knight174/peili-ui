@@ -1,5 +1,5 @@
 /** @module Overlay */
-import { InferVueDefaults } from '@peili-ui/shared';
+import { InferVueDefaults, Z_INDEX } from '@peili-ui/shared';
 import type PlOverlay from './overlay.vue';
 
 /** 遮罩层组件的属性 */
@@ -23,10 +23,15 @@ export interface OverlayProps {
   teleported?: boolean;
 
   /**
-   * z-index
-   * @default 2000
+   * z-index；未传时打开时按 overlay 语义底自动累加取层
    */
   zIndex?: number;
+
+  /**
+   * 自动取层时的下限（语义底）
+   * @default Z_INDEX.overlay (2000)
+   */
+  zIndexFloor?: number;
 
   /**
    * 过渡动画名称
@@ -47,7 +52,8 @@ export function defaultOverlayProps() {
     modelValue: false,
     closeOnClick: true,
     teleported: true,
-    zIndex: 2000,
+    zIndex: undefined as number | undefined,
+    zIndexFloor: Z_INDEX.overlay,
     transition: 'pl-overlay-fade',
     overlayClass: '',
   } satisfies InferVueDefaults<OverlayProps>;

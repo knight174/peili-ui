@@ -34,6 +34,11 @@ export interface TooltipProps {
    * @default 100
    */
   closeDelay?: number;
+
+  /**
+   * z-index；未传时打开时按 tooltip 语义底自动累加取层
+   */
+  zIndex?: number;
 }
 
 /** @hidden */
@@ -44,6 +49,7 @@ export function defaultTooltipProps() {
     disabled: false,
     openDelay: 0,
     closeDelay: 100,
+    zIndex: undefined as number | undefined,
   } satisfies InferVueDefaults<TooltipProps>;
 }
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PlPopup } from '@peili-ui/popup';
+import { Z_INDEX } from '@peili-ui/shared';
 import {
   defaultTooltipProps,
   TooltipProps,
@@ -25,6 +26,8 @@ defineSlots<TooltipSlots>();
     :disabled="disabled"
     :open-delay="openDelay"
     :close-delay="closeDelay"
+    :z-index="zIndex"
+    :z-index-floor="Z_INDEX.tooltip"
     :offset="8"
     show-arrow
   >

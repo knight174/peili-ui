@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, watch } from 'vue';
+import { onBeforeUnmount, ref, watch } from 'vue';
+import { nextZIndex, Z_INDEX } from '@peili-ui/shared';
 import {
   defaultOverlayProps,
   OverlayEmits,
@@ -21,6 +22,8 @@ const emit = defineEmits<OverlayEmits>();
 
 defineSlots<OverlaySlots>();
 
+const activeZIndex = ref(props.zIndex ?? props.zIndexFloor ?? Z_INDEX.overlay);
+
 let lockedByThis = false;
 
 function lock() {
@@ -39,6 +42,10 @@ function unlock() {
   lockedByThis = false;
 }
 
+function resolveZIndex() {
+  activeZIndex.value = props.zIndex ?? nextZIndex(props.zIndexFloor ?? Z_INDEX.overlay);
+}
+
 function onClick() {
   emit('click');
   if (props.closeOnClick) {
@@ -50,6 +57,7 @@ watch(
   () => props.modelValue,
   (visible) => {
     if (visible) {
+      resolveZIndex();
       lock();
     } else {
       unlock();
@@ -70,7 +78,7 @@ onBeforeUnmount(() => {
         v-show="modelValue"
         class="pl-overlay"
         :class="overlayClass"
-        :style="{ zIndex }"
+        :style="{ zIndex: activeZIndex }"
         @click.self="onClick"
       >
         <slot />

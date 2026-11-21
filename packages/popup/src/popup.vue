@@ -7,6 +7,7 @@ import {
   ref,
   watch,
 } from 'vue';
+import { nextZIndex, Z_INDEX } from '@peili-ui/shared';
 import {
   defaultPopupProps,
   PopupEmits,
@@ -33,6 +34,7 @@ const referenceRef = ref<HTMLElement>();
 const contentRef = ref<HTMLElement>();
 const uncontrolledVisible = ref(false);
 const resolvedPlacement = ref(props.placement);
+const activeZIndex = ref(props.zIndex ?? props.zIndexFloor ?? Z_INDEX.popup);
 const contentStyle = ref<{ [key: string]: string }>({
   position: 'fixed',
   top: '-9999px',
@@ -132,10 +134,14 @@ function updatePosition() {
     position: 'fixed',
     top: `${result.top}px`,
     left: `${result.left}px`,
-    zIndex: String(props.zIndex),
+    zIndex: String(activeZIndex.value),
     ...(props.matchTriggerWidth ? { width: `${triggerRect.width}px` } : {}),
   };
   return true;
+}
+
+function resolveZIndex() {
+  activeZIndex.value = props.zIndex ?? nextZIndex(props.zIndexFloor ?? Z_INDEX.popup);
 }
 
 async function syncPosition() {
@@ -144,7 +150,7 @@ async function syncPosition() {
     position: 'fixed',
     top: '-9999px',
     left: '-9999px',
-    zIndex: String(props.zIndex),
+    zIndex: String(activeZIndex.value),
   };
   await nextTick();
   updatePosition();
@@ -263,6 +269,7 @@ watch(
 
 watch(realVisible, (val) => {
   if (val) {
+    resolveZIndex();
     syncPosition();
   } else {
     clearTimers();
