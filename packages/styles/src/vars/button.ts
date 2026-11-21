@@ -15,7 +15,7 @@ export const buttonVars = {
   'button-disabled-color': cssVarToRgba<ThemeCssVarsConfig>('color-placeholder'),
   'button-disabled-bg-color': cssVarToRgba<ThemeCssVarsConfig>('color-card'),
   'button-disabled-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-bd_light'),
-  'button-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-md'),
+  'button-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-base'),
   'button-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
 };
 

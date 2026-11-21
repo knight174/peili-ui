@@ -43,28 +43,37 @@ export const themeColorLevelsEnabledKeys: (keyof typeof themeColors)[] = [
   'color-info',
 ];
 
-/** 基础边距主题变量（4px 网格；只增不改已有档） */
+/**
+ * 基础边距主题变量（严格 4px 递进）
+ *
+ * 命名借 antd t-shirt（xxs…xxl；16 对应默认 size → base），
+ * 数值不照抄 antd（其 XL=32 / XXL=48 会跳档）。
+ *
+ * xxs4 · xs8 · sm12 · base16 · md20 · lg24 · xl28 · xxl32
+ */
 export const themeSpacing = {
-  'spacing-2xs': '4px',
+  'spacing-xxs': '4px',
   'spacing-xs': '8px',
   'spacing-sm': '12px',
-  'spacing-md': '16px',
-  'spacing-20': '20px',
+  'spacing-base': '16px',
+  'spacing-md': '20px',
   'spacing-lg': '24px',
-  'spacing-xl': '32px',
+  'spacing-xl': '28px',
+  'spacing-xxl': '32px',
 };
 
 /**
- * padding 别名 → 指向 spacing（与 antd 对照用；组件仍可直接引用 spacing）
+ * padding 别名 → 指向 spacing（与 antd 一样，padding* 是 size/spacing 的别名）
  */
 export const themePadding = {
-  'padding-2xs': 'var(--pl-spacing-2xs)',
+  'padding-xxs': 'var(--pl-spacing-xxs)',
   'padding-xs': 'var(--pl-spacing-xs)',
   'padding-sm': 'var(--pl-spacing-sm)',
+  'padding-base': 'var(--pl-spacing-base)',
   'padding-md': 'var(--pl-spacing-md)',
-  'padding-20': 'var(--pl-spacing-20)',
   'padding-lg': 'var(--pl-spacing-lg)',
   'padding-xl': 'var(--pl-spacing-xl)',
+  'padding-xxl': 'var(--pl-spacing-xxl)',
 };
 
 /** 基础 z-index 主题变量（语义层级） */

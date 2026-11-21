@@ -24,12 +24,12 @@
 
   &--small {
     --pl-input-padding-x: var(--pl-spacing-xs);
-    --pl-input-padding-y: var(--pl-spacing-2xs);
+    --pl-input-padding-y: var(--pl-spacing-xxs);
     --pl-input-font-size: 12px;
   }
 
   &--large {
-    --pl-input-padding-x: var(--pl-spacing-md);
+    --pl-input-padding-x: var(--pl-spacing-base);
     --pl-input-padding-y: var(--pl-spacing-sm);
     --pl-input-font-size: 16px;
   }

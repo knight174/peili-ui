@@ -22,7 +22,7 @@
   }
 
   &--large {
-    --pl-select-padding-x: var(--pl-spacing-md);
+    --pl-select-padding-x: var(--pl-spacing-base);
     --pl-select-font-size: 16px;
     --pl-select-height: 40px;
     --pl-select-option-height: 40px;
@@ -146,8 +146,8 @@
     }
 
     &--large {
-      --pl-select-padding-x: var(--pl-spacing-md);
-      --pl-select-option-padding-x: var(--pl-spacing-md);
+      --pl-select-padding-x: var(--pl-spacing-base);
+      --pl-select-option-padding-x: var(--pl-spacing-base);
       --pl-select-font-size: 16px;
       --pl-select-option-height: 40px;
     }

@@ -39,7 +39,7 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
-    padding: var(--pl-spacing-md) var(--pl-spacing-20);
+    padding: var(--pl-spacing-base) var(--pl-spacing-md);
     border-bottom: 1px solid rgb(var(--pl-color-bd_lighter));
   }
 
@@ -74,7 +74,7 @@
 
   &__body {
     flex: 1;
-    padding: var(--pl-spacing-md) var(--pl-spacing-20);
+    padding: var(--pl-spacing-base) var(--pl-spacing-md);
     overflow: auto;
     font-size: 14px;
     line-height: 1.6;
@@ -86,7 +86,7 @@
     flex-shrink: 0;
     gap: var(--pl-spacing-xs);
     justify-content: flex-end;
-    padding: var(--pl-spacing-sm) var(--pl-spacing-20) var(--pl-spacing-md);
+    padding: var(--pl-spacing-sm) var(--pl-spacing-md) var(--pl-spacing-base);
     border-top: 1px solid rgb(var(--pl-color-bd_lighter));
   }
 }

@@ -1,7 +1,7 @@
 .pl-dialog {
   box-sizing: border-box;
-  max-width: calc(100vw - var(--pl-spacing-xl));
-  max-height: calc(100vh - var(--pl-spacing-xl));
+  max-width: calc(100vw - var(--pl-spacing-xxl));
+  max-height: calc(100vh - var(--pl-spacing-xxl));
   overflow: auto;
   background-color: rgb(var(--pl-color-card));
   border-radius: 8px;
@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--pl-spacing-md) var(--pl-spacing-20) var(--pl-spacing-xs);
+    padding: var(--pl-spacing-base) var(--pl-spacing-md) var(--pl-spacing-xs);
   }
 
   &__title {
@@ -44,7 +44,7 @@
   }
 
   &__body {
-    padding: var(--pl-spacing-xs) var(--pl-spacing-20) var(--pl-spacing-md);
+    padding: var(--pl-spacing-xs) var(--pl-spacing-md) var(--pl-spacing-base);
     font-size: 14px;
     line-height: 1.6;
     color: rgb(var(--pl-color-regular));
@@ -54,6 +54,6 @@
     display: flex;
     gap: var(--pl-spacing-xs);
     justify-content: flex-end;
-    padding: var(--pl-spacing-xs) var(--pl-spacing-20) var(--pl-spacing-md);
+    padding: var(--pl-spacing-xs) var(--pl-spacing-md) var(--pl-spacing-base);
   }
 }

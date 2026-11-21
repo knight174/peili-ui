@@ -9,11 +9,11 @@ export const dropdownVars = {
   'dropdown-empty-color': cssVarToRgba<ThemeCssVarsConfig>('color-placeholder'),
   'dropdown-divider-color': cssVarToRgba<ThemeCssVarsConfig>('color-bd_base'),
   'dropdown-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
-  'dropdown-menu-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
+  'dropdown-menu-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   /** 菜单项水平内边距 */
   'dropdown-item-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   /** 菜单项垂直内边距（固定行高内，box-sizing: border-box） */
-  'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
+  'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'dropdown-font-size': '14px',
   /** 菜单项固定行高（与 Select option 阶梯对齐） */
   'dropdown-item-height': '34px',

@@ -19,11 +19,11 @@ export const selectVars = {
   'select-option-selected-bg-color': cssVarToRgba('color-primary-light-9'),
   'select-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   'select-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
-  'select-dropdown-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
+  'select-dropdown-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   /** 选项水平内边距（随 size 覆盖 --pl-select-padding-x 即可联动） */
   'select-option-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   /** 选项垂直内边距（固定行高内，box-sizing: border-box） */
-  'select-option-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-2xs'),
+  'select-option-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'select-font-size': '14px',
   /** 触发器高度（含边框，box-sizing: border-box） */
   'select-height': '34px',
