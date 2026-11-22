@@ -15,8 +15,8 @@ export const buttonVars = {
   'button-disabled-color': cssVarToRgba<ThemeCssVarsConfig>('color-placeholder'),
   'button-disabled-bg-color': cssVarToRgba<ThemeCssVarsConfig>('color-card'),
   'button-disabled-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-bd_light'),
+  'button-height': getCssVar<ThemeCssVarsConfig>('spacing-xxl'),
   'button-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-base'),
-  'button-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
 };
 
 /** 按钮组件主题变量类型 */

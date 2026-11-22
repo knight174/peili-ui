@@ -12,10 +12,10 @@ export const dropdownVars = {
   'dropdown-menu-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   /** 菜单项水平内边距 */
   'dropdown-item-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
-  /** 菜单项垂直内边距（固定行高内，box-sizing: border-box） */
+  /** 菜单项垂直内边距（box-sizing: border-box） */
   'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'dropdown-font-size': '14px',
-  /** 菜单项固定行高（与 Select option 阶梯对齐） */
+  /** 菜单项基准行高（CSS 用 min-height，与 Select option 阶梯对齐） */
   'dropdown-item-height': '32px',
   'dropdown-menu-min-width': '120px',
 };

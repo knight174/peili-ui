@@ -22,12 +22,12 @@ export const selectVars = {
   'select-dropdown-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   /** 选项水平内边距（随 size 覆盖 --pl-select-padding-x 即可联动） */
   'select-option-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
-  /** 选项垂直内边距（固定行高内，box-sizing: border-box） */
+  /** 选项垂直内边距（box-sizing: border-box） */
   'select-option-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'select-font-size': '14px',
-  /** 触发器高度（含边框，box-sizing: border-box） */
+  /** 触发器最小高度（含边框，box-sizing: border-box） */
   'select-height': '32px',
-  /** 下拉选项固定行高（虚拟列表 itemHeight 对齐） */
+  /** 下拉选项基准行高（CSS 用 min-height；虚拟列表可作 itemHeight 下限） */
   'select-option-height': '32px',
   /** 下拉面板最大高度 */
   'select-dropdown-max-height': '240px',

@@ -22,7 +22,7 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    height: var(--pl-dropdown-item-height);
+    min-height: var(--pl-dropdown-item-height);
     padding: var(--pl-dropdown-item-padding-y) var(--pl-dropdown-item-padding-x);
     overflow: hidden;
     font-size: var(--pl-dropdown-font-size);
