@@ -1,8 +1,8 @@
-import { cssVarToRgba } from '../utils';
+import { cssVarToRgba } from '../../utils';
 
 /** 遮罩层组件的主题变量定义 */
 export const overlayVars = {
-  'overlay-bg-color': cssVarToRgba('color-black', 0.45),
+  'overlay-bg-color': cssVarToRgba('color-overlay', 0.45),
 };
 
 /** 遮罩层组件主题变量类型 */

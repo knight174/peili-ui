@@ -19,8 +19,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: rgb(var(--pl-color-card));
-  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+  background-color: rgb(var(--pl-color-bg-elevated));
+  box-shadow: var(--pl-shadow-md);
 
   &--rtl,
   &--ltr {
@@ -40,14 +40,14 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--pl-spacing-base) var(--pl-spacing-md);
-    border-bottom: 1px solid rgb(var(--pl-color-bd_lighter));
+    border-bottom: 1px solid rgb(var(--pl-color-border-muted));
   }
 
   &__title {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: var(--pl-font-size-md);
+    font-weight: var(--pl-font-weight-semibold);
     line-height: 1.4;
-    color: rgb(var(--pl-color-header));
+    color: rgb(var(--pl-color-text-primary));
   }
 
   &__close {
@@ -57,18 +57,18 @@
     min-width: 28px;
     min-height: 28px;
     padding: 0;
-    font-size: 1.25rem;
+    font-size: var(--pl-font-size-xl);
     line-height: 1;
-    color: rgb(var(--pl-color-secondary));
+    color: rgb(var(--pl-color-text-tertiary));
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--pl-radius-sm);
     outline: none;
 
     &:hover {
-      color: rgb(var(--pl-color-header));
-      background-color: rgb(var(--pl-color-page));
+      color: rgb(var(--pl-color-text-primary));
+      background-color: rgb(var(--pl-color-bg-hover));
     }
   }
 
@@ -76,9 +76,9 @@
     flex: 1;
     padding: var(--pl-spacing-base) var(--pl-spacing-md);
     overflow: auto;
-    font-size: 0.875rem;
+    font-size: var(--pl-font-size-sm);
     line-height: 1.6;
-    color: rgb(var(--pl-color-regular));
+    color: rgb(var(--pl-color-text-secondary));
   }
 
   &__footer {
@@ -87,6 +87,6 @@
     gap: var(--pl-spacing-xs);
     justify-content: flex-end;
     padding: var(--pl-spacing-sm) var(--pl-spacing-md) var(--pl-spacing-base);
-    border-top: 1px solid rgb(var(--pl-color-bd_lighter));
+    border-top: 1px solid rgb(var(--pl-color-border-muted));
   }
 }

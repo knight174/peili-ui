@@ -6,7 +6,8 @@
 
 - 🛠️ 基于 Vue3、TypeScript、Vite 开发
 - 📦 开箱即用的高质量组件
-- 🎨 灵活的主题定制能力（CSS Variables + ConfigProvider）
+- 🎨 Design Token 三层架构（primitive → semantic → component）+ ConfigProvider
+- 🇬🇱 默认格陵兰建筑色板
 - 📖 详尽的文档和示例（VitePress / Storybook）
 - 🔧 支持按需引入
 - 🎯 使用 UnoCSS 作为样式解决方案

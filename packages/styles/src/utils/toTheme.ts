@@ -1,4 +1,5 @@
 import { getCssVar, DEFAULT_PREFIX, DefaultPrefix, GenerateCssVarsOptions } from './cssVars';
+import { COLOR_SCALE_STEPS } from './colors';
 
 /**
  * 主题生成选项
@@ -24,7 +25,6 @@ export function toTheme<
     type = 'color',
     prefix = DEFAULT_PREFIX,
     colorLevelsEnabledKeys = [],
-    colorLevels = 9,
   } = options || {};
 
   // 从原始对象中过滤出符合格式的键值
@@ -38,16 +38,16 @@ export function toTheme<
     // 主题必须符合类似 rgb(var(--op-color-primary)) 的格式，这样 UnoCSS 能生成的原子类既能支持 CSS 变量，又能支持透明度修改
     result[key] = `rgb(${getCssVar(`${type}-${key}`, prefix)})`;
 
-    // 处理色阶主题
+    // 处理 50…950 色阶主题
     if (type === 'color' && colorLevelsEnabledKeys.includes(`${type}-${key}` as K)) {
-      const lightColors: Record<string, any> = {};
-      const darkColors: Record<string, any> = {};
-      for (let i = 1; i < colorLevels + 1; i++) {
-        lightColors[`${i}`] = `rgb(${getCssVar(`${type}-${key}-light-${i}`, prefix)})`;
-        darkColors[`${i}`] = `rgb(${getCssVar(`${type}-${key}-dark-${i}`, prefix)})`;
-      }
-      result[`${key}_light`] = lightColors;
-      result[`${key}_dark`] = darkColors;
+      const scale: Record<string, string> = {};
+      COLOR_SCALE_STEPS.forEach(step => {
+        scale[`${step}`] = `rgb(${getCssVar(`${type}-${key}-${step}`, prefix)})`;
+      });
+      result[key] = {
+        DEFAULT: result[key],
+        ...scale,
+      };
     }
   });
   return result;

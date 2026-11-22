@@ -1,4 +1,6 @@
-import { toRgba, generateRgbColorLevels } from './colors';
+import { toRgba, COLOR_SCALE_STEPS, type ColorScaleStep } from './colors';
+import { generateColorScale } from '../generators/generateColorScale';
+import { normalizeTokenInput } from '../generators/flattenTokens';
 
 export type DefaultPrefix = 'pl-';
 /** 默认情况下，生成 CSS 变量时增加的前缀 */
@@ -11,13 +13,15 @@ export const DEFAULT_PREFIX: DefaultPrefix = 'pl-';
  */
 export interface GenerateCssVarsOptions<K = string, P extends string = DefaultPrefix> {
   /**
-   * 指定的键名所对应的 CSS 变量将会额外生成色阶变量。
+   * 指定的键名所对应的 CSS 变量将会额外生成 50…950 色阶（OKLCH）。
    *
-   * 例如 color-primary 将会生成 color-primary-light-[1-9] 以及 color-primary-dark-[1-9] 系列浅色与深色的变量。
+   * 例如 color-primary 将会生成 color-primary-50 … color-primary-950。
    */
   colorLevelsEnabledKeys?: K[];
 
-  /** 生成色阶变量的阶数 */
+  /**
+   * @deprecated 色阶已固定为 50…950，保留字段避免破坏调用方
+   */
   colorLevels?: number;
 
   /** CSS 变量前缀 */
@@ -26,8 +30,6 @@ export interface GenerateCssVarsOptions<K = string, P extends string = DefaultPr
 
 /**
  * CSS 变量对象的类型
- * @typeParam T 原始对象的类型
- * @typeParam {@link GenerateCssVarsOptions}
  */
 export type CssVarsObject<
   T extends Record<string, any> = Record<string, any>,
@@ -36,52 +38,49 @@ export type CssVarsObject<
 > = {
   [Key in `--${P}${string & keyof T}`]: any;
 } & {
-  [Key in `--${P}${string & K}-light-${number}`]: any;
-} & {
-  [Key in `--${P}${string & K}-dark-${number}`]: any;
+  [Key in `--${P}${string & K}-${ColorScaleStep}`]: any;
 };
 
 /**
- * 生成 CSS 变量对象
- * @typeParam {@link CssVarsObject}
- * @param origin 原始主题变量对象
- * @param options 选项 {@link GenerateCssVarsOptions}
+ * 生成 CSS 变量对象。
+ * - 兼容扁平 origin（现有 API）
+ * - 若传入嵌套对象，先展平为 kebab-case 键
+ * - 色阶通过 OKLCH `generateColorScale` 生成（不再 RGB 线性插值）
  */
 export function generateCssVars<
   T extends Record<string, any> = Record<string, any>,
   K extends keyof T = keyof T,
   P extends string = DefaultPrefix,
 >(origin: T, options?: GenerateCssVarsOptions<K, P>): CssVarsObject<T, K, P> {
-  const { prefix = DEFAULT_PREFIX, colorLevelsEnabledKeys = [], colorLevels = 9 } = options || {};
+  const { prefix = DEFAULT_PREFIX, colorLevelsEnabledKeys = [] } = options || {};
+  const flat = normalizeTokenInput(origin as Record<string, any>);
 
   const result: Record<string, any> = {};
-  Object.entries(origin).forEach(([key, value]) => {
+  Object.entries(flat).forEach(([key, raw]) => {
+    const value = String(raw);
     const cssKey = `--${prefix}${key}`;
     const valueToRgba = toRgba(value);
 
-    // 颜色 CSS 变量用 rgb 字符串(255,255,255)的方式表示，非颜色 CSS 变量不做转化。
     const finalValue = valueToRgba ? valueToRgba.rgbTxt : value;
     result[cssKey] = finalValue;
 
-    // 对指定键值的变量生成色阶
     if (valueToRgba && colorLevelsEnabledKeys.includes(key as K)) {
-      const rgbLevels = generateRgbColorLevels(valueToRgba, colorLevels);
-      rgbLevels.light.forEach((light, index) => {
-        const dark = rgbLevels.dark[index];
-        result[`${cssKey}-light-${index + 1}`] = light.rgbTxt;
-        result[`${cssKey}-dark-${index + 1}`] = dark.rgbTxt;
-      });
+      try {
+        const scale = generateColorScale(value);
+        COLOR_SCALE_STEPS.forEach(step => {
+          const stepRgba = toRgba(scale[step]);
+          result[`${cssKey}-${step}`] = stepRgba ? stepRgba.rgbTxt : scale[step];
+        });
+      } catch {
+        // 非法颜色不静默造阶
+      }
     }
   });
 
   return result as CssVarsObject<T, K, P>;
 }
 
-/**
- * 将 css 变量对象转换为 css 样式字符串
- * @param cssVars CSS 变量对象
- * @param selector 应用样式的选择器
- */
+/** 将 css 变量对象转换为 css 样式字符串 */
 export function cssVarsToString(cssVars: Record<string, any>, selector: string = ':root') {
   let result = `${selector}{`;
   Object.entries(cssVars).forEach(([key, value]) => {

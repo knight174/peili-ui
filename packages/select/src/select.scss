@@ -16,14 +16,14 @@
 
   &--small {
     --pl-select-padding-x: var(--pl-spacing-xs);
-    --pl-select-font-size: 0.75rem;
+    --pl-select-font-size: var(--pl-font-size-xs);
     --pl-select-height: 24px;
     --pl-select-option-height: 24px;
   }
 
   &--large {
     --pl-select-padding-x: var(--pl-spacing-base);
-    --pl-select-font-size: 1rem;
+    --pl-select-font-size: var(--pl-font-size-md);
     --pl-select-height: 40px;
     --pl-select-option-height: 40px;
   }
@@ -43,7 +43,7 @@
     user-select: none;
     background-color: var(--pl-select-bg-color);
     border: 1px solid var(--pl-select-border-color);
-    border-radius: 4px;
+    border-radius: var(--pl-select-radius);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
@@ -109,7 +109,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: 50%;
+    border-radius: var(--pl-radius-full);
     outline: none;
 
     &:hover {
@@ -141,14 +141,14 @@
     &--small {
       --pl-select-padding-x: var(--pl-spacing-xs);
       --pl-select-option-padding-x: var(--pl-spacing-xs);
-      --pl-select-font-size: 0.75rem;
+      --pl-select-font-size: var(--pl-font-size-xs);
       --pl-select-option-height: 24px;
     }
 
     &--large {
       --pl-select-padding-x: var(--pl-spacing-base);
       --pl-select-option-padding-x: var(--pl-spacing-base);
-      --pl-select-font-size: 1rem;
+      --pl-select-font-size: var(--pl-font-size-md);
       --pl-select-option-height: 40px;
     }
   }

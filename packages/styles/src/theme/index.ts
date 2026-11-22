@@ -1,24 +1,36 @@
 import { inject, App, Plugin } from 'vue';
 import { isObjectLike } from '@peili-ui/shared';
 import { generateCssVars } from '../utils';
-import { themeColorLevelsEnabledKeys, PeiliuiCssVarsConfig } from '../vars';
+import {
+  themeColorLevelsEnabledKeys,
+  PeiliuiCssVarsConfig,
+  type ColorScheme,
+} from '../vars';
 
 const THEME_PROVIDE_KEY = '__PeiliuiTheme__';
 
 function useGlobalTheme(app: App, options?: PeiliuiCssVarsConfig) {
-  /** 设置全局主题变量的方法 */
+  /** 设置全局主题变量（扁平或嵌套均可；品牌色会生成 50…950） */
   function setTheme(styleObj: PeiliuiCssVarsConfig) {
-    // 设置主题变量时，兼顾主题色的色阶
     const cssVars = generateCssVars(styleObj, {
       colorLevelsEnabledKeys: themeColorLevelsEnabledKeys,
-      colorLevels: 9,
     });
     Object.entries(cssVars).forEach(([k, v]) => {
       document.documentElement.style.setProperty(k, v);
     });
   }
 
-  const result = { setTheme };
+  /** 切换 light / dark（写 data-theme，依赖预注入的暗色变量块） */
+  function setColorScheme(scheme: ColorScheme) {
+    document.documentElement.dataset.theme = scheme;
+    if (scheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  const result = { setTheme, setColorScheme };
 
   app.provide(THEME_PROVIDE_KEY, result);
 

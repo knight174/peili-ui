@@ -28,6 +28,7 @@ export default defineConfig({
           items: [
             { text: '组件库介绍', link: '/guide/' },
             { text: '快速开始', link: '/guide/quick-start' },
+            { text: 'Design Tokens', link: '/guide/design-tokens' },
           ],
         },
       ],

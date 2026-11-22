@@ -10,7 +10,7 @@
   vertical-align: middle;
   background-color: var(--pl-input-bg-color);
   border: 1px solid var(--pl-input-border-color);
-  border-radius: 4px;
+  border-radius: var(--pl-input-radius);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover:not(.pl-input--disabled) {
@@ -25,13 +25,13 @@
   &--small {
     --pl-input-padding-x: var(--pl-spacing-xs);
     --pl-input-padding-y: var(--pl-spacing-xxs);
-    --pl-input-font-size: 0.75rem;
+    --pl-input-font-size: var(--pl-font-size-xs);
   }
 
   &--large {
     --pl-input-padding-x: var(--pl-spacing-base);
     --pl-input-padding-y: var(--pl-spacing-sm);
-    --pl-input-font-size: 1rem;
+    --pl-input-font-size: var(--pl-font-size-md);
   }
 
   &--disabled {
@@ -91,7 +91,7 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: 50%;
+    border-radius: var(--pl-radius-full);
     outline: none;
 
     &:hover {

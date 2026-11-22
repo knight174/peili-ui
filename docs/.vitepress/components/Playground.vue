@@ -171,6 +171,6 @@ watch(uiVersion, (v) => {
   width: 120px;
   margin-left: 8px;
   appearance: auto;
-  border: 1px solid rgb(var(--pl-color-bd_base));
+  border: 1px solid rgb(var(--pl-color-border-default));
 }
 </style>

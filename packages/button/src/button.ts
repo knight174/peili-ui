@@ -3,7 +3,7 @@ import type PlButton from './button.vue';
 
 export interface ButtonProps {
   /** 按钮的类型 */
-  type?: '' | 'primary' | 'success' | 'info' | 'warning' | 'danger';
+  type?: '' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'neutral';
 
   /** 按钮是否为朴素样式 */
   plain?: boolean;

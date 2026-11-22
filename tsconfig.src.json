@@ -7,5 +7,6 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["node"]
   },
-  "include": ["typings/env.d.ts", "packages/**/src", "packages/build/scripts"]
+  "include": ["typings/env.d.ts", "packages/**/src", "packages/build/scripts"],
+  "exclude": ["packages/**/src/**/*.test.ts", "packages/**/src/**/*.spec.ts"]
 }

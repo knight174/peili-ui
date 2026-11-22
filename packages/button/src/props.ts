@@ -1,7 +1,7 @@
 /** @module Button */
 import { InferVueDefaults } from '@peili-ui/shared';
 
-export type ButtonType = '' | 'primary' | 'success' | 'info' | 'warning' | 'danger';
+export type ButtonType = '' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'neutral';
 
 /** 按钮组件的属性 */
 export interface ButtonProps {

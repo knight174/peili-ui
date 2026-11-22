@@ -1,20 +1,20 @@
-$button-types: primary, success, warning, danger, info;
+$button-types: primary, success, warning, danger, info, neutral;
 
 @mixin button-type-styles() {
   @each $type in $button-types {
     &.pl-button--#{$type} {
-      --pl-button-color: rgb(var(--pl-color-reverse));
+      --pl-button-color: rgb(var(--pl-color-text-inverse));
       --pl-button-bg-color: rgb(var(--pl-color-#{$type}));
       --pl-button-border-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-hover-color: rgb(var(--pl-color-reverse));
-      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}-light-3));
-      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}-light-3));
-      --pl-button-active-color: rgb(var(--pl-color-reverse));
-      --pl-button-active-bg-color: rgb(var(--pl-color-#{$type}-dark-2));
-      --pl-button-active-border-color: rgb(var(--pl-color-#{$type}-dark-2));
-      --pl-button-disabled-color: rgb(var(--pl-color-reverse));
-      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-light-5));
-      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-light-5));
+      --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
+      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}-300));
+      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}-300));
+      --pl-button-active-color: rgb(var(--pl-color-text-inverse));
+      --pl-button-active-bg-color: rgb(var(--pl-color-#{$type}-700));
+      --pl-button-active-border-color: rgb(var(--pl-color-#{$type}-700));
+      --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
+      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-200));
+      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-200));
     }
   }
 }
@@ -23,14 +23,14 @@ $button-types: primary, success, warning, danger, info;
   @each $type in $button-types {
     &.pl-button--#{$type} {
       --pl-button-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-bg-color: rgb(var(--pl-color-#{$type}-light-9));
-      --pl-button-border-color: rgb(var(--pl-color-#{$type}-light-5));
-      --pl-button-hover-color: rgb(var(--pl-color-reverse));
+      --pl-button-bg-color: rgb(var(--pl-color-#{$type}-50));
+      --pl-button-border-color: rgb(var(--pl-color-#{$type}-200));
+      --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
       --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}));
       --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-disabled-color: rgb(var(--pl-color-#{$type}-light-5));
-      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-light-9));
-      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-light-8));
+      --pl-button-disabled-color: rgb(var(--pl-color-#{$type}-200));
+      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-50));
+      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-100));
     }
   }
 }
@@ -43,9 +43,9 @@ $button-types: primary, success, warning, danger, info;
   min-height: var(--pl-button-height);
   padding-block: 0;
   padding-inline: var(--pl-button-padding-x);
-  font-size: 0.875rem;
+  font-size: var(--pl-button-font-size);
   font-weight: normal;
-  line-height: 1.5;
+  line-height: var(--pl-line-height-normal);
   color: var(--pl-button-color);
   text-align: center;
   cursor: pointer;
@@ -54,7 +54,7 @@ $button-types: primary, success, warning, danger, info;
   border-color: var(--pl-button-border-color);
   border-style: solid;
   border-width: 1px;
-  border-radius: 4px;
+  border-radius: var(--pl-button-radius);
   outline: none;
 
   &:hover {
@@ -73,8 +73,8 @@ $button-types: primary, success, warning, danger, info;
 
   &.pl-button--plain {
     --pl-button-hover-color: rgb(var(--pl-color-primary));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-card));
-    --pl-button-hover-border-color: rgb(var(--color-primary));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-bg-surface));
+    --pl-button-hover-border-color: rgb(var(--pl-color-primary));
 
     @include button-plain-styles;
   }

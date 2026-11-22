@@ -6,7 +6,7 @@
 .pl-tooltip__content {
   max-width: 280px;
   padding: var(--pl-spacing-xxs) var(--pl-spacing-sm);
-  font-size: 0.75rem;
-  line-height: 1.5;
+  font-size: var(--pl-font-size-xs);
+  line-height: var(--pl-line-height-normal);
   word-break: break-all;
 }

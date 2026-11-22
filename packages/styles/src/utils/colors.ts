@@ -43,11 +43,6 @@ function hexToRgba(str: string): RGBAColor | null {
   return createRgbaColor(r, g, b, 1);
 }
 
-/**
- * 暂时只支持 rgb 和 rgba
- * @todo 实现对 hsl 和 hsla 以及其他函数的支持
- */
-
 /** 支持的 css 颜色函数类型 */
 const cssColorFunctions = ['rgb', 'rgba'];
 
@@ -74,7 +69,6 @@ function parseCssFunc(str: string): RGBAColor | null {
     return createRgbaColor(r, g, b, a || 1);
   }
 
-  // 暂不实现对 hsl 和 hsla 以及其他函数的支持
   return null;
 }
 
@@ -100,11 +94,49 @@ export function mixRgbColor(source: RGBAColor, target: RGBAColor, percent: numbe
   return createRgbaColor(rr, gg, bb, source.args[3] || 1);
 }
 
+/** 标准色阶 steps：50…950（含 950） */
+export const COLOR_SCALE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+export type ColorScaleStep = (typeof COLOR_SCALE_STEPS)[number];
+
+/** 相对 base(500) 向白/黑混合的比例 */
+const COLOR_SCALE_MIX: Record<ColorScaleStep, number> = {
+  50: 95,
+  100: 90,
+  200: 70,
+  300: 50,
+  400: 25,
+  500: 0,
+  600: 12,
+  700: 30,
+  800: 50,
+  900: 70,
+  950: 82,
+};
+
 /**
+ * 以 base 为 500，生成 50…950 色阶。
+ * &lt;500 与白混合，&gt;500 与黑混合。
+ */
+export function generateRgbColorScale(color: RGBAColor): Record<ColorScaleStep, RGBAColor> {
+  const white = createRgbaColor(255, 255, 255);
+  const black = createRgbaColor(0, 0, 0);
+  const result = {} as Record<ColorScaleStep, RGBAColor>;
+
+  COLOR_SCALE_STEPS.forEach(step => {
+    const mix = COLOR_SCALE_MIX[step];
+    if (step === 500 || mix === 0) {
+      result[step] = color;
+      return;
+    }
+    result[step] = step < 500 ? mixRgbColor(color, white, mix) : mixRgbColor(color, black, mix);
+  });
+
+  return result;
+}
+
+/**
+ * @deprecated 使用 {@link generateRgbColorScale}
  * 生成色阶对象。light 系列与白色一步步混合，dark 系列与黑色一步步混合。
- * @param color 基准颜色
- * @param levels 色阶数
- * @returns 色阶对象
  */
 export function generateRgbColorLevels(color: RGBAColor, levels: number = 9) {
   const result = {
@@ -122,5 +154,25 @@ export function generateRgbColorLevels(color: RGBAColor, levels: number = 9) {
     result.dark.push(mixRgbColor(color, createRgbaColor(0, 0, 0), i * percent));
   }
 
+  return result;
+}
+
+/** RGBA → #rrggbb */
+export function rgbaToHex(color: RGBAColor): string {
+  const [r, g, b] = color.args;
+  return `#${[r, g, b].map(n => n.toString(16).padStart(2, '0')).join('')}`;
+}
+
+/** 以 hex base 生成 50…950 的 hex 色阶 map（键为 step 数字字符串） */
+export function generateHexColorScale(baseHex: string): Record<ColorScaleStep, string> {
+  const rgba = toRgba(baseHex);
+  if (!rgba) {
+    throw new Error(`Invalid color: ${baseHex}`);
+  }
+  const scale = generateRgbColorScale(rgba);
+  const result = {} as Record<ColorScaleStep, string>;
+  COLOR_SCALE_STEPS.forEach(step => {
+    result[step] = rgbaToHex(scale[step]);
+  });
   return result;
 }

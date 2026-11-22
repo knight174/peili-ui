@@ -46,13 +46,20 @@
   "scripts": {
     "build:theme": "vite build --mode theme",
     "build:unocss": "vite build --mode unocss",
-    "build": "pnpm run build:unocss && pnpm run build:theme"
+    "build": "pnpm run build:unocss && pnpm run build:theme",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
-    "vue": ">=3.0.0",
-    "unocss": ">=0.54.1"
+    "unocss": ">=0.54.1",
+    "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@peili-ui/shared": "workspace:^"
+    "@peili-ui/shared": "workspace:^",
+    "culori": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/culori": "^4.0.1",
+    "vitest": "2.1.9"
   }
 }
