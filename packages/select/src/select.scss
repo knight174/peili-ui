@@ -16,14 +16,14 @@
 
   &--small {
     --pl-select-padding-x: var(--pl-spacing-xs);
-    --pl-select-font-size: 12px;
+    --pl-select-font-size: 0.75rem;
     --pl-select-height: 24px;
     --pl-select-option-height: 24px;
   }
 
   &--large {
     --pl-select-padding-x: var(--pl-spacing-base);
-    --pl-select-font-size: 16px;
+    --pl-select-font-size: 1rem;
     --pl-select-height: 40px;
     --pl-select-option-height: 40px;
   }
@@ -103,7 +103,7 @@
     min-height: 16px;
     padding: 0;
     margin-right: 4px;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1;
     color: var(--pl-select-placeholder-color);
     cursor: pointer;
@@ -141,14 +141,14 @@
     &--small {
       --pl-select-padding-x: var(--pl-spacing-xs);
       --pl-select-option-padding-x: var(--pl-spacing-xs);
-      --pl-select-font-size: 12px;
+      --pl-select-font-size: 0.75rem;
       --pl-select-option-height: 24px;
     }
 
     &--large {
       --pl-select-padding-x: var(--pl-spacing-base);
       --pl-select-option-padding-x: var(--pl-spacing-base);
-      --pl-select-font-size: 16px;
+      --pl-select-font-size: 1rem;
       --pl-select-option-height: 40px;
     }
   }

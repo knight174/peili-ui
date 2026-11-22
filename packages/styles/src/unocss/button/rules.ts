@@ -10,7 +10,6 @@ export const buttonRules: Rule<Theme>[] = [
     'pl-button-base',
     (<CSSProperties>{
       'box-sizing': 'border-box',
-      'white-space': 'nowrap',
       'user-select': 'none',
       cursor: 'pointer',
       outline: 'none',
@@ -18,7 +17,7 @@ export const buttonRules: Rule<Theme>[] = [
       'align-items': 'center',
       'justify-content': 'center',
       'font-weight': 'normal',
-      'font-size': '14px',
+      'font-size': '0.875rem',
       'text-align': 'center',
       'line-height': '1.5',
       color: getCssVar<ButtonCssVarsConfig>('button-color'),

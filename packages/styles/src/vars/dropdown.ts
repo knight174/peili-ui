@@ -14,7 +14,7 @@ export const dropdownVars = {
   'dropdown-item-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   /** 菜单项垂直内边距（box-sizing: border-box） */
   'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
-  'dropdown-font-size': '14px',
+  'dropdown-font-size': '0.875rem',
   /** 菜单项基准行高（CSS 用 min-height，与 Select option 阶梯对齐） */
   'dropdown-item-height': '32px',
   'dropdown-menu-min-width': '120px',

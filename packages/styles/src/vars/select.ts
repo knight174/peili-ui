@@ -24,7 +24,7 @@ export const selectVars = {
   'select-option-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   /** 选项垂直内边距（box-sizing: border-box） */
   'select-option-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
-  'select-font-size': '14px',
+  'select-font-size': '0.875rem',
   /** 触发器最小高度（含边框，box-sizing: border-box） */
   'select-height': '32px',
   /** 下拉选项基准行高（CSS 用 min-height；虚拟列表可作 itemHeight 下限） */

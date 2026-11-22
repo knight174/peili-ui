@@ -15,7 +15,7 @@
   }
 
   &__title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.4;
     color: rgb(var(--pl-color-header));
@@ -28,7 +28,7 @@
     min-width: 28px;
     min-height: 28px;
     padding: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1;
     color: rgb(var(--pl-color-secondary));
     cursor: pointer;
@@ -45,7 +45,7 @@
 
   &__body {
     padding: var(--pl-spacing-xs) var(--pl-spacing-md) var(--pl-spacing-base);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.6;
     color: rgb(var(--pl-color-regular));
   }

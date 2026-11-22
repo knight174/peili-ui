@@ -15,7 +15,7 @@ export const inputVars = {
   'input-disabled-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-bd_light'),
   'input-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   'input-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
-  'input-font-size': '14px',
+  'input-font-size': '0.875rem',
 };
 
 /** 输入框组件主题变量类型 */
