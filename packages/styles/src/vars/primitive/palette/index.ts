@@ -3,7 +3,14 @@ import { ironPalette, ironScale, IRON_BASE } from './iron';
 import { ochrePalette, ochreScale, OCHRE_BASE } from './ochre';
 import { tundraPalette, tundraScale, TUNDRA_BASE } from './tundra';
 import { arcticPalette, arcticScale, ARCTIC_BASE } from './arctic';
-import { neutralPalette, neutralScale, NEUTRAL_BASE, NEUTRAL_WHITE, NEUTRAL_BLACK } from './neutral';
+import {
+  neutralPalette,
+  neutralScale,
+  neutralResolved,
+  NEUTRAL_BASE,
+  NEUTRAL_WHITE,
+  NEUTRAL_BLACK,
+} from './neutral';
 
 export * from './fjord';
 export * from './iron';
@@ -28,7 +35,10 @@ export const paletteScales = {
   ochre: ochreScale,
   tundra: tundraScale,
   arctic: arcticScale,
-  neutral: neutralScale,
+  /** 主题引用的中性色阶（含 AA 关键阶覆盖） */
+  neutral: neutralResolved,
+  /** 纯 OKLCH 生成结果（未覆盖端点） */
+  neutralGenerated: neutralScale,
 } as const;
 
 export const paletteBases = {

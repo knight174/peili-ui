@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { generateCssVars, themeColorLevelsEnabledKeys } from '@peili-ui/styles';
+import {
+  generateCssVars,
+  resolveColorLevelsEnabledKeys,
+  themeColorLevelsEnabledKeys,
+} from '@peili-ui/styles';
 import { ConfigProviderProps, defaultConfigProviderProps } from './props';
 
 const props = withDefaults(
@@ -9,8 +13,10 @@ const props = withDefaults(
 );
 
 const cssVars = computed(() => generateCssVars(props.themeVars, {
-  colorLevelsEnabledKeys: themeColorLevelsEnabledKeys,
-  colorLevels: 9,
+  colorLevelsEnabledKeys: resolveColorLevelsEnabledKeys(
+    props.themeVars,
+    themeColorLevelsEnabledKeys,
+  ),
 }));
 
 </script>

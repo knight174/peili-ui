@@ -4,15 +4,16 @@ import {
   ochreScale,
   tundraScale,
   arcticScale,
-  neutralScale,
+  neutralResolved,
   NEUTRAL_WHITE,
   NEUTRAL_BLACK,
 } from '../primitive/palette';
 import { attachColorScale } from './attachScale';
+import { lightShadowVars } from './shadow';
 
 /**
  * Light theme 扁平语义色。
- * brand/status 色阶（50…950）在此预展开，不再依赖 generateCssVars 白名单现算。
+ * text / bg / border 一律引用 neutralResolved 或 brand scale，禁止裸 hex。
  */
 export const lightColorVars: Record<string, string> = {
   // brand
@@ -43,43 +44,45 @@ export const lightColorVars: Record<string, string> = {
   'color-info-bg': arcticScale[50],
   'color-info-border': arcticScale[200],
 
-  ...attachColorScale('color-neutral', neutralScale),
+  ...attachColorScale('color-neutral', neutralResolved),
   'color-neutral-foreground': NEUTRAL_WHITE,
-  'color-neutral-bg': neutralScale[100],
-  'color-neutral-border': neutralScale[300],
+  'color-neutral-bg': neutralResolved[100],
+  'color-neutral-border': neutralResolved[300],
 
-  // text
-  'color-text-primary': '#1C1B1A',
-  'color-text-secondary': '#3F4340',
-  'color-text-tertiary': '#6F7370',
-  'color-text-placeholder': '#9A9D99',
-  'color-text-disabled': '#9A9D99',
+  // text — 正文 ≥4.5:1 @ surface
+  'color-text-primary': neutralResolved[900],
+  'color-text-secondary': neutralResolved[700],
+  'color-text-tertiary': neutralResolved[500],
+  'color-text-placeholder': neutralResolved[400],
+  'color-text-disabled': neutralResolved[400],
   'color-text-inverse': NEUTRAL_WHITE,
   'color-text-link': fjordScale[500],
 
   // background
-  'color-bg-page': '#F7F7F5',
+  'color-bg-page': neutralResolved[50],
   'color-bg-surface': NEUTRAL_WHITE,
   'color-bg-elevated': NEUTRAL_WHITE,
-  'color-bg-muted': '#EEEFEC',
-  'color-bg-subtle': '#F7F7F5',
-  'color-bg-hover': '#EEEFEC',
-  'color-bg-active': '#E0E1DE',
+  'color-bg-muted': neutralResolved[100],
+  'color-bg-subtle': neutralResolved[50],
+  'color-bg-hover': neutralResolved[100],
+  'color-bg-active': neutralResolved[200],
   'color-bg-selected': fjordScale[50],
-  'color-bg-disabled': '#EEEFEC',
+  'color-bg-disabled': neutralResolved[100],
 
-  // border
-  'color-border-default': '#E0E1DE',
-  'color-border-muted': '#EEEFEC',
-  'color-border-strong': '#C8CAC6',
+  // border — default/strong ≥3:1 @ surface/page
+  'color-border-default': neutralResolved[400],
+  'color-border-muted': neutralResolved[200],
+  'color-border-strong': neutralResolved[500],
   'color-border-focus': fjordScale[500],
-  'color-border-disabled': '#E0E1DE',
+  'color-border-disabled': neutralResolved[200],
 
   // misc
   'color-overlay': NEUTRAL_BLACK,
   'color-scrim': NEUTRAL_BLACK,
   'color-transparent': 'transparent',
   'color-white': NEUTRAL_WHITE,
+
+  ...lightShadowVars,
 };
 
 /** 嵌套视图（文档 / 结构对照） */

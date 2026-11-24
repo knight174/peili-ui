@@ -1,19 +1,22 @@
 import { inject, App, Plugin } from 'vue';
 import { isObjectLike } from '@peili-ui/shared';
-import { generateCssVars } from '../utils';
+import { generateCssVars, resolveColorLevelsEnabledKeys } from '../utils';
 import {
-  themeColorLevelsEnabledKeys,
   PeiliuiCssVarsConfig,
+  themeColorLevelsEnabledKeys,
   type ColorScheme,
 } from '../vars';
 
 const THEME_PROVIDE_KEY = '__PeiliuiTheme__';
 
 function useGlobalTheme(app: App, options?: PeiliuiCssVarsConfig) {
-  /** 设置全局主题变量（扁平或嵌套均可；品牌色会生成 50…950） */
+  /** 设置全局主题变量（扁平或嵌套均可；仅对被覆盖的品牌/状态色生成 50…950） */
   function setTheme(styleObj: PeiliuiCssVarsConfig) {
     const cssVars = generateCssVars(styleObj, {
-      colorLevelsEnabledKeys: themeColorLevelsEnabledKeys,
+      colorLevelsEnabledKeys: resolveColorLevelsEnabledKeys(
+        styleObj,
+        themeColorLevelsEnabledKeys,
+      ),
     });
     Object.entries(cssVars).forEach(([k, v]) => {
       document.documentElement.style.setProperty(k, v);

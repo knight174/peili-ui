@@ -54,8 +54,8 @@ export const semanticMiscColors = {
 } as const;
 
 /**
- * setTheme / ConfigProvider 覆盖这些基色时，用 OKLCH 重算 50…950。
- * 默认 :root 注入已含预展开色阶，可不传此选项。
+ * 可触发 OKLCH 色阶重算的 brand / status 基色键。
+ * setTheme / ConfigProvider 只应对「实际传入」的键启用，见 `resolveColorLevelsEnabledKeys`。
  */
 export const themeColorLevelsEnabledKeys: string[] = [
   'color-primary',

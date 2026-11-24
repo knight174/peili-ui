@@ -7,6 +7,24 @@ export type DefaultPrefix = 'pl-';
 export const DEFAULT_PREFIX: DefaultPrefix = 'pl-';
 
 /**
+ * 只对「本次实际覆盖」的 brand/status 基色启用色阶重算，
+ * 避免无条件展开全部 candidate、冲掉 dark 预映射中未改动的色阶。
+ */
+export function resolveColorLevelsEnabledKeys(
+  styleObj: Record<string, any> | null | undefined,
+  candidates: readonly string[],
+): string[] {
+  if (!styleObj || typeof styleObj !== 'object' || !candidates?.length) {
+    return [];
+  }
+  const flat = normalizeTokenInput(styleObj);
+  return candidates.filter((key) => {
+    const value = flat[key];
+    return value != null && String(value).length > 0;
+  });
+}
+
+/**
  * 生成 CSS 变量对象的选项
  * @typeParam K 需要生成色阶的键名
  * @typeParam P CSS 变量前缀

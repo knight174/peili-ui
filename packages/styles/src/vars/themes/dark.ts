@@ -5,11 +5,13 @@ import {
   ochreScale,
   tundraScale,
   arcticScale,
-  neutralScale,
+  neutralResolved,
+  darkNeutralScale,
   NEUTRAL_WHITE,
   NEUTRAL_BLACK,
 } from '../primitive/palette';
 import { attachColorScale } from './attachScale';
+import { darkShadowVars } from './shadow';
 
 /** 暗色主色阶：以偏亮的 step 为 500 重新 OKLCH 展开 */
 const darkPrimary = generateColorScale(fjordScale[400], { palette: 'fjord' });
@@ -17,9 +19,11 @@ const darkSuccess = generateColorScale(tundraScale[400], { palette: 'tundra' });
 const darkWarning = generateColorScale(ochreScale[400], { palette: 'ochre' });
 const darkDanger = generateColorScale(ironScale[400], { palette: 'iron' });
 const darkInfo = generateColorScale(arcticScale[400], { palette: 'arctic' });
-const darkNeutral = generateColorScale(neutralScale[400], { palette: 'neutral' });
 
-/** Dark theme — 独立映射；色阶预展开 */
+/**
+ * Dark theme — 独立映射。
+ * text / bg / border 引用 neutralResolved（暗端阶）或 darkNeutralScale，禁止裸 hex。
+ */
 export const darkColorVars: Record<string, string> = {
   ...attachColorScale('color-primary', darkPrimary),
   'color-primary-hover': darkPrimary[300],
@@ -47,39 +51,44 @@ export const darkColorVars: Record<string, string> = {
   'color-info-bg': darkInfo[900],
   'color-info-border': darkInfo[700],
 
-  ...attachColorScale('color-neutral', darkNeutral),
+  ...attachColorScale('color-neutral', darkNeutralScale),
   'color-neutral-foreground': NEUTRAL_BLACK,
-  'color-neutral-bg': darkNeutral[800],
-  'color-neutral-border': darkNeutral[600],
+  'color-neutral-bg': darkNeutralScale[800],
+  'color-neutral-border': darkNeutralScale[600],
 
-  'color-text-primary': '#F7F7F5',
-  'color-text-secondary': '#C8CAC6',
-  'color-text-tertiary': '#9A9D99',
-  'color-text-placeholder': '#6F7370',
-  'color-text-disabled': '#555955',
+  // text — 正文 ≥4.5:1 @ surface(900)
+  'color-text-primary': neutralResolved[50],
+  'color-text-secondary': neutralResolved[200],
+  'color-text-tertiary': neutralResolved[400],
+  'color-text-placeholder': neutralResolved[500],
+  'color-text-disabled': neutralResolved[600],
   'color-text-inverse': NEUTRAL_BLACK,
   'color-text-link': fjordScale[300],
 
-  'color-bg-page': '#121110',
-  'color-bg-surface': '#1C1B1A',
-  'color-bg-elevated': '#2A2D2B',
-  'color-bg-muted': '#2A2D2B',
-  'color-bg-subtle': '#1C1B1A',
-  'color-bg-hover': '#2A2D2B',
-  'color-bg-active': '#3F4340',
+  // background — 各阶分离，避免 elevated 与 muted 同色导致边框不可见
+  'color-bg-page': neutralResolved[950],
+  'color-bg-surface': neutralResolved[900],
+  'color-bg-elevated': neutralResolved[800],
+  'color-bg-muted': neutralResolved[800],
+  'color-bg-subtle': neutralResolved[900],
+  'color-bg-hover': neutralResolved[800],
+  'color-bg-active': neutralResolved[700],
   'color-bg-selected': fjordScale[900],
-  'color-bg-disabled': '#2A2D2B',
+  'color-bg-disabled': neutralResolved[800],
 
-  'color-border-default': '#3F4340',
-  'color-border-muted': '#2A2D2B',
-  'color-border-strong': '#555955',
+  // border — default ≥3:1 @ surface 与 elevated
+  'color-border-default': neutralResolved[400],
+  'color-border-muted': neutralResolved[700],
+  'color-border-strong': neutralResolved[300],
   'color-border-focus': darkPrimary[500],
-  'color-border-disabled': '#3F4340',
+  'color-border-disabled': neutralResolved[700],
 
   'color-overlay': NEUTRAL_BLACK,
   'color-scrim': NEUTRAL_BLACK,
   'color-transparent': 'transparent',
   'color-white': NEUTRAL_WHITE,
+
+  ...darkShadowVars,
 };
 
 export const darkTheme = {
