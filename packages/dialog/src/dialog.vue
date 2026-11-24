@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import { PlOverlay } from '@peili-ui/overlay';
-import { createFocusTrap } from '@peili-ui/shared';
+import { createFocusTrap, getPopupLayerRoots, pushOverlayLayer } from '@peili-ui/shared';
 import {
   defaultDialogProps,
   DialogEmits,
@@ -24,7 +24,12 @@ const emit = defineEmits<DialogEmits>();
 defineSlots<DialogSlots>();
 
 const panelRef = ref<HTMLElement>();
-const focusTrap = createFocusTrap(() => panelRef.value);
+const focusTrap = createFocusTrap(
+  () => panelRef.value,
+  { getExtraContainers: getPopupLayerRoots },
+);
+
+let popLayer: (() => void) | undefined;
 
 const panelStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
@@ -42,10 +47,9 @@ function onOverlayUpdate(visible: boolean) {
   emit('update:modelValue', visible);
 }
 
-function onEscKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && props.modelValue) {
-    close();
-  }
+function releaseLayer() {
+  popLayer?.();
+  popLayer = undefined;
 }
 
 watch(
@@ -56,20 +60,29 @@ watch(
     }
     if (val) {
       emit('open');
-      document.addEventListener('keydown', onEscKeydown);
+      releaseLayer();
+      popLayer = pushOverlayLayer({
+        kind: 'modal',
+        dismiss: close,
+        contains: node => !!(node && panelRef.value?.contains(node)),
+        getRoot: () => panelRef.value,
+      });
       await nextTick();
       focusTrap.activate();
     } else {
       focusTrap.deactivate();
-      emit('close');
-      document.removeEventListener('keydown', onEscKeydown);
+      releaseLayer();
+      if (oldVal === true) {
+        emit('close');
+      }
     }
   },
+  { immediate: true },
 );
 
 onBeforeUnmount(() => {
   focusTrap.deactivate();
-  document.removeEventListener('keydown', onEscKeydown);
+  releaseLayer();
 });
 
 defineExpose<DialogExpose>({

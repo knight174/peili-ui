@@ -27,10 +27,10 @@ export interface PopupProps {
   visible?: boolean;
 
   /**
-   * 触发方式
+   * 触发方式；可传数组组合（如 Tooltip 的 hover + focus）
    * @default 'click'
    */
-  trigger?: PopupTrigger;
+  trigger?: PopupTrigger | PopupTrigger[];
 
   /**
    * 弹出位置

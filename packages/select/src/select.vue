@@ -113,7 +113,6 @@ defineExpose<SelectExpose>({
           tabindex="0"
           @keydown.enter.prevent="visible ? close() : open()"
           @keydown.space.prevent="visible ? close() : open()"
-          @keydown.esc.prevent="close"
         >
           <span
             class="pl-select__value"

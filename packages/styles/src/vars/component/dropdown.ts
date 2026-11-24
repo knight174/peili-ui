@@ -11,7 +11,8 @@ export const dropdownVars = {
   'dropdown-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
   'dropdown-menu-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'dropdown-item-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
-  'dropdown-item-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
+  // 菜单项用固定行高 + 水平 padding，实际高度与 token / DROPDOWN_ITEM_HEIGHT 对齐
+  'dropdown-item-padding-y': '0px',
   'dropdown-font-size': getCssVar('font-size-sm'),
   'dropdown-item-height': '32px',
   'dropdown-menu-min-width': '120px',

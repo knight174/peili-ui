@@ -7,7 +7,7 @@ import {
   ref,
   watch,
 } from 'vue';
-import { nextZIndex, Z_INDEX } from '@peili-ui/shared';
+import { nextZIndex, pushOverlayLayer, Z_INDEX } from '@peili-ui/shared';
 import {
   defaultPopupProps,
   PopupEmits,
@@ -15,6 +15,7 @@ import {
   PopupProps,
   PopupSlots,
 } from './props';
+import type { PopupTrigger } from './props';
 import { computePosition } from './utils/placement';
 
 defineOptions({
@@ -43,6 +44,7 @@ const contentStyle = ref<{ [key: string]: string }>({
 
 let openTimer: number | undefined;
 let closeTimer: number | undefined;
+let popLayer: (() => void) | undefined;
 
 /** 未传入 visible 时走非受控；传入后走受控 */
 const isControlled = computed(() => props.visible !== undefined);
@@ -50,6 +52,15 @@ const isControlled = computed(() => props.visible !== undefined);
 const realVisible = computed(() => (
   isControlled.value ? !!props.visible : uncontrolledVisible.value
 ));
+
+const triggers = computed(() => {
+  const value = props.trigger;
+  return (Array.isArray(value) ? value : [value]) as PopupTrigger[];
+});
+
+function hasTrigger(type: PopupTrigger) {
+  return triggers.value.includes(type);
+}
 
 function clearTimers() {
   if (openTimer) {
@@ -74,7 +85,7 @@ function setVisible(next: boolean) {
 
 function open() {
   clearTimers();
-  const needDelay = props.trigger === 'hover' || props.trigger === 'focus';
+  const needDelay = hasTrigger('hover') || hasTrigger('focus');
   if (needDelay && props.openDelay > 0) {
     openTimer = window.setTimeout(() => setVisible(true), props.openDelay);
     return;
@@ -85,13 +96,18 @@ function open() {
 function close() {
   clearTimers();
   // hover 移到 Teleport 内容区时，至少保留一小段延迟，避免立刻关闭
-  const delay = props.trigger === 'hover'
+  const delay = hasTrigger('hover')
     ? Math.max(props.closeDelay, 50)
     : 0;
   if (delay > 0) {
     closeTimer = window.setTimeout(() => setVisible(false), delay);
     return;
   }
+  setVisible(false);
+}
+
+function dismiss() {
+  clearTimers();
   setVisible(false);
 }
 
@@ -160,9 +176,35 @@ async function syncPosition() {
   });
 }
 
+function releaseLayer() {
+  popLayer?.();
+  popLayer = undefined;
+}
+
+function syncLayer(visible: boolean) {
+  releaseLayer();
+  if (!visible || hasTrigger('manual')) {
+    return;
+  }
+  popLayer = pushOverlayLayer({
+    kind: 'popup',
+    dismiss,
+    contains: (node) => {
+      if (!node) {
+        return false;
+      }
+      return !!(
+        referenceRef.value?.contains(node)
+        || contentRef.value?.contains(node)
+      );
+    },
+    getRoot: () => contentRef.value,
+  });
+}
+
 function onDocumentClick(e: MouseEvent) {
   // 仅 click 触发需要“点外部关闭”；hover/focus 走自身离开逻辑
-  if (!realVisible.value || props.trigger !== 'click') {
+  if (!realVisible.value || !hasTrigger('click')) {
     return;
   }
   const target = e.target as Node;
@@ -173,19 +215,19 @@ function onDocumentClick(e: MouseEvent) {
 }
 
 function onReferenceClick() {
-  if (props.trigger === 'click') {
+  if (hasTrigger('click')) {
     toggle();
   }
 }
 
 function onReferenceMouseEnter() {
-  if (props.trigger === 'hover') {
+  if (hasTrigger('hover')) {
     open();
   }
 }
 
 function onReferenceMouseLeave(e: MouseEvent) {
-  if (props.trigger !== 'hover') {
+  if (!hasTrigger('hover')) {
     return;
   }
   const next = e.relatedTarget as Node | null;
@@ -196,13 +238,13 @@ function onReferenceMouseLeave(e: MouseEvent) {
 }
 
 function onContentMouseEnter() {
-  if (props.trigger === 'hover') {
+  if (hasTrigger('hover')) {
     clearTimers();
   }
 }
 
 function onContentMouseLeave(e: MouseEvent) {
-  if (props.trigger !== 'hover') {
+  if (!hasTrigger('hover')) {
     return;
   }
   const next = e.relatedTarget as Node | null;
@@ -213,13 +255,13 @@ function onContentMouseLeave(e: MouseEvent) {
 }
 
 function onReferenceFocus() {
-  if (props.trigger === 'focus') {
+  if (hasTrigger('focus')) {
     open();
   }
 }
 
 function onReferenceBlur(e: FocusEvent) {
-  if (props.trigger !== 'focus') {
+  if (!hasTrigger('focus')) {
     return;
   }
   const next = e.relatedTarget as Node | null;
@@ -232,6 +274,10 @@ function onReferenceBlur(e: FocusEvent) {
       active
       && (referenceRef.value?.contains(active) || contentRef.value?.contains(active))
     ) {
+      return;
+    }
+    // hover 仍在触发器上时勿因失焦关掉（hover+focus 组合）
+    if (hasTrigger('hover') && referenceRef.value?.matches(':hover')) {
       return;
     }
     setVisible(false);
@@ -270,9 +316,11 @@ watch(
 watch(realVisible, (val) => {
   if (val) {
     resolveZIndex();
+    syncLayer(true);
     syncPosition();
   } else {
     clearTimers();
+    releaseLayer();
   }
 });
 
@@ -280,10 +328,16 @@ onMounted(() => {
   document.addEventListener('mousedown', onDocumentClick);
   window.addEventListener('resize', onScrollOrResize);
   window.addEventListener('scroll', onScrollOrResize, true);
+  if (realVisible.value) {
+    resolveZIndex();
+    syncLayer(true);
+    syncPosition();
+  }
 });
 
 onBeforeUnmount(() => {
   clearTimers();
+  releaseLayer();
   document.removeEventListener('mousedown', onDocumentClick);
   window.removeEventListener('resize', onScrollOrResize);
   window.removeEventListener('scroll', onScrollOrResize, true);

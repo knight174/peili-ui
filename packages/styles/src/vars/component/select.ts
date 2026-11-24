@@ -21,7 +21,8 @@ export const selectVars = {
   'select-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xs'),
   'select-dropdown-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
   'select-option-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-sm'),
-  'select-option-padding-y': getCssVar<ThemeCssVarsConfig>('spacing-xxs'),
+  // 选项用固定行高 + 水平 padding，避免 padding-y 把实际高度撑过 token（虚拟列表）
+  'select-option-padding-y': '0px',
   'select-font-size': getCssVar('font-size-sm'),
   'select-radius': getCssVar('radius-sm'),
   'select-height': '32px',
