@@ -53,3 +53,5 @@ const { setColorScheme, setTheme } = useTheme();
 setColorScheme('dark');
 setTheme({ primary: '#1E4F7A' });
 ```
+
+局部覆盖用 [ConfigProvider](../components/config-provider.md) 的 `theme-vars`；可交互示例也在该页。

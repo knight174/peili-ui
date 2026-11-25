@@ -4,6 +4,7 @@ import type Token from 'markdown-it/lib/token';
 import type Renderer from 'markdown-it/lib/renderer';
 import { basename, dirname, resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
+import { demoPathToComponentName } from './demoComponentName';
 
 export interface ContainerOpts {
   marker?: string | undefined;
@@ -40,8 +41,8 @@ export function mdDemoPlugin(md: MarkdownIt) {
         // 转换为绝对路径
         sourceFilePath = resolve(dirname(env.path), sourceFilePath);
 
-        // 根据文件路径获取组件名称
-        const [componentName, ext = 'vue'] = basename(sourceFilePath).split('.', 2);
+        const ext = basename(sourceFilePath).split('.').pop() || 'vue';
+        const componentName = demoPathToComponentName(sourceFilePath);
 
         // 读取用例组件源码
         const sourceCode = readFileSync(sourceFilePath, 'utf-8');

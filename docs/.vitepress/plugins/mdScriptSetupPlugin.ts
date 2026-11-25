@@ -1,6 +1,6 @@
 import type MarkdownIt from 'markdown-it';
-import { basename } from 'node:path';
 import { getInnerPathFromContainerToken } from './mdDemoPlugin';
+import { demoPathToComponentName } from './demoComponentName';
 
 export function mdScriptSetupPlugin(md: MarkdownIt) {
   // markdown-it 插件一般都是通过重写 render 函数实现，这里先暂存原本的 render 方法。
@@ -33,7 +33,7 @@ export function mdScriptSetupPlugin(md: MarkdownIt) {
 
       // 对于 :::demo 块，读取文件路径，生成 import 语句。
       const sourceFilePath = getInnerPathFromContainerToken(tokens, i);
-      const componentName = basename(sourceFilePath).split('.')[0];
+      const componentName = demoPathToComponentName(sourceFilePath);
       demoImports.push(`import ${componentName} from '${sourceFilePath}';`);
     }
 
