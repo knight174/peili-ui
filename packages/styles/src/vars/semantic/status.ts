@@ -1,15 +1,9 @@
-/** 单一状态色的完整语义套件 */
-export interface StatusColorSet {
-  DEFAULT: string;
-  foreground: string;
-  bg: string;
-  border: string;
-}
-
+/** 可选 status（Alert/Tag；不进 Button 主轴） */
 export interface SemanticStatusColors {
-  success: StatusColorSet;
-  warning: StatusColorSet;
-  danger: StatusColorSet;
-  info: StatusColorSet;
-  neutral: StatusColorSet;
+  success: string;
+  'success-foreground': string;
+  warning: string;
+  'warning-foreground': string;
+  info: string;
+  'info-foreground': string;
 }

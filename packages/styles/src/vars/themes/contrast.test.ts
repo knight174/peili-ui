@@ -11,49 +11,58 @@ function contrastRatio(foreground: string, background: string): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-describe('theme WCAG AA contrast', () => {
-  describe('light', () => {
-    const surface = lightColorVars['color-bg-surface'];
-    const page = lightColorVars['color-bg-page'];
+function expectPair(
+  vars: Record<string, string>,
+  fg: string,
+  bg: string,
+  min: number,
+) {
+  expect(contrastRatio(vars[fg], vars[bg])).toBeGreaterThanOrEqual(min);
+}
 
-    it('body text ≥ 4.5:1 on surface', () => {
-      expect(contrastRatio(lightColorVars['color-text-primary'], surface)).toBeGreaterThanOrEqual(4.5);
-      expect(contrastRatio(lightColorVars['color-text-secondary'], surface)).toBeGreaterThanOrEqual(4.5);
-      expect(contrastRatio(lightColorVars['color-text-tertiary'], surface)).toBeGreaterThanOrEqual(4.5);
+describe('theme WCAG AA contrast (shadcn pairs)', () => {
+  describe('light', () => {
+    it('foreground pairs ≥ 4.5:1 on their surfaces', () => {
+      const v = lightColorVars;
+      expectPair(v, 'foreground', 'background', 4.5);
+      expectPair(v, 'card-foreground', 'card', 4.5);
+      expectPair(v, 'popover-foreground', 'popover', 4.5);
+      expectPair(v, 'primary-foreground', 'primary', 4.5);
+      expectPair(v, 'secondary-foreground', 'secondary', 4.5);
+      expectPair(v, 'muted-foreground', 'muted', 4.5);
+      expectPair(v, 'destructive-foreground', 'destructive', 4.5);
     });
 
-    it('control borders ≥ 3:1 on surface and page', () => {
-      const border = lightColorVars['color-border-default'];
-      const strong = lightColorVars['color-border-strong'];
-      expect(contrastRatio(border, surface)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(border, page)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(strong, surface)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(strong, page)).toBeGreaterThanOrEqual(3);
+    it('border / input / ring ≥ 3:1 on background', () => {
+      const v = lightColorVars;
+      expectPair(v, 'border', 'background', 3);
+      expectPair(v, 'input', 'background', 3);
+      expectPair(v, 'ring', 'background', 3);
     });
   });
 
   describe('dark', () => {
-    const surface = darkColorVars['color-bg-surface'];
-    const elevated = darkColorVars['color-bg-elevated'];
-
-    it('body text ≥ 4.5:1 on surface', () => {
-      expect(contrastRatio(darkColorVars['color-text-primary'], surface)).toBeGreaterThanOrEqual(4.5);
-      expect(contrastRatio(darkColorVars['color-text-secondary'], surface)).toBeGreaterThanOrEqual(4.5);
-      expect(contrastRatio(darkColorVars['color-text-tertiary'], surface)).toBeGreaterThanOrEqual(4.5);
+    it('foreground pairs ≥ 4.5:1 on their surfaces', () => {
+      const v = darkColorVars;
+      expectPair(v, 'foreground', 'background', 4.5);
+      expectPair(v, 'card-foreground', 'card', 4.5);
+      expectPair(v, 'popover-foreground', 'popover', 4.5);
+      expectPair(v, 'primary-foreground', 'primary', 4.5);
+      expectPair(v, 'secondary-foreground', 'secondary', 4.5);
+      expectPair(v, 'muted-foreground', 'muted', 4.5);
+      expectPair(v, 'destructive-foreground', 'destructive', 4.5);
     });
 
-    it('control borders ≥ 3:1 on surface and elevated', () => {
-      const border = darkColorVars['color-border-default'];
-      const strong = darkColorVars['color-border-strong'];
-      expect(contrastRatio(border, surface)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(border, elevated)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(strong, surface)).toBeGreaterThanOrEqual(3);
-      expect(contrastRatio(strong, elevated)).toBeGreaterThanOrEqual(3);
+    it('border / input ≥ 3:1 on background and card', () => {
+      const v = darkColorVars;
+      expectPair(v, 'border', 'background', 3);
+      expectPair(v, 'border', 'card', 3);
+      expectPair(v, 'input', 'background', 3);
     });
 
-    it('elevated is distinct from page (shadow / edge readable)', () => {
-      expect(darkColorVars['color-bg-elevated']).not.toBe(darkColorVars['color-bg-page']);
-      expect(darkColorVars['color-border-default']).not.toBe(darkColorVars['color-bg-elevated']);
+    it('popover distinct from background', () => {
+      expect(darkColorVars.popover).not.toBe(darkColorVars.background);
+      expect(darkColorVars.border).not.toBe(darkColorVars.popover);
     });
   });
 });

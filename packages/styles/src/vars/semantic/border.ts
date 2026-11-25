@@ -1,7 +1,6 @@
+/** @deprecated 已并入 border / input / ring */
 export interface SemanticBorderColors {
-  default: string;
-  muted: string;
-  strong: string;
-  focus: string;
-  disabled: string;
+  border: string;
+  input: string;
+  ring: string;
 }

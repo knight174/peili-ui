@@ -33,7 +33,7 @@ export interface GenerateCssVarsOptions<K = string, P extends string = DefaultPr
   /**
    * 指定的键名所对应的 CSS 变量将会额外生成 50…950 色阶（OKLCH）。
    *
-   * 例如 color-primary 将会生成 color-primary-50 … color-primary-950。
+   * 例如 primary 将会生成 primary-50 … primary-950（主题默认不启用）。
    */
   colorLevelsEnabledKeys?: K[];
 

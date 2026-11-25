@@ -3,7 +3,8 @@
   max-width: calc(100vw - var(--pl-spacing-xxl));
   max-height: calc(100vh - var(--pl-spacing-xxl));
   overflow: auto;
-  background-color: rgb(var(--pl-color-bg-elevated));
+  color: rgb(var(--pl-card-foreground));
+  background-color: rgb(var(--pl-card));
   border-radius: var(--pl-radius-md);
   box-shadow: var(--pl-shadow-lg);
 
@@ -18,7 +19,7 @@
     font-size: var(--pl-font-size-md);
     font-weight: var(--pl-font-weight-semibold);
     line-height: 1.4;
-    color: rgb(var(--pl-color-text-primary));
+    color: rgb(var(--pl-foreground));
   }
 
   &__close {
@@ -30,7 +31,7 @@
     padding: 0;
     font-size: var(--pl-font-size-xl);
     line-height: 1;
-    color: rgb(var(--pl-color-text-tertiary));
+    color: rgb(var(--pl-muted-foreground));
     cursor: pointer;
     background: transparent;
     border: none;
@@ -38,8 +39,8 @@
     outline: none;
 
     &:hover {
-      color: rgb(var(--pl-color-text-primary));
-      background-color: rgb(var(--pl-color-bg-hover));
+      color: rgb(var(--pl-accent-foreground));
+      background-color: rgb(var(--pl-accent));
     }
   }
 
@@ -47,7 +48,7 @@
     padding: var(--pl-spacing-xs) var(--pl-spacing-md) var(--pl-spacing-base);
     font-size: var(--pl-font-size-sm);
     line-height: 1.6;
-    color: rgb(var(--pl-color-text-secondary));
+    color: rgb(var(--pl-muted-foreground));
   }
 
   &__footer {

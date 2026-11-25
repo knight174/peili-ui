@@ -1,129 +1,92 @@
-import { generateColorScale } from '../../generators/generateColorScale';
 import {
   fjordScale,
   ironScale,
-  ochreScale,
   tundraScale,
+  ochreScale,
   arcticScale,
   neutralResolved,
-  darkNeutralScale,
-  NEUTRAL_WHITE,
   NEUTRAL_BLACK,
 } from '../primitive/palette';
-import { attachColorScale } from './attachScale';
+import { generateColorScale } from '../../generators/generateColorScale';
 import { darkShadowVars } from './shadow';
 
-/** 暗色主色阶：以偏亮的 step 为 500 重新 OKLCH 展开 */
+/** 暗色 brand / destructive：以偏亮 step 为基色重展，仅取语义槽所需阶 */
 const darkPrimary = generateColorScale(fjordScale[400], { palette: 'fjord' });
+const darkDestructive = generateColorScale(ironScale[400], { palette: 'iron' });
 const darkSuccess = generateColorScale(tundraScale[400], { palette: 'tundra' });
 const darkWarning = generateColorScale(ochreScale[400], { palette: 'ochre' });
-const darkDanger = generateColorScale(ironScale[400], { palette: 'iron' });
 const darkInfo = generateColorScale(arcticScale[400], { palette: 'arctic' });
 
 /**
- * Dark theme — 独立映射。
- * text / bg / border 引用 neutralResolved（暗端阶）或 darkNeutralScale，禁止裸 hex。
+ * Dark 语义色 — 与 Light 同名键；引用 neutralResolved / 暗色专用 brand 槽。
  */
 export const darkColorVars: Record<string, string> = {
-  ...attachColorScale('color-primary', darkPrimary),
-  'color-primary-hover': darkPrimary[300],
-  'color-primary-active': darkPrimary[600],
-  'color-primary-subtle': darkPrimary[900],
-  'color-primary-foreground': NEUTRAL_BLACK,
+  background: neutralResolved[950],
+  foreground: neutralResolved[50],
 
-  ...attachColorScale('color-success', darkSuccess),
-  'color-success-foreground': NEUTRAL_BLACK,
-  'color-success-bg': darkSuccess[900],
-  'color-success-border': darkSuccess[700],
+  card: neutralResolved[900],
+  'card-foreground': neutralResolved[50],
 
-  ...attachColorScale('color-warning', darkWarning),
-  'color-warning-foreground': NEUTRAL_BLACK,
-  'color-warning-bg': darkWarning[900],
-  'color-warning-border': darkWarning[700],
+  popover: neutralResolved[800],
+  'popover-foreground': neutralResolved[50],
 
-  ...attachColorScale('color-danger', darkDanger),
-  'color-danger-foreground': NEUTRAL_BLACK,
-  'color-danger-bg': darkDanger[900],
-  'color-danger-border': darkDanger[700],
+  primary: darkPrimary[500],
+  'primary-foreground': NEUTRAL_BLACK,
+  'primary-hover': darkPrimary[300],
+  'primary-active': darkPrimary[600],
 
-  ...attachColorScale('color-info', darkInfo),
-  'color-info-foreground': NEUTRAL_BLACK,
-  'color-info-bg': darkInfo[900],
-  'color-info-border': darkInfo[700],
+  secondary: neutralResolved[800],
+  'secondary-foreground': neutralResolved[200],
 
-  ...attachColorScale('color-neutral', darkNeutralScale),
-  'color-neutral-foreground': NEUTRAL_BLACK,
-  'color-neutral-bg': darkNeutralScale[800],
-  'color-neutral-border': darkNeutralScale[600],
+  muted: neutralResolved[800],
+  'muted-foreground': neutralResolved[300],
 
-  // text — 正文 ≥4.5:1 @ surface(900)
-  'color-text-primary': neutralResolved[50],
-  'color-text-secondary': neutralResolved[200],
-  'color-text-tertiary': neutralResolved[400],
-  'color-text-placeholder': neutralResolved[500],
-  'color-text-disabled': neutralResolved[600],
-  'color-text-inverse': NEUTRAL_BLACK,
-  'color-text-link': fjordScale[300],
+  accent: fjordScale[900],
+  'accent-foreground': fjordScale[200],
 
-  // background — 各阶分离，避免 elevated 与 muted 同色导致边框不可见
-  'color-bg-page': neutralResolved[950],
-  'color-bg-surface': neutralResolved[900],
-  'color-bg-elevated': neutralResolved[800],
-  'color-bg-muted': neutralResolved[800],
-  'color-bg-subtle': neutralResolved[900],
-  'color-bg-hover': neutralResolved[800],
-  'color-bg-active': neutralResolved[700],
-  'color-bg-selected': fjordScale[900],
-  'color-bg-disabled': neutralResolved[800],
+  destructive: darkDestructive[500],
+  'destructive-foreground': NEUTRAL_BLACK,
+  'destructive-hover': darkDestructive[300],
+  'destructive-active': darkDestructive[600],
 
-  // border — default ≥3:1 @ surface 与 elevated
-  'color-border-default': neutralResolved[400],
-  'color-border-muted': neutralResolved[700],
-  'color-border-strong': neutralResolved[300],
-  'color-border-focus': darkPrimary[500],
-  'color-border-disabled': neutralResolved[700],
+  border: neutralResolved[400],
+  input: neutralResolved[400],
+  ring: darkPrimary[500],
 
-  'color-overlay': NEUTRAL_BLACK,
-  'color-scrim': NEUTRAL_BLACK,
-  'color-transparent': 'transparent',
-  'color-white': NEUTRAL_WHITE,
+  success: darkSuccess[500],
+  'success-foreground': NEUTRAL_BLACK,
+  warning: darkWarning[500],
+  'warning-foreground': NEUTRAL_BLACK,
+  info: darkInfo[500],
+  'info-foreground': NEUTRAL_BLACK,
+
+  overlay: NEUTRAL_BLACK,
+  scrim: NEUTRAL_BLACK,
+  transparent: 'transparent',
 
   ...darkShadowVars,
 };
 
 export const darkTheme = {
   color: {
-    primary: darkColorVars['color-primary'],
-    'primary-hover': darkColorVars['color-primary-hover'],
-    'primary-active': darkColorVars['color-primary-active'],
-    'primary-subtle': darkColorVars['color-primary-subtle'],
-    'primary-foreground': darkColorVars['color-primary-foreground'],
-    text: {
-      primary: darkColorVars['color-text-primary'],
-      secondary: darkColorVars['color-text-secondary'],
-      tertiary: darkColorVars['color-text-tertiary'],
-      disabled: darkColorVars['color-text-disabled'],
-      placeholder: darkColorVars['color-text-placeholder'],
-      inverse: darkColorVars['color-text-inverse'],
-      link: darkColorVars['color-text-link'],
-    },
-    bg: {
-      page: darkColorVars['color-bg-page'],
-      surface: darkColorVars['color-bg-surface'],
-      elevated: darkColorVars['color-bg-elevated'],
-      muted: darkColorVars['color-bg-muted'],
-      subtle: darkColorVars['color-bg-subtle'],
-      hover: darkColorVars['color-bg-hover'],
-      active: darkColorVars['color-bg-active'],
-      selected: darkColorVars['color-bg-selected'],
-      disabled: darkColorVars['color-bg-disabled'],
-    },
-    border: {
-      default: darkColorVars['color-border-default'],
-      muted: darkColorVars['color-border-muted'],
-      strong: darkColorVars['color-border-strong'],
-      focus: darkColorVars['color-border-focus'],
-      disabled: darkColorVars['color-border-disabled'],
-    },
+    background: darkColorVars.background,
+    foreground: darkColorVars.foreground,
+    card: darkColorVars.card,
+    'card-foreground': darkColorVars['card-foreground'],
+    popover: darkColorVars.popover,
+    'popover-foreground': darkColorVars['popover-foreground'],
+    primary: darkColorVars.primary,
+    'primary-foreground': darkColorVars['primary-foreground'],
+    secondary: darkColorVars.secondary,
+    'secondary-foreground': darkColorVars['secondary-foreground'],
+    muted: darkColorVars.muted,
+    'muted-foreground': darkColorVars['muted-foreground'],
+    accent: darkColorVars.accent,
+    'accent-foreground': darkColorVars['accent-foreground'],
+    destructive: darkColorVars.destructive,
+    'destructive-foreground': darkColorVars['destructive-foreground'],
+    border: darkColorVars.border,
+    input: darkColorVars.input,
+    ring: darkColorVars.ring,
   },
 } as const;

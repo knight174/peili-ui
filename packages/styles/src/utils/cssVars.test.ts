@@ -4,21 +4,21 @@ import { generateCssVars, cssVarsToString, DEFAULT_PREFIX } from './cssVars';
 describe('generateCssVars', () => {
   it('keeps flat API and emits rgb channels', () => {
     const vars = generateCssVars({
-      'color-primary': '#245A8D',
+      primary: '#245A8D',
       'spacing-sm': '12px',
     });
-    expect(vars['--pl-color-primary']).toBe('36, 90, 141');
+    expect(vars['--pl-primary']).toBe('36, 90, 141');
     expect(vars['--pl-spacing-sm']).toBe('12px');
   });
 
-  it('generates OKLCH 50…950 for enabled keys', () => {
+  it('generates OKLCH 50…950 only for enabled keys', () => {
     const vars = generateCssVars(
-      { 'color-primary': '#245A8D' },
-      { colorLevelsEnabledKeys: ['color-primary'] },
+      { primary: '#245A8D' },
+      { colorLevelsEnabledKeys: ['primary'] },
     );
-    expect(vars['--pl-color-primary-50']).toBeTruthy();
-    expect(vars['--pl-color-primary-500']).toBeTruthy();
-    expect(vars['--pl-color-primary-950']).toBeTruthy();
+    expect(vars['--pl-primary-50']).toBeTruthy();
+    expect(vars['--pl-primary-500']).toBeTruthy();
+    expect(vars['--pl-primary-950']).toBeTruthy();
   });
 
   it('flattens nested objects without breaking prefix', () => {
@@ -33,8 +33,8 @@ describe('generateCssVars', () => {
   });
 
   it('preserves transparent', () => {
-    const vars = generateCssVars({ 'color-transparent': 'transparent' });
-    expect(vars['--pl-color-transparent']).toBe('transparent');
+    const vars = generateCssVars({ transparent: 'transparent' });
+    expect(vars['--pl-transparent']).toBe('transparent');
   });
 
   it('cssVarsToString wraps selector', () => {

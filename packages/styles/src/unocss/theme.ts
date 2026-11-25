@@ -4,8 +4,8 @@ import { themeVars, darkColorVars } from '../vars';
 import { generateCssVars, cssVarsToString } from '../utils';
 
 /**
- * 主题预注入：色阶已在 light/dark ColorVars 预展开，
- * 此处不再传 colorLevelsEnabledKeys。
+ * 主题预注入：Light → `:root`，Dark → `[data-theme=dark], .dark`。
+ * 语义层为扁平 shadcn 键，不展开 50…950。
  */
 export const themeConfig: UserConfig<Theme> = {
   preflights: [

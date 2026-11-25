@@ -10,7 +10,7 @@ import {
 const THEME_PROVIDE_KEY = '__PeiliuiTheme__';
 
 function useGlobalTheme(app: App, options?: PeiliuiCssVarsConfig) {
-  /** 设置全局主题变量（扁平或嵌套均可；仅对被覆盖的品牌/状态色生成 50…950） */
+  /** 设置全局主题变量（扁平或嵌套均可；默认不展开 50…950） */
   function setTheme(styleObj: PeiliuiCssVarsConfig) {
     const cssVars = generateCssVars(styleObj, {
       colorLevelsEnabledKeys: resolveColorLevelsEnabledKeys(

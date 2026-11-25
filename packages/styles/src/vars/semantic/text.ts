@@ -1,9 +1,5 @@
+/** @deprecated 已并入 shadcn 成对语义（foreground / muted-foreground 等） */
 export interface SemanticTextColors {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-  disabled: string;
-  placeholder: string;
-  inverse: string;
-  link: string;
+  foreground: string;
+  'muted-foreground': string;
 }

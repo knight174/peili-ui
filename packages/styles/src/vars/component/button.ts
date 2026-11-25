@@ -1,25 +1,24 @@
 import { getCssVar, cssVarToRgba } from '../../utils';
 import type { ThemeCssVarsConfig } from '../theme';
 
-/** 按钮组件的主题变量定义 */
+/** 按钮基座 = secondary 外观；各 variant 用 modifier 覆盖 */
 export const buttonVars = {
-  'button-color': cssVarToRgba<ThemeCssVarsConfig>('color-text-secondary'),
-  'button-bg-color': cssVarToRgba<ThemeCssVarsConfig>('color-bg-surface'),
-  'button-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-border-default'),
-  'button-hover-color': cssVarToRgba<ThemeCssVarsConfig>('color-primary'),
-  'button-hover-bg-color': cssVarToRgba('color-primary-50'),
-  'button-hover-border-color': cssVarToRgba('color-primary-100'),
-  'button-active-color': cssVarToRgba<ThemeCssVarsConfig>('color-primary'),
-  'button-active-bg-color': cssVarToRgba('color-primary-50'),
-  'button-active-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-primary'),
-  'button-disabled-color': cssVarToRgba<ThemeCssVarsConfig>('color-text-placeholder'),
-  'button-disabled-bg-color': cssVarToRgba<ThemeCssVarsConfig>('color-bg-surface'),
-  'button-disabled-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-border-muted'),
+  'button-color': cssVarToRgba<ThemeCssVarsConfig>('secondary-foreground'),
+  'button-bg-color': cssVarToRgba<ThemeCssVarsConfig>('secondary'),
+  'button-border-color': cssVarToRgba<ThemeCssVarsConfig>('border'),
+  'button-hover-color': cssVarToRgba<ThemeCssVarsConfig>('accent-foreground'),
+  'button-hover-bg-color': cssVarToRgba<ThemeCssVarsConfig>('accent'),
+  'button-hover-border-color': cssVarToRgba<ThemeCssVarsConfig>('border'),
+  'button-active-color': cssVarToRgba<ThemeCssVarsConfig>('accent-foreground'),
+  'button-active-bg-color': cssVarToRgba<ThemeCssVarsConfig>('accent'),
+  'button-active-border-color': cssVarToRgba<ThemeCssVarsConfig>('border'),
+  'button-disabled-color': cssVarToRgba<ThemeCssVarsConfig>('muted-foreground'),
+  'button-disabled-bg-color': cssVarToRgba<ThemeCssVarsConfig>('muted'),
+  'button-disabled-border-color': cssVarToRgba<ThemeCssVarsConfig>('border'),
   'button-height': getCssVar<ThemeCssVarsConfig>('spacing-xxl'),
   'button-padding-x': getCssVar<ThemeCssVarsConfig>('spacing-base'),
   'button-radius': getCssVar('radius-sm'),
   'button-font-size': getCssVar('font-size-sm'),
 };
 
-/** 按钮组件主题变量类型 */
 export type ButtonCssVarsConfig = Partial<typeof buttonVars>;

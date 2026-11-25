@@ -33,98 +33,92 @@
     border-color: var(--pl-button-active-border-color);
   }
 
-  /* 实心 brand（主操作） */
   &.pl-button--default {
-    --pl-button-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-bg-color: rgb(var(--pl-color-primary));
-    --pl-button-border-color: rgb(var(--pl-color-primary));
-    --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-hover));
-    --pl-button-hover-border-color: rgb(var(--pl-color-primary-hover));
-    --pl-button-active-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-active-bg-color: rgb(var(--pl-color-primary-active));
-    --pl-button-active-border-color: rgb(var(--pl-color-primary-active));
-    --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-disabled-bg-color: rgb(var(--pl-color-primary-200));
-    --pl-button-disabled-border-color: rgb(var(--pl-color-primary-200));
+    --pl-button-color: rgb(var(--pl-primary-foreground));
+    --pl-button-bg-color: rgb(var(--pl-primary));
+    --pl-button-border-color: rgb(var(--pl-primary));
+    --pl-button-hover-color: rgb(var(--pl-primary-foreground));
+    --pl-button-hover-bg-color: rgb(var(--pl-primary-hover));
+    --pl-button-hover-border-color: rgb(var(--pl-primary-hover));
+    --pl-button-active-color: rgb(var(--pl-primary-foreground));
+    --pl-button-active-bg-color: rgb(var(--pl-primary-active));
+    --pl-button-active-border-color: rgb(var(--pl-primary-active));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
+    --pl-button-disabled-bg-color: rgb(var(--pl-muted));
+    --pl-button-disabled-border-color: rgb(var(--pl-border));
   }
 
-  /* 次要描边/面（基座 token 默认即此外观，显式声明便于覆盖） */
   &.pl-button--secondary {
-    --pl-button-color: rgb(var(--pl-color-text-secondary));
-    --pl-button-bg-color: rgb(var(--pl-color-bg-surface));
-    --pl-button-border-color: rgb(var(--pl-color-border-default));
-    --pl-button-hover-color: rgb(var(--pl-color-primary));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-50));
-    --pl-button-hover-border-color: rgb(var(--pl-color-primary-100));
-    --pl-button-active-color: rgb(var(--pl-color-primary));
-    --pl-button-active-bg-color: rgb(var(--pl-color-primary-50));
-    --pl-button-active-border-color: rgb(var(--pl-color-primary));
-    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
-    --pl-button-disabled-bg-color: rgb(var(--pl-color-bg-surface));
-    --pl-button-disabled-border-color: rgb(var(--pl-color-border-muted));
+    --pl-button-color: rgb(var(--pl-secondary-foreground));
+    --pl-button-bg-color: rgb(var(--pl-secondary));
+    --pl-button-border-color: rgb(var(--pl-border));
+    --pl-button-hover-color: rgb(var(--pl-accent-foreground));
+    --pl-button-hover-bg-color: rgb(var(--pl-accent));
+    --pl-button-hover-border-color: rgb(var(--pl-border));
+    --pl-button-active-color: rgb(var(--pl-accent-foreground));
+    --pl-button-active-bg-color: rgb(var(--pl-accent));
+    --pl-button-active-border-color: rgb(var(--pl-border));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
+    --pl-button-disabled-bg-color: rgb(var(--pl-muted));
+    --pl-button-disabled-border-color: rgb(var(--pl-border));
   }
 
-  /* 危险实心 */
   &.pl-button--destructive {
-    --pl-button-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-bg-color: rgb(var(--pl-color-danger));
-    --pl-button-border-color: rgb(var(--pl-color-danger));
-    --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-danger-300));
-    --pl-button-hover-border-color: rgb(var(--pl-color-danger-300));
-    --pl-button-active-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-active-bg-color: rgb(var(--pl-color-danger-700));
-    --pl-button-active-border-color: rgb(var(--pl-color-danger-700));
-    --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
-    --pl-button-disabled-bg-color: rgb(var(--pl-color-danger-200));
-    --pl-button-disabled-border-color: rgb(var(--pl-color-danger-200));
+    --pl-button-color: rgb(var(--pl-destructive-foreground));
+    --pl-button-bg-color: rgb(var(--pl-destructive));
+    --pl-button-border-color: rgb(var(--pl-destructive));
+    --pl-button-hover-color: rgb(var(--pl-destructive-foreground));
+    --pl-button-hover-bg-color: rgb(var(--pl-destructive-hover));
+    --pl-button-hover-border-color: rgb(var(--pl-destructive-hover));
+    --pl-button-active-color: rgb(var(--pl-destructive-foreground));
+    --pl-button-active-bg-color: rgb(var(--pl-destructive-active));
+    --pl-button-active-border-color: rgb(var(--pl-destructive-active));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
+    --pl-button-disabled-bg-color: rgb(var(--pl-muted));
+    --pl-button-disabled-border-color: rgb(var(--pl-border));
   }
 
-  /* 透明底 + 边框 */
   &.pl-button--outline {
-    --pl-button-color: rgb(var(--pl-color-text-primary));
+    --pl-button-color: rgb(var(--pl-foreground));
     --pl-button-bg-color: transparent;
-    --pl-button-border-color: rgb(var(--pl-color-border-default));
-    --pl-button-hover-color: rgb(var(--pl-color-primary));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-50));
-    --pl-button-hover-border-color: rgb(var(--pl-color-primary));
-    --pl-button-active-color: rgb(var(--pl-color-primary-active));
-    --pl-button-active-bg-color: rgb(var(--pl-color-primary-50));
-    --pl-button-active-border-color: rgb(var(--pl-color-primary-active));
-    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-border-color: rgb(var(--pl-border));
+    --pl-button-hover-color: rgb(var(--pl-accent-foreground));
+    --pl-button-hover-bg-color: rgb(var(--pl-accent));
+    --pl-button-hover-border-color: rgb(var(--pl-border));
+    --pl-button-active-color: rgb(var(--pl-accent-foreground));
+    --pl-button-active-bg-color: rgb(var(--pl-accent));
+    --pl-button-active-border-color: rgb(var(--pl-border));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
     --pl-button-disabled-bg-color: transparent;
-    --pl-button-disabled-border-color: rgb(var(--pl-color-border-muted));
+    --pl-button-disabled-border-color: rgb(var(--pl-border));
   }
 
-  /* 无边框，hover 浅底 */
   &.pl-button--ghost {
-    --pl-button-color: rgb(var(--pl-color-text-primary));
+    --pl-button-color: rgb(var(--pl-foreground));
     --pl-button-bg-color: transparent;
     --pl-button-border-color: transparent;
-    --pl-button-hover-color: rgb(var(--pl-color-text-primary));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-bg-hover));
+    --pl-button-hover-color: rgb(var(--pl-accent-foreground));
+    --pl-button-hover-bg-color: rgb(var(--pl-accent));
     --pl-button-hover-border-color: transparent;
-    --pl-button-active-color: rgb(var(--pl-color-text-primary));
-    --pl-button-active-bg-color: rgb(var(--pl-color-bg-active));
+    --pl-button-active-color: rgb(var(--pl-accent-foreground));
+    --pl-button-active-bg-color: rgb(var(--pl-accent));
     --pl-button-active-border-color: transparent;
-    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
     --pl-button-disabled-bg-color: transparent;
     --pl-button-disabled-border-color: transparent;
   }
 
-  /* 链接外观 */
   &.pl-button--link {
-    --pl-button-color: rgb(var(--pl-color-text-link));
+    --pl-button-color: rgb(var(--pl-primary));
     --pl-button-bg-color: transparent;
     --pl-button-border-color: transparent;
-    --pl-button-hover-color: rgb(var(--pl-color-primary-hover));
+    --pl-button-hover-color: rgb(var(--pl-primary-hover));
     --pl-button-hover-bg-color: transparent;
     --pl-button-hover-border-color: transparent;
-    --pl-button-active-color: rgb(var(--pl-color-primary-active));
+    --pl-button-active-color: rgb(var(--pl-primary-active));
     --pl-button-active-bg-color: transparent;
     --pl-button-active-border-color: transparent;
-    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-color: rgb(var(--pl-muted-foreground));
     --pl-button-disabled-bg-color: transparent;
     --pl-button-disabled-border-color: transparent;
     min-height: auto;

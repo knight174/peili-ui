@@ -60,7 +60,7 @@ const isCodeShow = ref(false);
 
 <style scoped lang="scss">
 .demo {
-  border: 1px solid rgb(var(--pl-color-border-default));
+  border: 1px solid rgb(var(--pl-border));
   border-radius: var(--pl-radius-sm);
 }
 
@@ -73,8 +73,8 @@ const isCodeShow = ref(false);
   justify-content: flex-end;
   padding: 16px;
   font-size: 14px;
-  color: rgb(var(--pl-color-text-secondary));
-  border-top: 1px solid rgb(var(--pl-color-border-muted));
+  color: rgb(var(--pl-muted-foreground));
+  border-top: 1px solid rgb(var(--pl-border));
 
   button {
     cursor: pointer;

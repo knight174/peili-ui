@@ -1,13 +1,11 @@
 import { cssVarToRgba, getCssVar } from '../../utils';
 import type { ThemeCssVarsConfig } from '../theme';
 
-/** 弹出层组件的主题变量定义 */
 export const popupVars = {
-  'popup-color': cssVarToRgba<ThemeCssVarsConfig>('color-text-primary'),
-  'popup-bg-color': cssVarToRgba<ThemeCssVarsConfig>('color-bg-elevated'),
-  'popup-border-color': cssVarToRgba<ThemeCssVarsConfig>('color-border-default'),
+  'popup-color': cssVarToRgba<ThemeCssVarsConfig>('popover-foreground'),
+  'popup-bg-color': cssVarToRgba<ThemeCssVarsConfig>('popover'),
+  'popup-border-color': cssVarToRgba<ThemeCssVarsConfig>('border'),
   'popup-shadow': getCssVar('shadow-md'),
 };
 
-/** 弹出层组件主题变量类型 */
 export type PopupCssVarsConfig = Partial<typeof popupVars>;

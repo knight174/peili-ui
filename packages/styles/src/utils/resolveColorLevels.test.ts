@@ -3,34 +3,38 @@ import { generateCssVars, resolveColorLevelsEnabledKeys } from './cssVars';
 import { themeColorLevelsEnabledKeys } from '../vars/semantic/color';
 
 describe('resolveColorLevelsEnabledKeys', () => {
-  it('only enables keys present in the override object', () => {
-    const keys = resolveColorLevelsEnabledKeys(
-      { 'color-primary': '#245A8D', 'spacing-sm': '12px' },
-      themeColorLevelsEnabledKeys,
-    );
-    expect(keys).toEqual(['color-primary']);
+  it('theme defaults to no auto scale expansion', () => {
+    expect(themeColorLevelsEnabledKeys).toEqual([]);
   });
 
-  it('returns empty when no brand/status keys are overridden', () => {
+  it('returns empty when candidate list is empty', () => {
     const keys = resolveColorLevelsEnabledKeys(
-      { 'button-radius': '4px' },
+      { primary: '#245A8D', 'spacing-sm': '12px' },
       themeColorLevelsEnabledKeys,
     );
     expect(keys).toEqual([]);
   });
 
-  it('generateCssVars with resolved keys does not invent other brand scales', () => {
+  it('only enables keys present in both override and candidate list', () => {
+    const keys = resolveColorLevelsEnabledKeys(
+      { primary: '#245A8D', 'spacing-sm': '12px' },
+      ['primary', 'destructive'],
+    );
+    expect(keys).toEqual(['primary']);
+  });
+
+  it('generateCssVars with empty enabled keys does not invent scales', () => {
     const vars = generateCssVars(
-      { 'color-primary': '#245A8D', 'color-text-primary': '#111111' },
+      { primary: '#245A8D', foreground: '#111111' },
       {
         colorLevelsEnabledKeys: resolveColorLevelsEnabledKeys(
-          { 'color-primary': '#245A8D', 'color-text-primary': '#111111' },
+          { primary: '#245A8D', foreground: '#111111' },
           themeColorLevelsEnabledKeys,
         ),
       },
     );
-    expect(vars['--pl-color-primary-50']).toBeTruthy();
-    expect(vars['--pl-color-success-50']).toBeUndefined();
-    expect(vars['--pl-color-text-primary-50']).toBeUndefined();
+    expect(vars['--pl-primary']).toBe('36, 90, 141');
+    expect(vars['--pl-primary-50']).toBeUndefined();
+    expect(vars['--pl-foreground-50']).toBeUndefined();
   });
 });
