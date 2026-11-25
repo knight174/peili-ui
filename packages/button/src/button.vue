@@ -14,29 +14,21 @@ const props = withDefaults(
 defineSlots<ButtonSlots>();
 
 const classes = computed(() => {
-  const result: string[] = [];
-  if (props.type) {
-    result.push(`pl-button--${props.type}`);
-  }
-
-  if (props.plain) {
-    result.push('pl-button--plain');
-  }
-
+  const result = [`pl-button--${props.variant}`];
   if (props.disabled) {
     result.push('pl-button--disabled');
   }
-
   return result;
 });
-
 </script>
 
 <template>
   <button
     class="pl-button"
     :class="classes"
+    :disabled="disabled"
+    :aria-disabled="disabled || undefined"
   >
-    <slot :type="type" />
+    <slot />
   </button>
 </template>

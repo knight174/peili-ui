@@ -39,69 +39,65 @@ function switchSecondLineTheme() {
 <template>
   <div>
     <div class="btns">
-      <pl-button>Button</pl-button>
-      <pl-button type="primary">
-        Button
+      <pl-button>
+        Default
       </pl-button>
-      <pl-button type="success">
-        Button
+      <pl-button variant="secondary">
+        Secondary
       </pl-button>
-      <pl-button type="danger">
-        Button
+      <pl-button variant="destructive">
+        Destructive
       </pl-button>
-      <pl-button type="warning">
-        Button
+      <pl-button variant="outline">
+        Outline
       </pl-button>
-      <pl-button type="info">
-        Button
+      <pl-button variant="ghost">
+        Ghost
+      </pl-button>
+      <pl-button variant="link">
+        Link
       </pl-button>
     </div>
     <ConfigProvider class="btns" :theme-vars="secondLineThemeVars">
-      <pl-button plain>
-        Button
+      <pl-button>
+        Default
       </pl-button>
-      <pl-button type="primary" plain>
-        Button
+      <pl-button variant="secondary">
+        Secondary
       </pl-button>
-      <pl-button type="success" plain>
-        Button
+      <pl-button variant="outline">
+        Outline
       </pl-button>
-      <pl-button type="danger" plain>
-        Button
-      </pl-button>
-      <pl-button type="warning" plain>
-        Button
-      </pl-button>
-      <pl-button type="info" plain>
-        Button
+      <pl-button variant="ghost">
+        Ghost
       </pl-button>
     </ConfigProvider>
     <div class="btns">
       <pl-button disabled>
-        Button
+        Default
       </pl-button>
-      <pl-button type="primary" disabled>
-        Button
+      <pl-button variant="secondary" disabled>
+        Secondary
       </pl-button>
-      <pl-button type="success" disabled>
-        Button
+      <pl-button variant="destructive" disabled>
+        Destructive
       </pl-button>
-      <pl-button type="danger" disabled>
-        Button
+      <pl-button variant="outline" disabled>
+        Outline
       </pl-button>
-      <pl-button type="warning" disabled>
-        Button
+      <pl-button variant="ghost" disabled>
+        Ghost
       </pl-button>
-      <pl-button type="info" disabled>
-        Button
+      <pl-button variant="link" disabled>
+        Link
       </pl-button>
     </div>
     <div class="btns">
-      <pl-button @click="switchGlobalTheme">
+      <pl-button variant="secondary" @click="switchGlobalTheme">
         切换全局主题，当前：{{ currentGlobalTheme }}
       </pl-button>
-      <pl-button @click="switchSecondLineTheme">
-        切换第二行主题1，当前：{{ currentSecondLineTheme }}
+      <pl-button variant="secondary" @click="switchSecondLineTheme">
+        切换第二行主题，当前：{{ currentSecondLineTheme }}
       </pl-button>
     </div>
   </div>

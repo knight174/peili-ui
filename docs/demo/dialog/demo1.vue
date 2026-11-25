@@ -7,16 +7,16 @@ const visible = ref(false);
 
 <template>
   <div>
-    <PlButton type="primary" @click="visible = true">
+    <PlButton @click="visible = true">
       打开对话框
     </PlButton>
     <PlDialog v-model="visible" title="提示" width="420px">
       <p>这是一个基于 Overlay 的 Dialog。</p>
       <template #footer>
-        <PlButton @click="visible = false">
+        <PlButton variant="secondary" @click="visible = false">
           取消
         </PlButton>
-        <PlButton type="primary" @click="visible = false">
+        <PlButton @click="visible = false">
           确定
         </PlButton>
       </template>

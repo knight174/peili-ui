@@ -4,7 +4,7 @@ import { PlButton, PlPopover } from 'peili-ui';
 
 <template>
   <PlPopover title="标题" content="这是一段 Popover 内容" trigger="click" placement="bottom">
-    <PlButton type="primary">
+    <PlButton>
       点击打开
     </PlButton>
   </PlPopover>

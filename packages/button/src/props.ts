@@ -1,21 +1,21 @@
 /** @module Button */
 import { InferVueDefaults } from '@peili-ui/shared';
 
-export type ButtonType = '' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'neutral';
+export type ButtonVariant =
+  | 'default'
+  | 'secondary'
+  | 'destructive'
+  | 'outline'
+  | 'ghost'
+  | 'link';
 
 /** 按钮组件的属性 */
 export interface ButtonProps {
   /**
-   * 按钮的类型
-   * @default ''
+   * 按钮外观变体
+   * @default 'default'
    */
-  type?: ButtonType;
-
-  /**
-   * 按钮是否为朴素样式
-   * @default false
-   */
-  plain?: boolean | undefined;
+  variant?: ButtonVariant;
 
   /**
    * 按钮是否不可用
@@ -26,16 +26,12 @@ export interface ButtonProps {
 
 export function defaultButtonProps() {
   return {
-    type: '',
-    plain: false,
+    variant: 'default' as ButtonVariant,
     disabled: false,
   } satisfies Required<InferVueDefaults<ButtonProps>>;
 }
 
 /** 按钮组件的插槽信息 */
 export interface ButtonSlots {
-  default(props: {
-    /** 按钮的类型 */
-    type: ButtonType;
-  }): any;
+  default(): any;
 }

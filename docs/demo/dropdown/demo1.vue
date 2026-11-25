@@ -15,7 +15,7 @@ function onCommand(value: string | number) {
 
 <template>
   <PlDropdown :options="options" @command="onCommand">
-    <PlButton type="primary">
+    <PlButton>
       下拉菜单
     </PlButton>
   </PlDropdown>

@@ -59,7 +59,7 @@ app.mount('#app');
 
 ```vue
 <template>
-  <PlButton type="primary">提交</PlButton>
+  <PlButton>提交</PlButton>
   <PlInput v-model="keyword" clearable placeholder="请输入" />
   <PlSelect v-model="fruit" :options="options" clearable placeholder="请选择" />
 </template>

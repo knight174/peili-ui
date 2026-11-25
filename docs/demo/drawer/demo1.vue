@@ -13,22 +13,22 @@ function open(dir: DrawerDirection) {
 
 <template>
   <div class="demo-row">
-    <PlButton type="primary" @click="open('rtl')">
+    <PlButton @click="open('rtl')">
       右侧
     </PlButton>
-    <PlButton @click="open('ltr')">
+    <PlButton variant="secondary" @click="open('ltr')">
       左侧
     </PlButton>
-    <PlButton @click="open('ttb')">
+    <PlButton variant="secondary" @click="open('ttb')">
       顶部
     </PlButton>
-    <PlButton @click="open('btt')">
+    <PlButton variant="secondary" @click="open('btt')">
       底部
     </PlButton>
     <PlDrawer v-model="visible" :direction="direction" title="详情" size="360px">
       <p>当前方向：{{ direction }}</p>
       <template #footer>
-        <PlButton @click="visible = false">
+        <PlButton variant="secondary" @click="visible = false">
           关闭
         </PlButton>
       </template>

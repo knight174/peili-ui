@@ -1,40 +1,3 @@
-$button-types: primary, success, warning, danger, info, neutral;
-
-@mixin button-type-styles() {
-  @each $type in $button-types {
-    &.pl-button--#{$type} {
-      --pl-button-color: rgb(var(--pl-color-text-inverse));
-      --pl-button-bg-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-border-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
-      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}-300));
-      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}-300));
-      --pl-button-active-color: rgb(var(--pl-color-text-inverse));
-      --pl-button-active-bg-color: rgb(var(--pl-color-#{$type}-700));
-      --pl-button-active-border-color: rgb(var(--pl-color-#{$type}-700));
-      --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
-      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-200));
-      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-200));
-    }
-  }
-}
-
-@mixin button-plain-styles() {
-  @each $type in $button-types {
-    &.pl-button--#{$type} {
-      --pl-button-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-bg-color: rgb(var(--pl-color-#{$type}-50));
-      --pl-button-border-color: rgb(var(--pl-color-#{$type}-200));
-      --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
-      --pl-button-hover-bg-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-hover-border-color: rgb(var(--pl-color-#{$type}));
-      --pl-button-disabled-color: rgb(var(--pl-color-#{$type}-200));
-      --pl-button-disabled-bg-color: rgb(var(--pl-color-#{$type}-50));
-      --pl-button-disabled-border-color: rgb(var(--pl-color-#{$type}-100));
-    }
-  }
-}
-
 .pl-button {
   box-sizing: border-box;
   display: inline-flex;
@@ -48,6 +11,7 @@ $button-types: primary, success, warning, danger, info, neutral;
   line-height: var(--pl-line-height-normal);
   color: var(--pl-button-color);
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
   user-select: none;
   background-color: var(--pl-button-bg-color);
@@ -69,22 +33,116 @@ $button-types: primary, success, warning, danger, info, neutral;
     border-color: var(--pl-button-active-border-color);
   }
 
-  @include button-type-styles;
+  /* 实心 brand（主操作） */
+  &.pl-button--default {
+    --pl-button-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-bg-color: rgb(var(--pl-color-primary));
+    --pl-button-border-color: rgb(var(--pl-color-primary));
+    --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-hover));
+    --pl-button-hover-border-color: rgb(var(--pl-color-primary-hover));
+    --pl-button-active-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-active-bg-color: rgb(var(--pl-color-primary-active));
+    --pl-button-active-border-color: rgb(var(--pl-color-primary-active));
+    --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-disabled-bg-color: rgb(var(--pl-color-primary-200));
+    --pl-button-disabled-border-color: rgb(var(--pl-color-primary-200));
+  }
 
-  &.pl-button--plain {
+  /* 次要描边/面（基座 token 默认即此外观，显式声明便于覆盖） */
+  &.pl-button--secondary {
+    --pl-button-color: rgb(var(--pl-color-text-secondary));
+    --pl-button-bg-color: rgb(var(--pl-color-bg-surface));
+    --pl-button-border-color: rgb(var(--pl-color-border-default));
     --pl-button-hover-color: rgb(var(--pl-color-primary));
-    --pl-button-hover-bg-color: rgb(var(--pl-color-bg-surface));
-    --pl-button-hover-border-color: rgb(var(--pl-color-primary));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-50));
+    --pl-button-hover-border-color: rgb(var(--pl-color-primary-100));
+    --pl-button-active-color: rgb(var(--pl-color-primary));
+    --pl-button-active-bg-color: rgb(var(--pl-color-primary-50));
+    --pl-button-active-border-color: rgb(var(--pl-color-primary));
+    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-bg-color: rgb(var(--pl-color-bg-surface));
+    --pl-button-disabled-border-color: rgb(var(--pl-color-border-muted));
+  }
 
-    @include button-plain-styles;
+  /* 危险实心 */
+  &.pl-button--destructive {
+    --pl-button-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-bg-color: rgb(var(--pl-color-danger));
+    --pl-button-border-color: rgb(var(--pl-color-danger));
+    --pl-button-hover-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-danger-300));
+    --pl-button-hover-border-color: rgb(var(--pl-color-danger-300));
+    --pl-button-active-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-active-bg-color: rgb(var(--pl-color-danger-700));
+    --pl-button-active-border-color: rgb(var(--pl-color-danger-700));
+    --pl-button-disabled-color: rgb(var(--pl-color-text-inverse));
+    --pl-button-disabled-bg-color: rgb(var(--pl-color-danger-200));
+    --pl-button-disabled-border-color: rgb(var(--pl-color-danger-200));
+  }
+
+  /* 透明底 + 边框 */
+  &.pl-button--outline {
+    --pl-button-color: rgb(var(--pl-color-text-primary));
+    --pl-button-bg-color: transparent;
+    --pl-button-border-color: rgb(var(--pl-color-border-default));
+    --pl-button-hover-color: rgb(var(--pl-color-primary));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-primary-50));
+    --pl-button-hover-border-color: rgb(var(--pl-color-primary));
+    --pl-button-active-color: rgb(var(--pl-color-primary-active));
+    --pl-button-active-bg-color: rgb(var(--pl-color-primary-50));
+    --pl-button-active-border-color: rgb(var(--pl-color-primary-active));
+    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-bg-color: transparent;
+    --pl-button-disabled-border-color: rgb(var(--pl-color-border-muted));
+  }
+
+  /* 无边框，hover 浅底 */
+  &.pl-button--ghost {
+    --pl-button-color: rgb(var(--pl-color-text-primary));
+    --pl-button-bg-color: transparent;
+    --pl-button-border-color: transparent;
+    --pl-button-hover-color: rgb(var(--pl-color-text-primary));
+    --pl-button-hover-bg-color: rgb(var(--pl-color-bg-hover));
+    --pl-button-hover-border-color: transparent;
+    --pl-button-active-color: rgb(var(--pl-color-text-primary));
+    --pl-button-active-bg-color: rgb(var(--pl-color-bg-active));
+    --pl-button-active-border-color: transparent;
+    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-bg-color: transparent;
+    --pl-button-disabled-border-color: transparent;
+  }
+
+  /* 链接外观 */
+  &.pl-button--link {
+    --pl-button-color: rgb(var(--pl-color-text-link));
+    --pl-button-bg-color: transparent;
+    --pl-button-border-color: transparent;
+    --pl-button-hover-color: rgb(var(--pl-color-primary-hover));
+    --pl-button-hover-bg-color: transparent;
+    --pl-button-hover-border-color: transparent;
+    --pl-button-active-color: rgb(var(--pl-color-primary-active));
+    --pl-button-active-bg-color: transparent;
+    --pl-button-active-border-color: transparent;
+    --pl-button-disabled-color: rgb(var(--pl-color-text-placeholder));
+    --pl-button-disabled-bg-color: transparent;
+    --pl-button-disabled-border-color: transparent;
+    min-height: auto;
+    padding-inline: 0;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   &.pl-button--disabled,
+  &:disabled,
   &.pl-button--disabled:hover,
-  &.pl-button--disabled:active {
+  &:disabled:hover,
+  &.pl-button--disabled:active,
+  &:disabled:active {
     color: var(--pl-button-disabled-color);
     cursor: not-allowed;
     background-color: var(--pl-button-disabled-bg-color);
     border-color: var(--pl-button-disabled-border-color);
+    text-decoration: none;
   }
 }

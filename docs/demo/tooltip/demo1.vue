@@ -5,16 +5,24 @@ import { PlButton, PlTooltip } from 'peili-ui';
 <template>
   <div class="demo-row">
     <PlTooltip content="Top 提示" placement="top">
-      <PlButton>Top</PlButton>
+      <PlButton variant="secondary">
+        Top
+      </PlButton>
     </PlTooltip>
     <PlTooltip content="Bottom 提示" placement="bottom">
-      <PlButton>Bottom</PlButton>
+      <PlButton variant="secondary">
+        Bottom
+      </PlButton>
     </PlTooltip>
     <PlTooltip content="Left 提示" placement="left">
-      <PlButton>Left</PlButton>
+      <PlButton variant="secondary">
+        Left
+      </PlButton>
     </PlTooltip>
     <PlTooltip content="Right 提示" placement="right">
-      <PlButton>Right</PlButton>
+      <PlButton variant="secondary">
+        Right
+      </PlButton>
     </PlTooltip>
   </div>
 </template>

@@ -7,14 +7,14 @@ const visible = ref(false);
 
 <template>
   <div>
-    <PlButton type="primary" @click="visible = true">
+    <PlButton @click="visible = true">
       打开遮罩
     </PlButton>
     <PlOverlay v-model="visible">
       <div class="panel" @click.stop>
         Overlay 内容，点击遮罩关闭
         <div style="margin-top: 12px">
-          <PlButton @click="visible = false">
+          <PlButton variant="secondary" @click="visible = false">
             关闭
           </PlButton>
         </div>

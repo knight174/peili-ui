@@ -9,7 +9,7 @@ const visible = ref(false);
   <div class="demo-popup">
     <PlPopup trigger="click" placement="bottom-start">
       <template #reference>
-        <PlButton type="primary">
+        <PlButton>
           Click 触发
         </PlButton>
       </template>
@@ -22,7 +22,7 @@ const visible = ref(false);
 
     <PlPopup v-model:visible="visible" trigger="manual" placement="bottom">
       <template #reference>
-        <PlButton @click="visible = !visible">
+        <PlButton variant="secondary" @click="visible = !visible">
           Manual：{{ visible ? '已打开' : '已关闭' }}
         </PlButton>
       </template>
@@ -35,7 +35,7 @@ const visible = ref(false);
 
     <PlPopup trigger="hover" placement="top" show-arrow>
       <template #reference>
-        <PlButton>
+        <PlButton variant="secondary">
           Hover 触发
         </PlButton>
       </template>
